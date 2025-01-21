@@ -10,7 +10,7 @@ export default function ShowPage() {
           <h5 className="card-title">Titolo immobile</h5>
           <h5 className="card-title">Numero di stanze</h5>
           <h5 className="card-title">Numero di letti</h5>
-          <h5 className="card-title">Numero di bagni</h5>
+          <h5 className="card-title">Numero di letti</h5>
           <h5 className="card-title">Metri quadrati</h5>
           <h5 className="card-title">Indirizzo completo</h5>
           <h5 className="card-title">Email di riferimento</h5>
