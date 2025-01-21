@@ -7,7 +7,14 @@ export default function ShowPage() {
       <div className="card mb-3">
         <img src="..." className="card-img-top" alt="..." />
         <div className="card-body">
-          <h5 className="card-title">Card title</h5>
+          <h5 className="card-title">Titolo immobile</h5>
+          <h5 className="card-title">Numero di stanze</h5>
+          <h5 className="card-title">Numero di letti</h5>
+          <h5 className="card-title">Numero di bagni</h5>
+          <h5 className="card-title">Metri quadrati</h5>
+          <h5 className="card-title">Indirizzo completo</h5>
+          <h5 className="card-title">Email di riferimento</h5>
+          <h5 className="card-title">La tipologia di immobile</h5>
           <p className="card-text">
             This is a wider card with supporting text below as a natural lead-in
             to additional content. This content is a little bit longer.
