@@ -7,3 +7,10 @@
 main {
   flex-grow: 1;
 }
+
+.homepage-card-container a {
+  text-decoration: none;
+}
+.homepage-card-container .likes-card-text {
+  text-align: end;
+}
