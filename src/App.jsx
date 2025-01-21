@@ -7,6 +7,7 @@ import { DataContextProvider } from "./context/dataContext";
 
 import HomePage from "./pages/HomePage";
 import AboutUsPage from "./pages/AboutUsPage";
+import ShowPage from "./components/pages/ShowPage";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
               <Route index Component={HomePage} />
               <Route path="/aboutUs" Component={AboutUsPage} />
             </Route>
+
+            <Route path="/show" Component={ShowPage} />
           </Routes>
         </BrowserRouter>
       </DataContextProvider>
