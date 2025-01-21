@@ -7,7 +7,7 @@ import { DataContextProvider } from "./context/dataContext";
 
 import HomePage from "./pages/HomePage";
 import AboutUsPage from "./pages/AboutUsPage";
-import ShowPage from "./components/pages/ShowPage";
+import ShowPage from "./pages/ShowPage";
 
 function App() {
   return (
@@ -18,7 +18,6 @@ function App() {
             <Route Component={DefaultLayout}>
               <Route index Component={HomePage} />
               <Route path="/aboutUs" Component={AboutUsPage} />
-              {/* Show Page */}
               <Route path="/show" Component={ShowPage} />
             </Route>
           </Routes>
