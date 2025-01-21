@@ -18,9 +18,9 @@ function App() {
             <Route Component={DefaultLayout}>
               <Route index Component={HomePage} />
               <Route path="/aboutUs" Component={AboutUsPage} />
+              {/* Show Page */}
+              <Route path="/show" Component={ShowPage} />
             </Route>
-
-            <Route path="/show" Component={ShowPage} />
           </Routes>
         </BrowserRouter>
       </DataContextProvider>
