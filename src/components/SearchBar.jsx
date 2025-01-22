@@ -160,7 +160,7 @@ export default function SearchBar({ propertiesList }) {
               <option value="Baita">Baita</option>
             </Form.Select>
           </Form.Group>
-          <div className="d-flex gap-1">
+          <div className="d-flex flex-wrap align-items-center justify-content-space-between gap-1">
             {propertyTypeList.map((badge) => {
               return (
                 <button
