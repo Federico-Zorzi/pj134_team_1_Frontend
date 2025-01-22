@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import ReviewsList from "../components/reviews/ReviewsList";
 
 export default function ShowPage() {
-  const { id: propertieId } = useParams;
+  const { id: propertyId } = useParams;
   const [property, setProperty] = useState(null);
   useEffect(() => {
-    const url = import.meta.env.VITE_BACKEND_URL + "/properties" + propertieId;
+    const url = import.meta.env.VITE_BACKEND_URL + "/properties/" + propertyId;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
