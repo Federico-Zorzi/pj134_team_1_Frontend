@@ -55,6 +55,10 @@ main {
   font-size: 1.2rem;
 }
 
+.star {
+  color: #ec8d44;
+}
+
 /* Breakpoint per smartphone (portrait) */
 @media (max-width: 480px) {
   .card img {
