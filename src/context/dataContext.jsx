@@ -30,11 +30,40 @@ export const DataContextProvider = ({ children }) => {
       });
   };
 
+  const fetchFilterProperties = (formFilterData) => {
+    const city_url = formFilterData.city
+      ? `?${city}=${formFilterData.city}&`
+      : "";
+    const address_url = formFilterData.address
+      ? `?${address}=${formFilterData.address}&`
+      : "";
+    const n_Rooms_url = formFilterData.n_Rooms
+      ? `?${n_Rooms}=${formFilterData.n_Rooms}&`
+      : "";
+    const n_Beds_url = formFilterData.n_Beds
+      ? `?${n_Beds}=${formFilterData.n_Beds}&`
+      : "";
+    const property_type_url = formFilterData.property_type
+      ? `?${property_type}=${formFilterData.property_type}`
+      : "";
+
+    const filters = fetch(
+      serverUrl +
+        `/filtered/${city_url}${address_url}${n_Rooms_url}${n_Beds_url}${property_type_url}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("filter", data);
+        setPropertiesList(data);
+      });
+  };
+
   const dataContext = {
     propertiesList,
     property,
     fetchIndexProperties,
     fetchShowProperties,
+    fetchFilterProperties,
   };
 
   return (
