@@ -25,7 +25,7 @@ export default function ReviewItem({ review }) {
 
   return (
     <Col xs={12} md={6} className="g-3">
-      <Card className="card cards-review">
+      <Card className="card cards-review bg-dark text-white">
         <Card.Header>
           <Row>
             <Col className="user">
@@ -38,7 +38,14 @@ export default function ReviewItem({ review }) {
           </Row>
         </Card.Header>
         <Card.Body>
-          <p className="card-text">{review.content}</p>
+          <div className="d-flex justify-content-between">
+            <p className="card-text">{review.content}</p>
+
+            <p>
+              <span className="fw-bold">Giorni permanenza </span> :
+              {" " + review.living_days}
+            </p>
+          </div>
         </Card.Body>
       </Card>
     </Col>

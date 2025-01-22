@@ -9,7 +9,6 @@ import HomePage from "./pages/HomePage";
 import AboutUsPage from "./pages/AboutUsPage";
 import ShowPage from "./pages/ShowPage";
 import AddPropertyPage from "./pages/AddPropertyPage";
-import TestingPage from "./pages/TestingPage";
 import AdvanceSearchPage from "./pages/AdvanceSearchPage";
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
               <Route path="/aboutUs" Component={AboutUsPage} />
               <Route path="/:id" Component={ShowPage} />
               <Route path="/store" Component={AddPropertyPage} />
-              <Route path="/testing" Component={TestingPage} />
             </Route>
           </Routes>
         </BrowserRouter>
