@@ -5,6 +5,10 @@ export default function HomePage() {
   //* take data from global context
   const { tempDataProperties } = useDataContext();
 
+  fetch("https://jsonplaceholder.typicode.com/posts")
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+
   console.log(tempDataProperties);
 
   return (
