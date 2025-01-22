@@ -39,6 +39,22 @@ main {
   box-shadow: 2px 2px 10px #888888;
 }
 
+/* Reviews Items */
+.review-user-photo {
+  background-color: grey;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 25px;
+  text-align: center;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
 /* Breakpoint per smartphone (portrait) */
 @media (max-width: 480px) {
   .card img {

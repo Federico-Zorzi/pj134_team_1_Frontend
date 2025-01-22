@@ -43,7 +43,6 @@ export default function ReviewsList() {
 
   const handleReviewSubmit = (e) => {
     e.preventDefault();
-    console.log(id);
 
     fetch(serverUrl + `/${id}/addreview`, {
       method: "POST",
@@ -63,13 +62,15 @@ export default function ReviewsList() {
         // recupero i dati aggiornati
         fetchIndexReviews();
 
+        setOpen(false);
+
         // reset dei campi del form
         setReviewFormData(defaultReviewsForm);
       });
   };
 
   return (
-    <>
+    <section className="my-3">
       <Row className="align-items-center">
         <Col>
           <h2>Recensioni degli Ospiti</h2>
@@ -169,12 +170,16 @@ export default function ReviewsList() {
           </div>
         </Collapse>
       </Row>
-      <ul>
-        {reviewsList.map((review, index) => (
-          <li key={index}>{review.name}</li>
-        ))}
-      </ul>
-      <ReviewItem />
-    </>
+
+      <Row>
+        {reviewsList.length > 0 ? (
+          reviewsList.map((review) => (
+            <ReviewItem key={review.id} review={review} />
+          ))
+        ) : (
+          <h5>Nessun Partecipante</h5>
+        )}
+      </Row>
+    </section>
   );
 }
