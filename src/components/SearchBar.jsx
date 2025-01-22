@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 import { useDataContext } from "../context/dataContext";
+import { data } from "react-router-dom";
 
 const initialFormData = {
   city: "",
@@ -15,8 +16,27 @@ export default function SearchBar() {
   const [formData, setFormData] = useState(initialFormData);
   const { fetchFilterProperties } = useDataContext();
 
+  const handleIconClick = (e) => {
+    event.preventDefault();
+    if (e.target.getAttribute("value") == formData.propertyType) {
+      setFormData((prevData) => ({
+        ...prevData,
+        propertyType: "",
+      }));
+    } else {
+      const value = e.target.getAttribute("value");
+
+      setFormData((prevData) => ({
+        ...prevData,
+        propertyType: value,
+      }));
+    }
+  };
+
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
+    console.log(name, value, type, checked);
+
     const newValue = type === "checkbox" ? checked : value;
 
     setFormData((prevData) => ({
@@ -111,6 +131,21 @@ export default function SearchBar() {
               <option value="Baita">Baita</option>
             </Form.Select>
           </Form.Group>
+          <div className="d-flex gap-1">
+            <button
+              onClick={handleIconClick}
+              name="propertyType"
+              value="Villa"
+              type="text"
+              className={
+                formData.propertyType == "Villa"
+                  ? `btn btn-primary`
+                  : `btn btn-secondary`
+              }
+            >
+              Villa
+            </button>
+          </div>
         </div>
       </Form>
     </div>
