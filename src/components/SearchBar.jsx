@@ -2,7 +2,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 import { useDataContext } from "../context/dataContext";
-import { data } from "react-router-dom";
 
 const initialFormData = {
   city: "",
@@ -12,9 +11,18 @@ const initialFormData = {
   propertyType: "",
 };
 
-export default function SearchBar() {
+export default function SearchBar({ propertiesList }) {
   const [formData, setFormData] = useState(initialFormData);
   const { fetchFilterProperties } = useDataContext();
+  const propertyTypeBadges = [];
+
+  propertiesList.forEach((property) => {
+    console.log(property.property_type);
+
+    if (!propertyTypeBadges.includes(property.property_type)) {
+      propertyTypeBadges.push(property.property_type);
+    }
+  });
 
   const handleIconClick = (e) => {
     event.preventDefault();
@@ -132,19 +140,23 @@ export default function SearchBar() {
             </Form.Select>
           </Form.Group>
           <div className="d-flex gap-1">
-            <button
-              onClick={handleIconClick}
-              name="propertyType"
-              value="Villa"
-              type="text"
-              className={
-                formData.propertyType == "Villa"
-                  ? `btn btn-primary`
-                  : `btn btn-secondary`
-              }
-            >
-              Villa
-            </button>
+            {propertyTypeBadges.map((badge) => {
+              return (
+                <button
+                  onClick={handleIconClick}
+                  name="propertyType"
+                  value={badge}
+                  type="text"
+                  className={
+                    formData.propertyType == badge
+                      ? `btn btn-primary`
+                      : `btn btn-secondary`
+                  }
+                >
+                  {badge}
+                </button>
+              );
+            })}
           </div>
         </div>
       </Form>
