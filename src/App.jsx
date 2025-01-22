@@ -22,7 +22,7 @@ function App() {
               <Route index Component={HomePage} />
               <Route path="/advanceSearch" Component={AdvanceSearchPage} />
               <Route path="/aboutUs" Component={AboutUsPage} />
-              <Route path="/show" Component={ShowPage} />
+              <Route path="/show/:id" Component={ShowPage} />
               <Route path="/store" Component={AddPropertyPage} />
               <Route path="/testing" Component={TestingPage} />
             </Route>
