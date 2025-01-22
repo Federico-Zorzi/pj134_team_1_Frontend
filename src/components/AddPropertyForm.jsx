@@ -27,8 +27,20 @@ export default function AddPropertyForm() {
       [name]: newValue,
     }));
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newProperty = [...properties, formData];
+    setProperties(newProperty);
+
+    setFormData(initialFormData);
+
+    const newDataList = [...dataList];
+    newDataList[id].properties = [...newProperty];
+    setDataList(newDataList);
+  };
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="title">
         <Form.Label>Titolo immobile</Form.Label>
         <Form.Control
@@ -154,7 +166,4 @@ export default function AddPropertyForm() {
       </Button>
     </Form>
   );
-}
-
-{
 }
