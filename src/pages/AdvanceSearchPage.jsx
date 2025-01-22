@@ -13,9 +13,7 @@ export default function AdvanceSearchPage() {
 
   return (
     <>
-      <div className="container py-5 min-vh-100">
-        <h1>Advance Search</h1>
-
+      <div className="container  min-vh-100">
         <SearchBar />
         <div className="my-5"></div>
         {/* card container */}
