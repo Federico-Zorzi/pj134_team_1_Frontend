@@ -20,7 +20,7 @@ function App() {
             <Route Component={DefaultLayout}>
               <Route index Component={HomePage} />
               <Route path="/aboutUs" Component={AboutUsPage} />
-              <Route path="/show/:id" Component={ShowPage} />
+              <Route path="/:id" Component={ShowPage} />
               <Route path="/store" Component={AddPropertyPage} />
               <Route path="/testing" Component={TestingPage} />
             </Route>
