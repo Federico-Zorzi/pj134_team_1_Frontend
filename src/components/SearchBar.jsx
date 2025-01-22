@@ -1,15 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import * as bootstrap from "bootstrap";
 import { useState, useEffect } from "react";
 import { useDataContext } from "../context/dataContext";
 
 const initialFormData = {
   city: "",
   address: "",
-  nRooms: 0,
-  nBeds: 0,
+  nRooms: null,
+  nBeds: null,
   propertyType: "",
 };
 
@@ -28,13 +26,14 @@ export default function SearchBar() {
   };
 
   useEffect(() => {
+    console.log(formData.propertyType);
     fetchFilterProperties(formData);
   }, [formData]);
 
   return (
-    <div className="w-50">
+    <div>
       <Form>
-        <div className="row m-4">
+        <div className="row my-4">
           <Form.Group className="col-6" controlId="exampleForm.ControlInput1">
             <Form.Label>Cerca la città che desideri</Form.Label>
             <Form.Control
@@ -56,11 +55,12 @@ export default function SearchBar() {
             />
           </Form.Group>
         </div>
-        <div className="row m-4">
-          <Form.Group className="col-6" controlId="exampleForm.ControlInput1">
+        <div className="row">
+          <Form.Group className="col-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Numero di stanze</Form.Label>
             <Form.Control
               type="number"
+              min={0}
               value={formData.nRooms}
               name="nRooms"
               onChange={handleInputChange}
@@ -68,10 +68,11 @@ export default function SearchBar() {
               start="1"
             />
           </Form.Group>
-          <Form.Group className="col-6" controlId="exampleForm.ControlInput1">
+          <Form.Group className="col-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Numero di letti</Form.Label>
             <Form.Control
               type="number"
+              min={0}
               value={formData.nBeds}
               name="nBeds"
               onChange={handleInputChange}
@@ -79,22 +80,25 @@ export default function SearchBar() {
               start="1"
             />
           </Form.Group>
-        </div>
-        <div className="m-5 d-flex justify-content-center">
-          <Form.Select
-            value={formData.propertyType}
-            name="propertyType"
-            onChange={handleInputChange}
-            className="align-self-center"
-          >
-            <option>Tipo di proprietà</option>
-            <option value="Appartamento">Appartamento</option>
-            <option value="Casa indipendente">Casa indipendente</option>
-            <option value="Villa">Villa</option>
-            <option value="Villetta a schiera">Villetta a schiera</option>
-            <option value="Chalet">Chalet</option>
-            <option value="Baita">Baita</option>
-          </Form.Select>
+          <Form.Group className="col-6 justify-content-center ">
+            <Form.Label>Tipo di proprietà</Form.Label>
+            <Form.Select
+              name="propertyType"
+              onChange={handleInputChange}
+              className="align-self-center form-control"
+              aria-label="Default select example"
+            >
+              <option default value="">
+                Qualsiasi
+              </option>
+              <option value="Appartamento">Appartamento</option>
+              <option value="Casa indipendente">Casa indipendente</option>
+              <option value="Villa">Villa</option>
+              <option value="Villetta a schiera">Villetta a schiera</option>
+              <option value="Chalet">Chalet</option>
+              <option value="Baita">Baita</option>
+            </Form.Select>
+          </Form.Group>
         </div>
       </Form>
     </div>

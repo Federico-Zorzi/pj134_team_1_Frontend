@@ -10,6 +10,7 @@ import AboutUsPage from "./pages/AboutUsPage";
 import ShowPage from "./pages/ShowPage";
 import AddPropertyPage from "./pages/AddPropertyPage";
 import TestingPage from "./pages/TestingPage";
+import AdvanceSearchPage from "./pages/AdvanceSearchPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Routes>
             <Route Component={DefaultLayout}>
               <Route index Component={HomePage} />
+              <Route path="/advanceSearch" Component={AdvanceSearchPage} />
               <Route path="/aboutUs" Component={AboutUsPage} />
               <Route path="/:id" Component={ShowPage} />
               <Route path="/store" Component={AddPropertyPage} />
