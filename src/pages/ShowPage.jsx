@@ -1,31 +1,34 @@
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 export default function ShowPage() {
+  const { id: propertieId } = useParams;
+  const [property, setProperty] = useState(null);
+  useEffect(() => {
+    const url = import.meta.env.VITE_BACKEND_URL + "/properties" + propertieId;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.properties);
+      });
+  }, []);
+
   return (
     <div className="container mt-5">
-      <h1>Dettaglio Immobile</h1>
-
-      {/* Card dell'immobile */}
-      <div className="card mb-3">
-        <img src="..." className="card-img-top" alt="..." />
-        <div className="card-body">
-          <h5 className="card-title">Titolo immobile</h5>
-          <h5 className="card-title">Numero di stanze</h5>
-          <h5 className="card-title">Numero di letti</h5>
-          <h5 className="card-title">Numero di letti</h5>
-          <h5 className="card-title">Metri quadrati</h5>
-          <h5 className="card-title">Indirizzo completo</h5>
-          <h5 className="card-title">Email di riferimento</h5>
-          <h5 className="card-title">La tipologia di immobile</h5>
-          <p className="card-text">
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer.
-          </p>
-          <p className="card-text">
-            <small className="text-body-secondary">
-              Last updated 3 mins ago
-            </small>
-          </p>
-        </div>
+      <h1>Titolo immobile</h1>
+      <div>Indirizzo completo</div>
+      <div>
+        <img
+          src="https://media.discordapp.net/attachments/1331260746847490151/1331307684045262928/default.jpg?ex=6791cd26&is=67907ba6&hm=68129dd9717776887f2e64fb8e9cecb6a1f94ebfd773908fa28b8ad2c739cbf7&=&format=webp"
+          className="card-img-top"
+          alt="..."
+        />
       </div>
+      <div>Numero di stanze</div>
+      <div>Numero di letti</div>
+      <div>Metri quadrati</div>
+      <div>Email di riferimento</div>
+      <div>La tipologia di immobile</div>
     </div>
   );
 }
