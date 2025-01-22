@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ReviewsList from "../components/reviews/ReviewsList";
 
 export default function ShowPage() {
   const { id: propertieId } = useParams;
@@ -34,7 +35,10 @@ export default function ShowPage() {
         <div>Email di riferimento</div>
 
         <hr />
-        <h2>Recensioni</h2>
+        <h2>Recensioni degli Ospiti</h2>
+
+        {/* Lista delle recensioni */}
+        <ReviewsList />
       </div>
     </>
   );
