@@ -177,7 +177,7 @@ export default function ReviewsList() {
             <ReviewItem key={index} review={review} />
           ))
         ) : (
-          <h5>Nessun Partecipante</h5>
+          <h5>Nessuna Recensione</h5>
         )}
       </Row>
     </section>
