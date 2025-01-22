@@ -45,7 +45,7 @@ export default function AddPropertyForm() {
         <Form.Label>Titolo immobile</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter title"
+          placeholder="Titolo dell'immobile "
           name="title"
           value={formData.title}
           onChange={handleInputChange}
@@ -57,7 +57,7 @@ export default function AddPropertyForm() {
         <Form.Label>Numero di stanze</Form.Label>
         <Form.Control
           type="number"
-          placeholder="Number of rooms"
+          placeholder="Inserisci il numero di stanze"
           name="n_Rooms"
           value={formData.n_Rooms}
           onChange={handleInputChange}
@@ -69,7 +69,7 @@ export default function AddPropertyForm() {
         <Form.Label>Numero di letti</Form.Label>
         <Form.Control
           type="number"
-          placeholder="Number of beds"
+          placeholder="Inserisci il numero di letti"
           name="n_Beds"
           value={formData.n_Beds}
           onChange={handleInputChange}
@@ -81,7 +81,7 @@ export default function AddPropertyForm() {
         <Form.Label>Numero di bagni</Form.Label>
         <Form.Control
           type="number"
-          placeholder="Number of bathrooms"
+          placeholder="Inserisci il numero di bagn"
           name="n_Bathrooms"
           value={formData.n_Bathrooms}
           onChange={handleInputChange}
@@ -93,7 +93,7 @@ export default function AddPropertyForm() {
         <Form.Label>Metri quadrati</Form.Label>
         <Form.Control
           type="number"
-          placeholder="Square meters"
+          placeholder="Inserisci i metri quadrati"
           name="square_meters"
           value={formData.square_meters}
           onChange={handleInputChange}
@@ -105,7 +105,7 @@ export default function AddPropertyForm() {
         <Form.Label>Indirizzo completo</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter address"
+          placeholder="Inserisci l'indirizzo"
           name="address"
           value={formData.address}
           onChange={handleInputChange}
@@ -117,7 +117,7 @@ export default function AddPropertyForm() {
         <Form.Label>Email</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter email"
+          placeholder="Inserisci l'email"
           name="reference_email"
           value={formData.reference_email}
           onChange={handleInputChange}
@@ -129,7 +129,7 @@ export default function AddPropertyForm() {
         <Form.Label>Immagine</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter img"
+          placeholder="Inserisci un'immagine"
           name="image"
           value={formData.image}
           onChange={handleInputChange}
@@ -161,7 +161,7 @@ export default function AddPropertyForm() {
         <Form.Label>città</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter city"
+          placeholder="Inserisci la città"
           name="city"
           value={formData.city}
           onChange={handleInputChange}
