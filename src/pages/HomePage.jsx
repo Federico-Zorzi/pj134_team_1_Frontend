@@ -13,11 +13,11 @@ export default function HomePage() {
 
   return (
     <main>
-      <div className="container pt-3">
+      <div className="container py-3">
         <h1 className="my-5">I più gettonati✨</h1>
 
-        <div className="row g-3 homepage-card-container">
-          {/* cards */}
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 homepage-card-container">
+          {/* Cards */}
           {propertiesList.map((property) => {
             return <HomepageCard key={property.id} element={property} />;
           })}

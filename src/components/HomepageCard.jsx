@@ -22,7 +22,7 @@ export default function HomepageCard(params) {
   };
 
   return (
-    <div className="col-3 position-relative" key={property.id}>
+    <div className=" position-relative" key={property.id}>
       <Link className="card" to={`/${property.id}`}>
         <img
           onClick={() => console.log(property)}
