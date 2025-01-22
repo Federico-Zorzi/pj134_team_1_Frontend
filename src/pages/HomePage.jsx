@@ -4,11 +4,6 @@ import { Link } from "react-router-dom";
 export default function HomePage() {
   //* take data from global context
   const { tempDataProperties } = useDataContext();
-
-  fetch("https://jsonplaceholder.typicode.com/posts")
-    .then((response) => response.json())
-    .then((json) => console.log(json));
-
   console.log(tempDataProperties);
 
   return (
@@ -20,8 +15,9 @@ export default function HomePage() {
           {tempDataProperties.map((immobile) => {
             return (
               <div className="col-3 position-relative" key={immobile.id}>
-                <Link className="card">
+                <div className="card">
                   <img
+                    onClick={() => console.log(immobile)}
                     src={
                       "https://hips.hearstapps.com/hmg-prod/images/torino-with-mole-antonelliana-and-the-alps-royalty-free-image-1643015862.jpg"
                     }
@@ -37,9 +33,15 @@ export default function HomePage() {
                       <span className="card-text likes-card-text col-6 text-align-end">
                         <span>{immobile.property_type}</span>
                       </span>
+                      <span className="card-text likes-card-text  col-6 ">
+                        <a onClick={() => console.log(immobile.likes)}>
+                          {" "}
+                          ❤{immobile.likes}
+                        </a>
+                      </span>
                     </div>
                   </div>
-                </Link>
+                </div>
               </div>
             );
           })}
