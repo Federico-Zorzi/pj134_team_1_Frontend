@@ -29,15 +29,24 @@ export default function AddPropertyForm() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const newProperty = [...properties, formData];
-    setProperties(newProperty);
-
-    setFormData(initialFormData);
-
-    const newDataList = [...dataList];
-    newDataList[id].properties = [...newProperty];
-    setDataList(newDataList);
+    fetch("http://localhost:3000/properties/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to submit the form");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        alert("Proprità aggiunta con successo!");
+        setFormData(initialFormData);
+      });
   };
   return (
     <Form onSubmit={handleSubmit}>
@@ -62,6 +71,7 @@ export default function AddPropertyForm() {
           value={formData.n_Rooms}
           onChange={handleInputChange}
           required
+          min="1"
         />
       </Form.Group>
 
@@ -74,6 +84,7 @@ export default function AddPropertyForm() {
           value={formData.n_Beds}
           onChange={handleInputChange}
           required
+          min="1"
         />
       </Form.Group>
 
@@ -86,6 +97,7 @@ export default function AddPropertyForm() {
           value={formData.n_Bathrooms}
           onChange={handleInputChange}
           required
+          min="1"
         />
       </Form.Group>
 
