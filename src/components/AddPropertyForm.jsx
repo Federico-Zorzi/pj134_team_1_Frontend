@@ -148,12 +148,13 @@ export default function AddPropertyForm() {
           <option default value="">
             Qualsiasi
           </option>
-          <option value="Appartamento">Appartamento</option>
-          <option value="Casa indipendente">Casa indipendente</option>
-          <option value="Villa">Villa</option>
-          <option value="Villetta a schiera">Villetta a schiera</option>
-          <option value="Chalet">Chalet</option>
-          <option value="Baita">Baita</option>
+          <option value="apartment">Appartamento</option>
+          <option value="independent_house">Casa indipendente</option>
+          <option value="villa">Villa</option>
+          <option value="terraced_villa">Villetta a schiera</option>
+          <option value="chalet">Chalet</option>
+          <option value="cabin">Baita</option>
+          <option value="other">Altro</option>
         </Form.Select>
       </Form.Group>
 
