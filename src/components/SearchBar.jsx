@@ -34,8 +34,11 @@ export default function SearchBar() {
   return (
     <div>
       <Form>
-        <div className="row my-4">
-          <Form.Group className="col-6" controlId="exampleForm.ControlInput1">
+        <div className="row mt-4">
+          <Form.Group
+            className="col-12 col-md-6 mb-4"
+            controlId="exampleForm.ControlInput1"
+          >
             <Form.Label>Cerca la città che desideri</Form.Label>
             <Form.Control
               type="text"
@@ -45,7 +48,10 @@ export default function SearchBar() {
               placeholder="Città"
             />
           </Form.Group>
-          <Form.Group className="col-6" controlId="exampleForm.ControlInput1">
+          <Form.Group
+            className="col-12 col-md-6 mb-4"
+            controlId="exampleForm.ControlInput1"
+          >
             <Form.Label>Cerca l'indirizzo</Form.Label>
             <Form.Control
               type="text"
@@ -57,7 +63,10 @@ export default function SearchBar() {
           </Form.Group>
         </div>
         <div className="row">
-          <Form.Group className="col-3" controlId="exampleForm.ControlInput1">
+          <Form.Group
+            className="col-12 col-md-3 mb-4"
+            controlId="exampleForm.ControlInput1"
+          >
             <Form.Label>Numero di stanze</Form.Label>
             <Form.Control
               type="number"
@@ -65,11 +74,14 @@ export default function SearchBar() {
               value={formData.nRooms}
               name="nRooms"
               onChange={handleInputChange}
-              placeholder="Numero di stanze"
+              placeholder="N. Stanze"
               start="1"
             />
           </Form.Group>
-          <Form.Group className="col-3" controlId="exampleForm.ControlInput1">
+          <Form.Group
+            className="col-12 col-md-3 mb-4"
+            controlId="exampleForm.ControlInput1"
+          >
             <Form.Label>Numero di letti</Form.Label>
             <Form.Control
               type="number"
@@ -77,11 +89,11 @@ export default function SearchBar() {
               value={formData.nBeds}
               name="nBeds"
               onChange={handleInputChange}
-              placeholder="Numero di stanze"
+              placeholder="N. Letti"
               start="1"
             />
           </Form.Group>
-          <Form.Group className="col-6 justify-content-center ">
+          <Form.Group className="col-12 col-md-6 justify-content-center ">
             <Form.Label>Tipo di proprietà</Form.Label>
             <Form.Select
               name="propertyType"
@@ -89,7 +101,7 @@ export default function SearchBar() {
               className="align-self-center form-control"
               aria-label="Default select example"
             >
-              <option>Qualsiasi</option>
+              <option>Qualsiasi tipologia</option>
               <option value="Appartamento">Appartamento</option>
               <option value="Casa indipendente">Casa indipendente</option>
               <option value="Villa">Villa</option>
