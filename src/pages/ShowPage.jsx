@@ -2,6 +2,16 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ReviewsList from "../components/reviews/ReviewsList";
 
+const defaultPropertyValues = {
+  title: "default",
+  nRooms: 0,
+  nBathrooms: 0,
+  nBeds: 0,
+  squareMeters: 0,
+  referenceEmail: "default",
+  id: 0,
+};
+
 export default function ShowPage() {
   const { id: propertyId } = useParams;
   const [property, setProperty] = useState(null);

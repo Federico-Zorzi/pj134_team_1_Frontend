@@ -1,7 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import * as bootstrap from "bootstrap";
 import { useState, useEffect } from "react";
 import { useDataContext } from "../context/dataContext";
 
@@ -28,6 +26,7 @@ export default function SearchBar() {
   };
 
   useEffect(() => {
+    console.log(formData.propertyType);
     fetchFilterProperties(formData);
   }, [formData]);
 
@@ -89,7 +88,9 @@ export default function SearchBar() {
               className="align-self-center form-control"
               aria-label="Default select example"
             >
-              <option>Qualsiasi</option>
+              <option default value="">
+                Qualsiasi
+              </option>
               <option value="Appartamento">Appartamento</option>
               <option value="Casa indipendente">Casa indipendente</option>
               <option value="Villa">Villa</option>

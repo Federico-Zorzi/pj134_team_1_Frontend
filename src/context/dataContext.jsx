@@ -47,7 +47,7 @@ export const DataContextProvider = ({ children }) => {
       const response = await fetch(`${serverUrl}/filtered?${queryParams}`);
       if (!response.ok) throw new Error("Failed to fetch filtered properties");
       const data = await response.json();
-      console.log("filter", data);
+      console.log("filtered data", data);
       setPropertiesList(data);
     } catch (error) {
       console.error("Error fetching filtered properties:", error);
