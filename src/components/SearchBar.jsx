@@ -22,7 +22,6 @@ export default function SearchBar() {
       ...prevData,
       [name]: newValue,
     }));
-    console.log(formData);
   };
 
   const handleSearchSubmit = (e) => {
@@ -71,9 +70,12 @@ export default function SearchBar() {
           onChange={handleInputChange}
         >
           <option>Seleziona il tipo di proprietà</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option value="Appartamento">Appartamento</option>
+          <option value="Casa indipendente">Casa indipendente</option>
+          <option value="Villa">Villa</option>
+          <option value="Villetta a schiera">Villetta a schiera</option>
+          <option value="Chalet">Chalet</option>
+          <option value="Baita">Baita</option>
         </Form.Select>
         <Button variant="primary" type="submit">
           Cerca
