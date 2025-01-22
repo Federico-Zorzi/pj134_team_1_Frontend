@@ -43,7 +43,6 @@ export default function ReviewsList() {
 
   const handleReviewSubmit = (e) => {
     e.preventDefault();
-    console.log(id);
 
     fetch(serverUrl + `/${id}/addreview`, {
       method: "POST",
@@ -62,6 +61,8 @@ export default function ReviewsList() {
 
         // recupero i dati aggiornati
         fetchIndexReviews();
+
+        setOpen(false);
 
         // reset dei campi del form
         setReviewFormData(defaultReviewsForm);
@@ -170,9 +171,11 @@ export default function ReviewsList() {
         </Collapse>
       </Row>
       <ul>
-        {reviewsList.map((review, index) => (
-          <li key={index}>{review.name}</li>
-        ))}
+        {reviewsList.length > 0 ? (
+          reviewsList.map((review, index) => <li key={index}>{review.name}</li>)
+        ) : (
+          <h5>Nessun Partecipante</h5>
+        )}
       </ul>
       <ReviewItem />
     </>
