@@ -20,38 +20,43 @@ export default function ShowPage() {
         <div className="container mt-5">
           <h1>{property.title}</h1>
           <div className="row d-flex">
-            <div className="col-8">
+            <div className="col-lg-8 col-md-12">
               <img
                 src="https://media.discordapp.net/attachments/1331260746847490151/1331307684045262928/default.jpg?ex=6791cd26&is=67907ba6&hm=68129dd9717776887f2e64fb8e9cecb6a1f94ebfd773908fa28b8ad2c739cbf7&=&format=webp"
                 className="card-img-top"
                 alt="..."
               />
             </div>
-            <div className="col-4">
-              <div>
+            <div className="col-lg-4 col-md-12 mt-3">
+              <div className="mt-2">
                 <strong>Indirizzo</strong>
+                <p>{property.address}</p>
               </div>
-              <p className="card-text">{property.address}</p>
-              <div>
+
+              <div className="mt-2">
                 <strong>Tipologia di immobile</strong>
+                <p>{property.property_type}</p>
               </div>
-              <p>{property.property_type}</p>
-              <div>
+
+              <div className="mt-2">
                 <strong>Numero di stanze</strong>
+                <p>{property.n_Rooms}</p>
               </div>
-              <p>{property.n_Rooms}</p>
-              <div>
+
+              <div className="mt-2">
                 <strong>Numero di letti</strong>
+                <p>{property.n_Beds}</p>
               </div>
-              <p>{property.n_Beds}</p>
-              <div>
+
+              <div className="mt-2">
                 <strong>Metri quadrati</strong>
+                <p>{property.square_meters}</p>
               </div>
-              <p>{property.square_meters}</p>
-              <div>
+
+              <div className="mt-2">
                 <strong>Email di riferimento</strong>
+                <p>{property.reference_email}</p>
               </div>
-              <p>{property.reference_email}</p>
             </div>
           </div>
           <hr />
