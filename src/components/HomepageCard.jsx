@@ -21,6 +21,27 @@ export default function HomepageCard(params) {
       });
   };
 
+  function translatePropertyType(propertyType) {
+    switch (propertyType) {
+      case "apartment":
+        return "Appartamento";
+      case "independent_house":
+        return "Casa indipendente";
+      case "villa":
+        return "Villa";
+      case "terraced_villa":
+        return "Villetta a schiera";
+      case "chalet":
+        return "Chalet";
+      case "cabin":
+        return "Baita";
+      case "other":
+        return "Altro";
+      default:
+        return "Tipo sconosciuto";
+    }
+  }
+
   return (
     <div className=" position-relative" key={property.id}>
       <Link className="card" to={`/${property.id}`}>
@@ -39,7 +60,9 @@ export default function HomepageCard(params) {
           <div className="row">
             <span className="card-text col-6">€120/notte</span>
             <span className="card-text property-type-card-text col-6 text-align-end">
-              <span>{property.property_type}</span>
+              <span className="badge text-dark border border-dark">
+                {translatePropertyType(property.property_type)}
+              </span>
             </span>
           </div>
         </div>
