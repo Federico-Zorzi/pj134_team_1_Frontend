@@ -32,68 +32,71 @@ export default function SearchBar() {
   }, [formData]);
 
   return (
-    <>
+    <div className="w-50">
       <Form>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Cerca la città che desideri</Form.Label>
-          <Form.Control
-            type="text"
-            value={formData.city}
-            name="city"
+        <div className="row m-4">
+          <Form.Group className="col-6" controlId="exampleForm.ControlInput1">
+            <Form.Label>Cerca la città che desideri</Form.Label>
+            <Form.Control
+              type="text"
+              value={formData.city}
+              name="city"
+              onChange={handleInputChange}
+              placeholder="Città"
+            />
+          </Form.Group>
+          <Form.Group className="col-6" controlId="exampleForm.ControlInput1">
+            <Form.Label>Cerca l'indirizzo</Form.Label>
+            <Form.Control
+              type="text"
+              value={formData.address}
+              name="address"
+              onChange={handleInputChange}
+              placeholder="Indirizzo"
+            />
+          </Form.Group>
+        </div>
+        <div className="row m-4">
+          <Form.Group className="col-6" controlId="exampleForm.ControlInput1">
+            <Form.Label>Numero di stanze</Form.Label>
+            <Form.Control
+              type="number"
+              value={formData.nRooms}
+              name="nRooms"
+              onChange={handleInputChange}
+              placeholder="Numero di stanze"
+              start="1"
+            />
+          </Form.Group>
+          <Form.Group className="col-6" controlId="exampleForm.ControlInput1">
+            <Form.Label>Numero di letti</Form.Label>
+            <Form.Control
+              type="number"
+              value={formData.nBeds}
+              name="nBeds"
+              onChange={handleInputChange}
+              placeholder="Numero di stanze"
+              start="1"
+            />
+          </Form.Group>
+        </div>
+        <div className="m-5 d-flex justify-content-center">
+          <Form.Select
+            value={formData.propertyType}
+            name="propertyType"
             onChange={handleInputChange}
-            placeholder="Città"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Cerca l'indirizzo</Form.Label>
-          <Form.Control
-            type="text"
-            value={formData.address}
-            name="address"
-            onChange={handleInputChange}
-            placeholder="Indirizzo"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Numero di stanze</Form.Label>
-          <Form.Control
-            type="number"
-            value={formData.nRooms}
-            name="nRooms"
-            onChange={handleInputChange}
-            placeholder="Numero di stanze"
-            start="1"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Numero di letti</Form.Label>
-          <Form.Control
-            type="number"
-            value={formData.nBeds}
-            name="nBeds"
-            onChange={handleInputChange}
-            placeholder="Numero di stanze"
-            start="1"
-          />
-        </Form.Group>
-        <Form.Select
-          aria-label="Default select example"
-          value={formData.propertyType}
-          name="propertyType"
-          onChange={handleInputChange}
-        >
-          <option>Seleziona il tipo di proprietà</option>
-          <option value="Appartamento">Appartamento</option>
-          <option value="Casa indipendente">Casa indipendente</option>
-          <option value="Villa">Villa</option>
-          <option value="Villetta a schiera">Villetta a schiera</option>
-          <option value="Chalet">Chalet</option>
-          <option value="Baita">Baita</option>
-        </Form.Select>
-        <Button variant="primary" type="submit">
-          Cerca
-        </Button>
+            className="align-self-center"
+          >
+            <option>Tipo di proprietà</option>
+            <option value="Appartamento">Appartamento</option>
+            <option value="Casa indipendente">Casa indipendente</option>
+            <option value="Villa">Villa</option>
+            <option value="Villetta a schiera">Villetta a schiera</option>
+            <option value="Chalet">Chalet</option>
+            <option value="Baita">Baita</option>
+          </Form.Select>
+        </div>
       </Form>
-    </>
+    </div>
   );
 }
