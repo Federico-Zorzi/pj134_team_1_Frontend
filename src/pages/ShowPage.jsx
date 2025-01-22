@@ -55,7 +55,6 @@ export default function ShowPage() {
             </div>
           </div>
           <hr />
-          <h2>Recensioni degli Ospiti</h2>
 
           <ReviewsList id={property.id} />
         </div>
