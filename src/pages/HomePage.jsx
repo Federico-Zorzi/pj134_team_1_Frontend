@@ -15,7 +15,7 @@ export default function HomePage() {
           {tempDataProperties.map((immobile) => {
             return (
               <div className="col-3 position-relative" key={immobile.id}>
-                <div className="card">
+                <Link className="card">
                   <img
                     onClick={() => console.log(immobile)}
                     src={
@@ -30,18 +30,20 @@ export default function HomePage() {
                       <span className="card-text col-6">
                         €{immobile.price}/notte
                       </span>
-                      <span className="card-text likes-card-text col-6 text-align-end">
+                      <span className="card-text property-type-card-text col-6 text-align-end">
                         <span>{immobile.property_type}</span>
-                      </span>
-                      <span className="card-text likes-card-text  col-6 ">
-                        <a onClick={() => console.log(immobile.likes)}>
-                          {" "}
-                          ❤{immobile.likes}
-                        </a>
                       </span>
                     </div>
                   </div>
-                </div>
+                  <br />
+                </Link>
+                <a
+                  className="likes-card-text"
+                  onClick={() => console.log(immobile.likes)}
+                >
+                  {" "}
+                  ❤{immobile.likes}
+                </a>
               </div>
             );
           })}
