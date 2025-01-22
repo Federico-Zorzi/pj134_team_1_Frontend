@@ -19,7 +19,15 @@ export default function HomePage() {
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 homepage-card-container">
           {/* Cards */}
           {propertiesList.map((property) => {
-            return <HomepageCard key={property.id} element={property} />;
+            return (
+              <HomepageCard
+                key={property.id}
+                element={property}
+                link={{
+                  to: "/properties/" + property.id,
+                }}
+              />
+            );
           })}
         </div>
       </div>
