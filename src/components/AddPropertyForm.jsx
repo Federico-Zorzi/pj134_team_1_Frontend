@@ -77,11 +77,11 @@ export default function AddPropertyForm() {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="square-metres">
+      <Form.Group className="mb-3" controlId="square-meters">
         <Form.Label>Metri quadrati</Form.Label>
         <Form.Control
           type="number"
-          placeholder="Square metres"
+          placeholder="Square meters"
           name="square_meters"
           value={formData.square_meters}
           onChange={handleInputChange}
