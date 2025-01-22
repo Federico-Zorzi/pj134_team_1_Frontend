@@ -11,18 +11,39 @@ const initialFormData = {
   propertyType: "",
 };
 
+// Translate property type
+function translatePropertyType(propertyType) {
+  switch (propertyType) {
+    case "apartment":
+      return "Appartamento";
+    case "independent_house":
+      return "Casa indipendente";
+    case "villa":
+      return "Villa";
+    case "terraced_villa":
+      return "Villetta a schiera";
+    case "chalet":
+      return "Chalet";
+    case "cabin":
+      return "Baita";
+    case "other":
+      return "Altro";
+    default:
+      return "Tipo sconosciuto";
+  }
+}
+
 export default function SearchBar({ propertiesList }) {
   const [formData, setFormData] = useState(initialFormData);
   const { fetchFilterProperties } = useDataContext();
-  const propertyTypeBadges = [];
-
-  propertiesList.forEach((property) => {
-    console.log(property.property_type);
-
-    if (!propertyTypeBadges.includes(property.property_type)) {
-      propertyTypeBadges.push(property.property_type);
-    }
-  });
+  const propertyTypeList = [
+    "apartment",
+    "independent_house",
+    "villa",
+    "terraced_villa",
+    "chalet",
+    "cabin",
+  ];
 
   const handleIconClick = (e) => {
     event.preventDefault();
@@ -140,7 +161,7 @@ export default function SearchBar({ propertiesList }) {
             </Form.Select>
           </Form.Group>
           <div className="d-flex gap-1">
-            {propertyTypeBadges.map((badge) => {
+            {propertyTypeList.map((badge) => {
               return (
                 <button
                   onClick={handleIconClick}
@@ -153,7 +174,7 @@ export default function SearchBar({ propertiesList }) {
                       : `btn btn-secondary`
                   }
                 >
-                  {badge}
+                  {translatePropertyType(badge)}
                 </button>
               );
             })}
