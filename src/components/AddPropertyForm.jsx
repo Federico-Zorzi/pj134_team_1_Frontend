@@ -137,16 +137,24 @@ export default function AddPropertyForm() {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="type-property">
-        <Form.Label>Tipologia di immobile</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter type property"
+      <Form.Group className=" ">
+        <Form.Label>Tipo di proprietà</Form.Label>
+        <Form.Select
           name="property_type"
-          value={formData.property_type}
           onChange={handleInputChange}
-          required
-        />
+          className="align-self-center form-control"
+          aria-label="Default select example"
+        >
+          <option default value="">
+            Qualsiasi
+          </option>
+          <option value="Appartamento">Appartamento</option>
+          <option value="Casa indipendente">Casa indipendente</option>
+          <option value="Villa">Villa</option>
+          <option value="Villetta a schiera">Villetta a schiera</option>
+          <option value="Chalet">Chalet</option>
+          <option value="Baita">Baita</option>
+        </Form.Select>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="city">
