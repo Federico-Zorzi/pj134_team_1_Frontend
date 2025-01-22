@@ -30,32 +30,28 @@ export const DataContextProvider = ({ children }) => {
       });
   };
 
-  const fetchFilterProperties = (formFilterData) => {
-    const city_url = formFilterData.city
-      ? `?${city}=${formFilterData.city}&`
-      : "";
-    const address_url = formFilterData.address
-      ? `?${address}=${formFilterData.address}&`
-      : "";
-    const n_Rooms_url = formFilterData.n_Rooms
-      ? `?${n_Rooms}=${formFilterData.n_Rooms}&`
-      : "";
-    const n_Beds_url = formFilterData.n_Beds
-      ? `?${n_Beds}=${formFilterData.n_Beds}&`
-      : "";
-    const property_type_url = formFilterData.property_type
-      ? `?${property_type}=${formFilterData.property_type}`
-      : "";
+  const fetchFilterProperties = async (formFilterData) => {
+    try {
+      const queryParams = new URLSearchParams();
 
-    const filters = fetch(
-      serverUrl +
-        `/filtered/${city_url}${address_url}${n_Rooms_url}${n_Beds_url}${property_type_url}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("filter", data);
-        setPropertiesList(data);
-      });
+      if (formFilterData.city) queryParams.append("city", formFilterData.city);
+      if (formFilterData.address)
+        queryParams.append("address", formFilterData.address);
+      if (formFilterData.nRooms)
+        queryParams.append("n_Rooms", formFilterData.nRooms);
+      if (formFilterData.nBeds)
+        queryParams.append("n_Beds", formFilterData.nBeds);
+      if (formFilterData.propertyType)
+        queryParams.append("property_type", formFilterData.propertyType);
+
+      const response = await fetch(`${serverUrl}/filtered?${queryParams}`);
+      if (!response.ok) throw new Error("Failed to fetch filtered properties");
+      const data = await response.json();
+      console.log("filter", data);
+      setPropertiesList(data);
+    } catch (error) {
+      console.error("Error fetching filtered properties:", error);
+    }
   };
 
   const dataContext = {
