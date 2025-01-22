@@ -1,26 +1,26 @@
 import { Card, Col, Row } from "react-bootstrap";
 
+import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
+import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export default function ReviewItem({ review }) {
   // FUNCTION FOR RATE WITH STARS
-  const rateStarsConversion = (rate) => {
-    let decodStars = [];
-    const numbTrunc = Math.trunc(rate);
-    const numOfStars = Math.round(rate);
+  const rateStarsConversion = (starNumber) => {
+    let stars = [];
 
-    for (let i = 1; i <= 5; i++) {
-      if (i <= numOfStars) {
-        if (i == numOfStars && rate / 2 - numbTrunc >= 0.5) {
-          decodStars.push(
-            <i className="star fa-solid fa-star-half-stroke"></i>
-          );
-        } else {
-          decodStars.push(<i className="star fa-solid fa-star"></i>);
-        }
-      } else {
-        decodStars.push(<i className="star fa-regular fa-star"></i>);
-      }
+    for (let i = 0; i < starNumber; i++) {
+      stars.push(
+        <FontAwesomeIcon key={i} icon={faStarSolid} className="star" />
+      );
     }
-    return decodStars;
+    for (let i = starNumber; i < 5; i++) {
+      stars.push(
+        <FontAwesomeIcon key={i} icon={faStarRegular} className="star" />
+      );
+    }
+
+    return stars;
   };
 
   return (
@@ -29,7 +29,7 @@ export default function ReviewItem({ review }) {
         <Card.Header>
           <Row>
             <Col className="user">
-              <span className="review-user-photo">P</span>
+              <span className="review-user-photo">{review.name[0]}</span>
               {review.name}
             </Col>
             <Col className="vote text-end">

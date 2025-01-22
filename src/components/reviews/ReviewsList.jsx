@@ -173,8 +173,8 @@ export default function ReviewsList() {
 
       <Row>
         {reviewsList.length > 0 ? (
-          reviewsList.map((review) => (
-            <ReviewItem key={review.id} review={review} />
+          reviewsList.map((review, index) => (
+            <ReviewItem key={index} review={review} />
           ))
         ) : (
           <h5>Nessun Partecipante</h5>
