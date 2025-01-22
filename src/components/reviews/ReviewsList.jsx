@@ -70,7 +70,7 @@ export default function ReviewsList() {
   };
 
   return (
-    <>
+    <section className="my-3">
       <Row className="align-items-center">
         <Col>
           <h2>Recensioni degli Ospiti</h2>
@@ -170,14 +170,16 @@ export default function ReviewsList() {
           </div>
         </Collapse>
       </Row>
-      <ul>
+
+      <Row>
         {reviewsList.length > 0 ? (
-          reviewsList.map((review, index) => <li key={index}>{review.name}</li>)
+          reviewsList.map((review) => (
+            <ReviewItem key={review.id} review={review} />
+          ))
         ) : (
           <h5>Nessun Partecipante</h5>
         )}
-      </ul>
-      <ReviewItem />
-    </>
+      </Row>
+    </section>
   );
 }
