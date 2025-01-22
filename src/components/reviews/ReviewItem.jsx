@@ -7,42 +7,42 @@ export default function ReviewItem() {
       >
         {/* Nome */}
         <div className="col-3">
-          <label htmlFor="name" class="form-label">
+          <label htmlFor="name" className="form-label">
             Nome
           </label>
           <input
             type="text"
             id="name"
             name="name"
-            class="form-control"
+            className="form-control"
             // value={reviewForm.name}
             // onChange={handleFormChange}
           />
         </div>
         {/* Voto */}
         <div className="col-3">
-          <label htmlFor="vote" class="form-label">
+          <label htmlFor="vote" className="form-label">
             Voto
           </label>
           <input
             type="text"
             id="vote"
             name="vote"
-            class="form-control"
+            className="form-control"
             // value={reviewForm.vote}
             // onChange={handleFormChange}
           />
         </div>
         {/* Testo */}
         <div className="col-3">
-          <label htmlFor="text" class="form-label">
+          <label htmlFor="text" className="form-label">
             Testo
           </label>
           <input
             type="text"
             id="text"
             name="text"
-            class="form-control"
+            className="form-control"
             // value={reviewForm.text}
             // onChange={handleFormChange}
           />
