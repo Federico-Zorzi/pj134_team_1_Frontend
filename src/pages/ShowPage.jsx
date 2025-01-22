@@ -1,23 +1,17 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ReviewsList from "../components/reviews/ReviewsList";
+import { useDataContext } from "../context/dataContext";
 
 export default function ShowPage() {
-  const { id: propertyId } = useParams;
-  const [property, setProperty] = useState(null);
-  useEffect(() => {
-    const url = import.meta.env.VITE_BACKEND_URL + "/properties/" + propertyId;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.properties);
-      });
-  }, []);
+  const { id } = useParams();
+  const { property, fetchShowProperties } = useDataContext();
+  useEffect(() => fetchShowProperties(id), []);
 
   return (
     <>
       <div className="container mt-5">
-        <h1>Titolo immobile</h1>
+        <h1>{property.title}</h1>
 
         <div>
           <img
