@@ -7,3 +7,26 @@
 main {
   flex-grow: 1;
 }
+
+.homepage-card-container a {
+  text-decoration: none;
+}
+.homepage-card-container .property-type-card-text {
+  text-align: end;
+}
+
+.homepage-card-container .likes-card-text {
+  position: absolute;
+  top: 10px;
+  right: 17px;
+  background-color: rgba(231, 231, 231, 0.5);
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.homepage-card-container .likes-card-text:hover {
+  background-color: rgba(231, 231, 231, 1);
+}
