@@ -26,7 +26,7 @@ export const DataContextProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log("show", data);
-        setProperty(data);
+        setProperty(data[0]);
       });
   };
 
