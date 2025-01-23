@@ -102,7 +102,7 @@ export default function AdvancedSearchCard(params) {
                 </div>
                 {/* Metri quadrati */}
                 <p className="card-text mq">
-                  <strong>Metri quadrati </strong>
+                  <strong>Metri quadrati : </strong>
                   {property.square_meters}
                 </p>
                 <Row className="align-items-end">
