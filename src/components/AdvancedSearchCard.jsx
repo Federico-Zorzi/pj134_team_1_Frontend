@@ -75,13 +75,13 @@ export default function AdvancedSearchCard(params) {
                   </div>
                   {/* Numero bagni */}
                   <div className="card-text">
-                    <i class="fa-solid fa-bath me-2"></i>
+                    <i className="fa-solid fa-bath me-2"></i>
                     {property.n_Bathrooms}
                   </div>
                 </div>
                 {/* Indirizzo */}
                 <div className="card-text mb-3">
-                  <i class="fa-solid fa-location-dot me-2"></i>
+                  <i className="fa-solid fa-location-dot me-2"></i>
                   {property.address}
                 </div>
                 {/* Metri quadrati */}
