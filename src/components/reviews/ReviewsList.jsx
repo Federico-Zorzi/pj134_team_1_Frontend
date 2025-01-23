@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { Col, Row, Button, Collapse } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+
 import ReviewItem from "./ReviewItem";
 
 export default function ReviewsList() {
@@ -15,10 +18,17 @@ export default function ReviewsList() {
   };
   const serverUrl = import.meta.env.VITE_SERVER_URL + "/properties";
   const { id } = useParams();
-  const [open, setOpen] = useState(false);
+  const minVote = 1;
+  const maxVote = 5;
+  const minLivingDays = 1;
+  const maxLivingDays = 9999;
+
+  const [openCollapse, setOpenCollapse] = useState(false);
 
   const [reviewFormData, setReviewFormData] = useState(defaultReviewsForm);
   const [reviewsList, setReviewList] = useState([]);
+
+  const [validated, setValidated] = useState(false);
 
   const fetchIndexReviews = () => {
     fetch(serverUrl + `/${id}/reviews`)
@@ -28,7 +38,6 @@ export default function ReviewsList() {
         setReviewList(data);
       });
   };
-
   useEffect(fetchIndexReviews, []);
 
   const handleInputChange = (e) => {
@@ -44,29 +53,56 @@ export default function ReviewsList() {
   const handleReviewSubmit = (e) => {
     e.preventDefault();
 
-    fetch(serverUrl + `/${id}/addreview`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: reviewFormData.name,
-        vote: reviewFormData.vote,
-        living_days: reviewFormData.living_days,
-        check_in: reviewFormData.check_in,
-        content: reviewFormData.content,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("store", data);
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setValidated(true);
 
-        // recupero i dati aggiornati
-        fetchIndexReviews();
+    const voteValidation =
+      reviewFormData.vote &&
+      reviewFormData.vote >= minVote &&
+      reviewFormData.vote <= maxVote;
 
-        setOpen(false);
+    const livingDaysValidation =
+      reviewFormData.living_days &&
+      reviewFormData.living_days >= minLivingDays &&
+      reviewFormData.living_days <= maxLivingDays;
 
-        // reset dei campi del form
-        setReviewFormData(defaultReviewsForm);
-      });
+    if (
+      reviewFormData.name &&
+      voteValidation &&
+      livingDaysValidation &&
+      reviewFormData.check_in &&
+      reviewFormData.content
+    ) {
+      fetch(serverUrl + `/${id}/addreview`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: reviewFormData.name,
+          vote: reviewFormData.vote,
+          living_days: reviewFormData.living_days,
+          check_in: reviewFormData.check_in,
+          content: reviewFormData.content,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("store", data);
+
+          // catch reviews data updated
+          fetchIndexReviews();
+
+          // closing form collapsing & resetting validation
+          setOpenCollapse(false);
+          setValidated(false);
+
+          // reset form fields
+          setReviewFormData(defaultReviewsForm);
+        });
+    }
   };
 
   return (
@@ -77,89 +113,103 @@ export default function ReviewsList() {
         </Col>
         <Col className="text-end">
           <Button
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpenCollapse(!openCollapse)}
             aria-controls="collapse-form-reviews"
-            aria-expanded={open}
+            aria-expanded={openCollapse}
           >
-            Aggiungi Recensione
+            <FontAwesomeIcon icon={faPlus} /> Aggiungi Recensione
           </Button>
         </Col>
-        <Collapse in={open}>
+        <Collapse in={openCollapse}>
           <div id="collapse-form-reviews">
-            <Form onSubmit={handleReviewSubmit}>
+            <Form
+              noValidate
+              validated={validated}
+              onSubmit={handleReviewSubmit}
+            >
               <Row>
                 {/* Nome */}
-                <Col xs={6}>
-                  <Form.Group className="mb-3" controlId="title">
-                    <Form.Label>Nome</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="name"
-                      value={reviewFormData.name}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </Form.Group>
-                </Col>
+                <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
+                  <Form.Label>Nome</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Inserisci nome..."
+                    name="name"
+                    value={reviewFormData.name}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Inserisci il tuo nome.
+                  </Form.Control.Feedback>
+                </Form.Group>
                 {/* Voto */}
-                <Col xs={6}>
-                  <Form.Group className="mb-3" controlId="title">
-                    <Form.Label>Vote</Form.Label>
-                    <Form.Control
-                      type="number"
-                      name="vote"
-                      value={reviewFormData.vote}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </Form.Group>
-                </Col>
+                <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
+                  <Form.Label>Vote</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder="Inserisci voto..."
+                    min={minVote}
+                    max={maxVote}
+                    name="vote"
+                    value={reviewFormData.vote}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Inserisci un voto alla recensione (da {minVote} a {maxVote}
+                    ).
+                  </Form.Control.Feedback>
+                </Form.Group>
                 {/* Tempo di permanenza */}
-                <Col xs={6}>
-                  <Form.Group className="mb-3" controlId="title">
-                    <Form.Label>Tempo di permanenza</Form.Label>
-                    <Form.Control
-                      type="number"
-                      placeholder="Giorni di permanenza..."
-                      name="living_days"
-                      value={reviewFormData.living_days}
-                      onChange={handleInputChange}
-                      min="1"
-                      required
-                    />
-                  </Form.Group>
-                </Col>
+                <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
+                  <Form.Label>Tempo di permanenza</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder="Giorni di permanenza..."
+                    name="living_days"
+                    value={reviewFormData.living_days}
+                    onChange={handleInputChange}
+                    min={minLivingDays}
+                    max={maxLivingDays}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Inserisci il numero di giorni di permanenza presso questa
+                    struttura (da {minLivingDays} a {maxLivingDays}).
+                  </Form.Control.Feedback>
+                </Form.Group>
                 {/* Check-in */}
-                <Col xs={6}>
-                  <Form.Group className="mb-3" controlId="title">
-                    <Form.Label>Check-in</Form.Label>
-                    <Form.Control
-                      type="date"
-                      placeholder="Giorni di permanenza..."
-                      name="check_in"
-                      value={reviewFormData.check_in}
-                      onChange={handleInputChange}
-                      min="1"
-                      required
-                    />
-                  </Form.Group>
-                </Col>
+                <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
+                  <Form.Label>Check-in</Form.Label>
+                  <Form.Control
+                    type="date"
+                    name="check_in"
+                    value={reviewFormData.check_in}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Inserisci la data di arrivo in questa struttura.
+                  </Form.Control.Feedback>
+                </Form.Group>
 
                 {/* Testo */}
-                <Col xs={12}>
-                  {" "}
-                  <Form.Group className="mb-3" controlId="title">
-                    <Form.Label>Contenuto recensione</Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      name="content"
-                      value={reviewFormData.content}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </Form.Group>
-                </Col>
-                <Col className="col-12 text-center">
+                <Form.Group as={Col} xs={12} className="mb-3" controlId="title">
+                  <Form.Label>Recensione</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    placeholder="Inserisci contenuto recensione..."
+                    name="content"
+                    value={reviewFormData.content}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Inserisci una recensione a questa struttura.
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Col xs={12} className="text-center">
                   {/* Bottone per inviare la recensione */}
                   <Button type="submit" variant="primary">
                     Invia

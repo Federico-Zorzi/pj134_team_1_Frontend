@@ -38,14 +38,11 @@ export default function ReviewItem({ review }) {
           </Row>
         </Card.Header>
         <Card.Body>
-          <div className="d-flex justify-content-between">
-            <p className="card-text">{review.content}</p>
-
-            <p>
-              <span className="fw-bold">Giorni permanenza </span> :
-              {" " + review.living_days}
-            </p>
-          </div>
+          <p className="card-text">{review.content}</p>
+          <p className="text-end">
+            <span className="fw-bold">Giorni permanenza:</span>
+            {" " + review.living_days}
+          </p>
         </Card.Body>
       </Card>
     </Col>
