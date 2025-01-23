@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
 import ReviewsList from "../components/reviews/ReviewsList";
 import UpdatePropertyForm from "../components/UpdatePropertyForm";
+import SendMailForm from "../components/SendMailForm";
 
 export default function ShowPage() {
   const { id } = useParams();
@@ -85,6 +86,8 @@ export default function ShowPage() {
             </div>
           </div>
           <hr />
+
+          <SendMailForm property={property} />
 
           <ReviewsList id={property.id} />
         </div>
