@@ -27,11 +27,9 @@ export default function SendMailForm({ property }) {
 
   return (
     <>
-      {/* <!-- Button trigger modal --> */}
       <button onClick={() => setShow(true)} className="btn btn-primary">
         Scrivi una mail al proprietario
       </button>
-      {/* <!-- Modal --> */}
       <Modal show={show} data-bs-keyboard="false" tabIndex="-1">
         <div className="modal-content">
           <form ref={form} onSubmit={sendEmail}>
