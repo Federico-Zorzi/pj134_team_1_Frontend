@@ -50,7 +50,7 @@ export default function AdvancedSearchCard(params) {
       <div className="card mb-3 position-relative" key={property.id}>
         <Link to={`/${property.id}`}>
           <div className="row g-0">
-            <div className="col-md-6">
+            <div className="col-md-5">
               <img
                 onClick={() => console.log(property)}
                 src={
@@ -60,7 +60,7 @@ export default function AdvancedSearchCard(params) {
                 alt="..."
               />
             </div>
-            <div className="col-md-6">
+            <div className="col-md-7">
               <div className="card-body">
                 {/* Nome immobile */}
                 <h5 className="card-title">{property.title}</h5>
