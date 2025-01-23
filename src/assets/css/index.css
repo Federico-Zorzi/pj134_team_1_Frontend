@@ -44,6 +44,10 @@ main {
 }
 
 /* Reviews Items */
+.cards-review {
+  height: 100%;
+}
+
 .review-user-photo {
   background-color: grey;
   display: inline-block;
