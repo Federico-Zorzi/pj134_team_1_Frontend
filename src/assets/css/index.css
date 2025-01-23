@@ -1,5 +1,5 @@
 * {
-  font-family: Helvetica, sans-serif;
+  font-family: poppins, sans-serif;
 }
 
 a {
@@ -140,5 +140,4 @@ main {
 .navbar .logo-navbar {
   width: 150px;
   margin-block: 10px;
-  margin-left: 10px;
 }

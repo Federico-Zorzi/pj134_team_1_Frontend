@@ -139,26 +139,7 @@ export default function SearchBar({ propertiesList }) {
               start="1"
             />
           </Form.Group>
-          {/* <Form.Group className="col-12 col-md-6 justify-content-center ">
-            <Form.Label>Tipo di proprietà</Form.Label>
-            <Form.Select
-              name="propertyType"
-              onChange={handleInputChange}
-              className="align-self-center form-control"
-              aria-label="Default select example"
-            >
-              <option default value="">
-                Qualsiasi
-              </option>
-              <option value="apartment">Appartamento</option>
-              <option value="independent_house">Casa indipendente</option>
-              <option value="villa">Villa</option>
-              <option value="terraced_villa">Villetta a schiera</option>
-              <option value="chalet">Chalet</option>
-              <option value="cabin">Baita</option>
-              <option value="other">Altro</option>
-            </Form.Select>
-          </Form.Group> */}
+
           <Col xs={12}>
             <Row className="badge-container row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-6 g-2">
               {propertyTypeList.map((badge, index) => {
@@ -171,10 +152,61 @@ export default function SearchBar({ propertiesList }) {
                       type="text"
                       className={
                         formData.propertyType == badge
-                          ? ` btn btn-primary`
-                          : ` btn btn-secondary opacity-50` + `w-100`
+                          ? `d-flex align-items-center justify-content-center flex-column btn active `
+                          : `d-flex align-items-center justify-content-center flex-column btn btn-light` +
+                            `w-100`
                       }
                     >
+                      {/* icons for badges */}
+                      {badge == "villa" && (
+                        <img
+                          src="https://a0.muscache.com/pictures/78ba8486-6ba6-4a43-a56d-f556189193da.jpg"
+                          className="d-block"
+                          style={{ width: "20px", height: "20px" }}
+                          alt=""
+                        />
+                      )}
+                      {badge == "apartment" && (
+                        <img
+                          src="https://a0.muscache.com/pictures/7630c83f-96a8-4232-9a10-0398661e2e6f.jpg"
+                          className="d-block"
+                          style={{ width: "20px", height: "20px" }}
+                          alt=""
+                        />
+                      )}
+                      {badge == "independent_house" && (
+                        <img
+                          src="https://a0.muscache.com/pictures/6ad4bd95-f086-437d-97e3-14d12155ddfe.jpg"
+                          className="d-block"
+                          style={{ width: "20px", height: "20px" }}
+                          alt=""
+                        />
+                      )}
+                      {badge == "terraced_villa" && (
+                        <img
+                          src="https://a0.muscache.com/pictures/3271df99-f071-4ecf-9128-eb2d2b1f50f0.jpg"
+                          className="d-block"
+                          style={{ width: "20px", height: "20px" }}
+                          alt=""
+                        />
+                      )}
+                      {badge == "chalet" && (
+                        <img
+                          src="https://a0.muscache.com/pictures/c0a24c04-ce1f-490c-833f-987613930eca.jpg"
+                          className="d-block"
+                          style={{ width: "20px", height: "20px" }}
+                          alt=""
+                        />
+                      )}
+                      {badge == "cabin" && (
+                        <img
+                          src="https://a0.muscache.com/pictures/732edad8-3ae0-49a8-a451-29a8010dcc0c.jpg"
+                          className="d-block"
+                          style={{ width: "20px", height: "20px" }}
+                          alt=""
+                        />
+                      )}
+
                       {translatePropertyType(badge)}
                     </button>
                   </Col>

@@ -13,7 +13,10 @@ export default function HomePage() {
     <main>
       <div className="container py-3">
         <div className="d-flex flex-column gap-3 align-items-center my-5">
-          <h1 className="fw-bold">I più gettonati ✨</h1>
+          <h1 className="fw-bold ">
+            I migliori per te
+            <i class="fa-regular fa-map ms-3" />
+          </h1>
         </div>
 
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3 homepage-card-container">

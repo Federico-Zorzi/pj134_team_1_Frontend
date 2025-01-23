@@ -9,7 +9,7 @@ export default function Navbar() {
   const { isUserOwner, temporaryLogin } = userData;
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4 px-3">
       <div className="container-fluid">
         <NavLink className="navbar-brand fw-bold fs-2 me-auto" to="/">
           <img className="logo-navbar" src="/src/assets/img/logo.svg" alt="" />
@@ -41,7 +41,7 @@ export default function Navbar() {
             {isUserOwner && (
               <li>
                 <NavLink className="nav-link" to="/store">
-                  Aggiungi un immobile!
+                  Aggiungi un immobile
                 </NavLink>
               </li>
             )}
