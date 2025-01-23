@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ReviewsList from "../components/reviews/ReviewsList";
 import { useDataContext } from "../context/dataContext";
 import emailjs from "@emailjs/browser";
+import { Modal } from "react-bootstrap";
 
 export default function ShowPage() {
   const { id } = useParams();
@@ -14,6 +15,7 @@ export default function ShowPage() {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    form.current.reset();
 
     emailjs
       .sendForm("service_cyrx4hr", "template_ney4qax", form.current, {
@@ -120,13 +122,13 @@ export default function ShowPage() {
                     <div className="p-3">
                       <label>Nome</label>
                       <input
-                        className="form-control"
+                        className="form-control mb-3"
                         type="text"
                         name="from_name"
                       />
                       <label>Email</label>
                       <input
-                        className="form-control"
+                        className="form-control mb-3"
                         type="email"
                         name="user_email"
                       />
@@ -134,7 +136,7 @@ export default function ShowPage() {
                         className="form-control d-none"
                         type="text"
                         name="to_name"
-                        value={property.title}
+                        defaultValue={property.title}
                       />
 
                       <label>Messaggio</label>
@@ -150,10 +152,9 @@ export default function ShowPage() {
                       Chiudi
                     </button>
                     <input
-                      className="btn btn-primary "
+                      className="btn btn-primary"
                       type="submit"
                       value="Invia"
-                      data-bs-dismiss="modal"
                     />
                   </div>
                 </form>
