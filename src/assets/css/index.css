@@ -146,3 +146,10 @@ main {
   margin-block: 10px;
   margin-left: 10px;
 }
+
+/* Homepage Carousel */
+.homepage-carousel img {
+  height: 700px;
+  width: 100%;
+  object-fit: cover;
+}
