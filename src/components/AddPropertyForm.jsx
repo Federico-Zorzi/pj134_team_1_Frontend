@@ -1,7 +1,8 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDataContext } from "../context/dataContext";
 
 const initialFormData = {
   title: "",
@@ -19,6 +20,8 @@ const initialFormData = {
 export default function AddPropertyForm() {
   const [formData, setFormData] = useState(initialFormData);
   const navigate = useNavigate();
+  const { userData } = useDataContext();
+  const { isUserOwner } = userData;
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -29,6 +32,12 @@ export default function AddPropertyForm() {
       [name]: newValue,
     }));
   };
+
+  useEffect(() => {
+    if (!isUserOwner) {
+      navigate("/");
+    }
+  }, [isUserOwner]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

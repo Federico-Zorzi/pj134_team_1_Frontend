@@ -15,8 +15,8 @@ export default function HomePage() {
   return (
     <main>
       <div className="container py-3">
-        <div className="d-flex justify-content-between align-items-center my-5">
-          <h1>I più gettonati✨</h1>
+        <div className="d-flex flex-column gap-3 align-items-center my-5">
+          <h1 className="fw-bold">I più gettonati ✨</h1>
 
           <Button
             className="bg-dark text-white border-dark p-2"

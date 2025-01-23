@@ -71,12 +71,12 @@ export default function HomepageCard(params) {
         </div>
       </Link>
       <a
-        className="likes-card-text"
+        className="likes-card-text text-danger"
         onClick={() => {
           addLike(property.id);
         }}
       >
-        ❤{like}
+        ❤ {like}
       </a>
     </div>
   );
