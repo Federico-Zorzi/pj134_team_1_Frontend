@@ -4,8 +4,6 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-//TODO initialformdata = dati della proprietà cliccata, id passato come prop
-
 export default function UpdatePropertyForm({ propertyData }) {
   const { userData } = useDataContext();
   const { isUserOwner } = userData;
@@ -38,6 +36,7 @@ export default function UpdatePropertyForm({ propertyData }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setShow(false);
     console.log(formData);
   };
 
@@ -57,21 +56,133 @@ export default function UpdatePropertyForm({ propertyData }) {
             </Modal.Header>
             <Modal.Body>
               <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="formTitle">
-                  <Form.Label>Titolo proprietà</Form.Label>
+                <div className="row">
+                  <div className="col-6">
+                    <Form.Group className="mb-3" controlId="title">
+                      <Form.Label>Titolo immobile</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="title"
+                        value={formData.title}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="address">
+                      <Form.Label>Indirizzo</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="address"
+                        value={formData.address}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="Email">
+                      <Form.Label>Email</Form.Label>
+                      <Form.Control
+                        type="email"
+                        name="reference_email"
+                        value={formData.reference_email}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="city">
+                      <Form.Label>Città</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Inserisci la città"
+                        name="city"
+                        value={formData.city}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </Form.Group>
+                  </div>
+                  <div className="col-6">
+                    <Form.Group className="mb-3" controlId="rooms">
+                      <Form.Label>Numero di stanze</Form.Label>
+                      <Form.Control
+                        type="number"
+                        name="n_Rooms"
+                        value={formData.n_Rooms}
+                        onChange={handleInputChange}
+                        required
+                        min="1"
+                      />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="beds">
+                      <Form.Label>Numero di letti</Form.Label>
+                      <Form.Control
+                        type="number"
+                        name="n_Beds"
+                        value={formData.n_Beds}
+                        onChange={handleInputChange}
+                        required
+                        min="1"
+                      />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="bathrooms">
+                      <Form.Label>Numero di bagni</Form.Label>
+                      <Form.Control
+                        type="number"
+                        name="n_Bathrooms"
+                        value={formData.n_Bathrooms}
+                        onChange={handleInputChange}
+                        required
+                        min="1"
+                      />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="square-meters">
+                      <Form.Label>Metri quadrati</Form.Label>
+                      <Form.Control
+                        type="number"
+                        name="square_meters"
+                        value={formData.square_meters}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </Form.Group>
+                  </div>
+                </div>
+
+                <Form.Group className="mb-3" controlId="img">
+                  <Form.Label>Immagine</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Title"
-                    // name="categoryName"
-                    // value={categoryName}
-                    // onChange={handleInputChange}
-                    required
+                    name="image"
+                    value={formData.image}
+                    onChange={handleInputChange}
                   />
+                </Form.Group>
+
+                <Form.Group className="property-type">
+                  <Form.Label>Tipo di proprietà</Form.Label>
+                  <Form.Select
+                    name="property_type"
+                    value={formData.property_type}
+                    onChange={handleInputChange}
+                    className="align-self-center form-control"
+                  >
+                    <option value="">Qualsiasi</option>
+                    <option value="apartment">Appartamento</option>
+                    <option value="independent_house">Casa indipendente</option>
+                    <option value="villa">Villa</option>
+                    <option value="terraced_villa">Villetta a schiera</option>
+                    <option value="chalet">Chalet</option>
+                    <option value="cabin">Baita</option>
+                    <option value="other">Altro</option>
+                  </Form.Select>
                 </Form.Group>
 
                 <div className="d-flex justify-content-center mt-3">
                   <Button variant="dark" type="submit">
-                    Submit
+                    Applica le modifiche
                   </Button>
                 </div>
               </Form>
