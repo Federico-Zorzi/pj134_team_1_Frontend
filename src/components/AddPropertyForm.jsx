@@ -8,7 +8,7 @@ const initialFormData = {
   n_Rooms: 1,
   n_Beds: 1,
   n_Bathrooms: 1,
-  square_meters: 1,
+  square_meters: 50,
   address: "",
   reference_email: "",
   image: "",
@@ -41,6 +41,7 @@ export default function AddPropertyForm() {
   }, [isUserOwner]);
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
@@ -49,19 +50,19 @@ export default function AddPropertyForm() {
     setValidated(true);
 
     const RoomsValidation =
-      formData.n_Rooms && formData.n_Rooms > 1 && formData.n_Rooms <= 9999;
+      formData.n_Rooms && formData.n_Rooms > 1 && formData.n_Rooms <= 100;
 
     const BedsValidation =
-      formData.n_Beds && formData.n_Beds > 0 && formData.n_Beds <= 9999;
+      formData.n_Beds && formData.n_Beds > 1 && formData.n_Beds <= 50;
 
     const BathroomsValidation =
       formData.n_Bathrooms &&
-      formData.n_Bathrooms > 0 &&
-      formData.n_Bathrooms <= 250;
+      formData.n_Bathrooms > 1 &&
+      formData.n_Bathrooms <= 15;
 
     const SquareMetersValidation =
       formData.square_meters &&
-      formData.square_meters > 5 &&
+      formData.square_meters > 50 &&
       formData.square_meters <= 10000;
 
     if (
@@ -96,7 +97,7 @@ export default function AddPropertyForm() {
           setFormData(initialFormData);
 
           /* back to homepage */
-          navigate("/");
+          // navigate("/");
         });
     }
   };
@@ -159,6 +160,7 @@ export default function AddPropertyForm() {
             onChange={handleInputChange}
             required
             min="1"
+            max="100"
           />
           <Form.Control.Feedback type="invalid">
             Inserisci il numero di stanze.
@@ -175,6 +177,7 @@ export default function AddPropertyForm() {
             onChange={handleInputChange}
             required
             min="1"
+            max="50"
           />
           <Form.Control.Feedback type="invalid">
             Inserisci il numero di letti.
@@ -191,6 +194,7 @@ export default function AddPropertyForm() {
             onChange={handleInputChange}
             required
             min="1"
+            max="15"
           />
           <Form.Control.Feedback type="invalid">
             Inserisci il numero di bagni.
@@ -206,6 +210,9 @@ export default function AddPropertyForm() {
             value={formData.square_meters}
             onChange={handleInputChange}
             required
+            min="50"
+            start="200"
+            max="10000"
           />
           <Form.Control.Feedback type="invalid">
             Inserisci i metri quadrati dell'immobile.
