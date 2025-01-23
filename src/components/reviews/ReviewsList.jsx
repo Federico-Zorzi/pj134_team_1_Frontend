@@ -29,6 +29,9 @@ export default function ReviewsList() {
   const [reviewsList, setReviewList] = useState([]);
 
   const [validated, setValidated] = useState(false);
+  const getActualDate = new Date().toJSON().slice(0, 10);
+  const currentDate = new Date(getActualDate);
+  const checkInDate = new Date(reviewFormData.check_in);
 
   const fetchIndexReviews = () => {
     fetch(serverUrl + `/${id}/reviews`)
@@ -60,6 +63,7 @@ export default function ReviewsList() {
     }
     setValidated(true);
 
+    /* validation data */
     const voteValidation =
       reviewFormData.vote &&
       reviewFormData.vote >= minVote &&
@@ -70,11 +74,14 @@ export default function ReviewsList() {
       reviewFormData.living_days >= minLivingDays &&
       reviewFormData.living_days <= maxLivingDays;
 
+    const checkInDateValidation =
+      reviewFormData.check_in && checkInDate < currentDate;
+
     if (
       reviewFormData.name &&
       voteValidation &&
       livingDaysValidation &&
-      reviewFormData.check_in &&
+      checkInDateValidation &&
       reviewFormData.content
     ) {
       fetch(serverUrl + `/${id}/addreview`, {
@@ -109,15 +116,21 @@ export default function ReviewsList() {
     <section className="my-3">
       <Row className="align-items-center">
         <Col>
-          <h2>Recensioni degli Ospiti</h2>
+          <h3>Recensioni degli Ospiti</h3>
+          <p className="text-secondary">
+            Le recensioni andranno controllate da uno staff prima di essere
+            pubblicate
+          </p>
         </Col>
         <Col className="text-end">
           <Button
             onClick={() => setOpenCollapse(!openCollapse)}
             aria-controls="collapse-form-reviews"
             aria-expanded={openCollapse}
+            className="bg-dark border-dark"
           >
-            <FontAwesomeIcon icon={faPlus} /> Aggiungi Recensione
+            <FontAwesomeIcon icon={faPlus} className="me-1" /> Aggiungi
+            Recensione
           </Button>
         </Col>
         <Collapse in={openCollapse}>
@@ -187,10 +200,12 @@ export default function ReviewsList() {
                     name="check_in"
                     value={reviewFormData.check_in}
                     onChange={handleInputChange}
+                    isInvalid={checkInDate >= currentDate}
                     required
                   />
                   <Form.Control.Feedback type="invalid">
-                    Inserisci la data di arrivo in questa struttura.
+                    Inserisci la data di arrivo in questa struttura. La data
+                    inserita deve essere precedente alla data attuale
                   </Form.Control.Feedback>
                 </Form.Group>
 
@@ -211,8 +226,8 @@ export default function ReviewsList() {
                 </Form.Group>
                 <Col xs={12} className="text-center">
                   {/* Bottone per inviare la recensione */}
-                  <Button type="submit" variant="primary">
-                    Invia
+                  <Button type="submit" variant="dark">
+                    Invia recensione
                   </Button>
                 </Col>
               </Row>

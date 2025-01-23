@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
 
 export default function HomepageCard(params) {
   const property = params.element;
@@ -44,7 +45,7 @@ export default function HomepageCard(params) {
 
   return (
     <div className=" position-relative" key={property.id}>
-      <Link className="card" to={`/${property.id}`}>
+      <Link className="card homepage-card" to={`/${property.id}`}>
         <img
           onClick={() => console.log(property)}
           src={
@@ -52,28 +53,30 @@ export default function HomepageCard(params) {
           }
           className="card-img-top"
         />
-        <div className="card-body">
+        <div className="card-body homepage-card-body">
           <h5 className="card-title fs-5">{property.title}</h5>
-          <p className="card-text">
+          <p className="card-text homepage-card-text">
             <i>{property.city}</i>
           </p>
-          <div className="row">
-            <span className="card-text col-6">€120/notte</span>
-            <span className="card-text property-type-card-text col-6 text-align-end">
+          <Row className="align-items-end">
+            <Col>
+              <span className="card-text col-6">€120/notte</span>
+            </Col>
+            <Col className="text-end">
               <span className="badge text-dark border border-dark">
                 {translatePropertyType(property.property_type)}
               </span>
-            </span>
-          </div>
+            </Col>
+          </Row>
         </div>
       </Link>
       <a
-        className="likes-card-text"
+        className="likes-card-text text-danger"
         onClick={() => {
           addLike(property.id);
         }}
       >
-        ❤{like}
+        ❤ {like}
       </a>
     </div>
   );

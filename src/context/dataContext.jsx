@@ -12,6 +12,16 @@ export const DataContextProvider = ({ children }) => {
   const [propertiesList, setPropertiesList] = useState([]);
   const [property, setProperty] = useState([]);
 
+  const [isUserOwner, toggleIsUserOwner] = useState(false);
+
+  function temporaryLogin() {
+    if (isUserOwner) {
+      toggleIsUserOwner(false);
+    } else toggleIsUserOwner(true);
+    //mostro l'opposto di user owner perchè essendo una variabile reattiva il console log avviene prima del cambio, quindi mostra la variabile all'inizio della funzione
+    console.log("is User owner? : ", !isUserOwner);
+  }
+
   const fetchIndexProperties = () => {
     fetch(serverUrl)
       .then((res) => res.json())
@@ -54,12 +64,18 @@ export const DataContextProvider = ({ children }) => {
     }
   };
 
+  const userData = {
+    temporaryLogin,
+    isUserOwner,
+  };
+
   const dataContext = {
     propertiesList,
     property,
     fetchIndexProperties,
     fetchShowProperties,
     fetchFilterProperties,
+    userData,
   };
 
   return (

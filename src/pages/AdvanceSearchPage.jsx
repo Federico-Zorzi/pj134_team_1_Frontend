@@ -1,7 +1,7 @@
 import HomePage from "./HomePage";
 import { useDataContext } from "../context/dataContext";
 import { useEffect, useState } from "react";
-import HomepageCard from "../components/HomepageCard";
+import AdvancedSearchCard from "../components/AdvancedSearchCard";
 import SearchBar from "../components/SearchBar";
 import { Badge } from "react-bootstrap";
 
@@ -17,10 +17,10 @@ export default function AdvanceSearchPage() {
         <SearchBar propertiesList={propertiesList} />
         <div className="my-5"></div>
         {/* card container */}
-        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 homepage-card-container">
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 g-4 homepage-card-container">
           {/* Cards */}
           {propertiesList.map((property) => {
-            return <HomepageCard key={property.id} element={property} />;
+            return <AdvancedSearchCard key={property.id} element={property} />;
           })}
         </div>
       </div>
