@@ -6,8 +6,8 @@ import { useDataContext } from "../context/dataContext";
 const initialFormData = {
   city: "",
   address: "",
-  nRooms: null,
-  nBeds: null,
+  nRooms: "",
+  nBeds: "",
   propertyType: "",
 };
 
