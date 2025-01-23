@@ -55,6 +55,15 @@ main {
   transition: all 0.2s ease-in-out;
 }
 
+.homepage-card-container .likes-card-text-search {
+  background-color: rgba(231, 231, 231, 0.5);
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
 .homepage-card-container .likes-card-text:hover {
   background-color: rgba(231, 231, 231, 1);
 }
