@@ -161,7 +161,7 @@ export default function SearchBar({ propertiesList }) {
               <option value="other">Altro</option>
             </Form.Select>
           </Form.Group> */}
-          <div className="d-flex flex-wrap align-items-center justify-content-between gap-1">
+          <div className="d-flex badge-container flex-wrap align-items-center justify-content-between gap-3">
             {propertyTypeList.map((badge) => {
               return (
                 <button
@@ -172,8 +172,8 @@ export default function SearchBar({ propertiesList }) {
                   type="text"
                   className={
                     formData.propertyType == badge
-                      ? `btn btn-primary`
-                      : `btn btn-secondary`
+                      ? ` btn btn-primary`
+                      : ` btn btn-secondary opacity-50`
                   }
                 >
                   {translatePropertyType(badge)}
