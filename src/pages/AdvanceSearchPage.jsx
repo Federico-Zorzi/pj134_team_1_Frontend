@@ -17,7 +17,7 @@ export default function AdvanceSearchPage() {
         <SearchBar propertiesList={propertiesList} />
         <div className="my-5"></div>
         {/* card container */}
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 g-4 homepage-card-container">
+        <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 g-4 homepage-card-container">
           {/* Cards */}
           {propertiesList.map((property) => {
             return <AdvancedSearchCard key={property.id} element={property} />;
