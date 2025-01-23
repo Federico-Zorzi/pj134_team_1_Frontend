@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ReviewsList from "../components/reviews/ReviewsList";
 import { useDataContext } from "../context/dataContext";
+import ReviewsList from "../components/reviews/ReviewsList";
+import UpdatePropertyForm from "../components/UpdatePropertyForm";
 
 export default function ShowPage() {
   const { id } = useParams();
@@ -56,6 +57,9 @@ export default function ShowPage() {
               <div className="mt-2">
                 <strong>Email di riferimento</strong>
                 <p>{property.reference_email}</p>
+              </div>
+              <div className="mt-2">
+                <UpdatePropertyForm propertyData={property} />
               </div>
             </div>
           </div>
