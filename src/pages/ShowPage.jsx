@@ -62,6 +62,8 @@ export default function ShowPage() {
           </div>
           <hr />
 
+          <SendMailForm property={property} />
+
           <ReviewsList id={property.id} />
         </div>
       )}

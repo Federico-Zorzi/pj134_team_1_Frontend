@@ -58,13 +58,21 @@ export default function SendMailForm({ property }) {
                   required
                   className="form-control mb-3"
                   type="email"
-                  name="user_email"
+                  name="from_email"
                 />
+
+                {/* hided field */}
                 <input
                   className="form-control d-none"
                   type="text"
                   name="to_name"
                   defaultValue={property.title}
+                />
+                <input
+                  className="form-control d-none"
+                  type="text"
+                  name="owner_mail"
+                  defaultValue={property.reference_email}
                 />
 
                 <label>Messaggio</label>
