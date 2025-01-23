@@ -1,9 +1,6 @@
 import { useDataContext } from "../context/dataContext";
-import { Link } from "react-router-dom";
-
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import HomepageCard from "../components/HomepageCard";
-import { Button } from "react-bootstrap";
 
 export default function HomePage() {
   // take data from global context
