@@ -4,8 +4,8 @@ import AddPropertyForm from "../components/AddPropertyForm";
 
 export default function AddPropertyPage() {
   return (
-    <Container>
-      <h1>Add a new property</h1>
+    <Container className="mt-2 mb-5">
+      <h1>Aggiungi un nuovo immobile</h1>
       <AddPropertyForm />
     </Container>
   );
