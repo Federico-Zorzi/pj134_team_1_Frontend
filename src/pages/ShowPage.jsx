@@ -58,20 +58,9 @@ export default function ShowPage() {
                 <strong>Email di riferimento</strong>
                 <p>{property.reference_email}</p>
               </div>
-              {/* <!-- Button trigger modal --> */}
-              <button
-                type="button"
-                className="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop"
-              >
-                Scrivi una mail al proprietario
-              </button>
             </div>
           </div>
           <hr />
-
-          <SendMailForm property={property} />
 
           <ReviewsList id={property.id} />
         </div>
