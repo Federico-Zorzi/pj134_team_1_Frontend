@@ -64,7 +64,7 @@ export default function HomepageCard(params) {
           </p>
           <Row className="align-items-end">
             <Col>
-              <span className="card-text">€120/notte</span>
+              <span className="card-text">{property.address}</span>
             </Col>
             <Col className="text-end">
               <span className="badge text-dark border border-dark">
