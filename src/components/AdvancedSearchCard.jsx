@@ -78,6 +78,11 @@ export default function AdvancedSearchCard(params) {
                     <i className="fa-solid fa-bath me-2"></i>
                     {property.n_Bathrooms}
                   </div>
+                  {/* Numero letti */}
+                  <div className="card-text">
+                    <i class="fa-solid fa-bed me-2"></i>
+                    {property.n_Beds}
+                  </div>
                 </div>
                 {/* Indirizzo */}
                 <div className="card-text mb-3">
