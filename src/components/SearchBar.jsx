@@ -11,12 +11,61 @@ const initialFormData = {
   propertyType: "",
 };
 
-export default function SearchBar() {
+// Translate property type
+function translatePropertyType(propertyType) {
+  switch (propertyType) {
+    case "apartment":
+      return "Appartamento";
+    case "independent_house":
+      return "Casa indipendente";
+    case "villa":
+      return "Villa";
+    case "terraced_villa":
+      return "Villetta a schiera";
+    case "chalet":
+      return "Chalet";
+    case "cabin":
+      return "Baita";
+    case "other":
+      return "Altro";
+    default:
+      return "Tipo sconosciuto";
+  }
+}
+
+export default function SearchBar({ propertiesList }) {
   const [formData, setFormData] = useState(initialFormData);
   const { fetchFilterProperties } = useDataContext();
+  const propertyTypeList = [
+    "apartment",
+    "independent_house",
+    "villa",
+    "terraced_villa",
+    "chalet",
+    "cabin",
+  ];
+
+  const handleIconClick = (e) => {
+    event.preventDefault();
+    if (e.target.getAttribute("value") == formData.propertyType) {
+      setFormData((prevData) => ({
+        ...prevData,
+        propertyType: "",
+      }));
+    } else {
+      const value = e.target.getAttribute("value");
+
+      setFormData((prevData) => ({
+        ...prevData,
+        propertyType: value,
+      }));
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
+    console.log(name, value, type, checked);
+
     const newValue = type === "checkbox" ? checked : value;
 
     setFormData((prevData) => ({
@@ -63,7 +112,7 @@ export default function SearchBar() {
         </div>
         <div className="row">
           <Form.Group
-            className="col-12 col-md-3 mb-4"
+            className="col-12 col-md-6 mb-4"
             controlId="exampleForm.ControlInput1"
           >
             <Form.Label>Numero di stanze</Form.Label>
@@ -78,7 +127,7 @@ export default function SearchBar() {
             />
           </Form.Group>
           <Form.Group
-            className="col-12 col-md-3 mb-4"
+            className="col-12 col-md-6 mb-4"
             controlId="exampleForm.ControlInput1"
           >
             <Form.Label>Numero di letti</Form.Label>
@@ -92,7 +141,7 @@ export default function SearchBar() {
               start="1"
             />
           </Form.Group>
-          <Form.Group className="col-12 col-md-6 justify-content-center ">
+          {/* <Form.Group className="col-12 col-md-6 justify-content-center ">
             <Form.Label>Tipo di proprietà</Form.Label>
             <Form.Select
               name="propertyType"
@@ -111,7 +160,26 @@ export default function SearchBar() {
               <option value="cabin">Baita</option>
               <option value="other">Altro</option>
             </Form.Select>
-          </Form.Group>
+          </Form.Group> */}
+          <div className="d-flex flex-wrap align-items-center justify-content-between gap-1">
+            {propertyTypeList.map((badge) => {
+              return (
+                <button
+                  onClick={handleIconClick}
+                  name="propertyType"
+                  value={badge}
+                  type="text"
+                  className={
+                    formData.propertyType == badge
+                      ? `btn btn-primary`
+                      : `btn btn-secondary`
+                  }
+                >
+                  {translatePropertyType(badge)}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </Form>
     </div>
