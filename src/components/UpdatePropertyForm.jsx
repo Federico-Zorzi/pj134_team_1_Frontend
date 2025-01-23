@@ -44,7 +44,7 @@ export default function UpdatePropertyForm({ propertyData }) {
     <>
       {isUserOwner ? (
         <>
-          <Button variant="light" onClick={handleShow}>
+          <Button variant="light border-dark" onClick={handleShow}>
             Modifica l'immobile
           </Button>
 
