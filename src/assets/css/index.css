@@ -23,6 +23,19 @@ main {
 }
 
 /* HOMEPAGE */
+.homepage-card {
+  height: 100%;
+}
+
+.homepage-card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage-card-text {
+  flex-grow: 1;
+}
+
 .homepage-card-container a {
   text-decoration: none;
 }
