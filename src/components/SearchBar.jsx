@@ -112,7 +112,7 @@ export default function SearchBar({ propertiesList }) {
         </div>
         <div className="row">
           <Form.Group
-            className="col-12 col-md-3 mb-4"
+            className="col-12 col-md-6 mb-4"
             controlId="exampleForm.ControlInput1"
           >
             <Form.Label>Numero di stanze</Form.Label>
@@ -127,7 +127,7 @@ export default function SearchBar({ propertiesList }) {
             />
           </Form.Group>
           <Form.Group
-            className="col-12 col-md-3 mb-4"
+            className="col-12 col-md-6 mb-4"
             controlId="exampleForm.ControlInput1"
           >
             <Form.Label>Numero di letti</Form.Label>
@@ -141,7 +141,7 @@ export default function SearchBar({ propertiesList }) {
               start="1"
             />
           </Form.Group>
-          <Form.Group className="col-12 col-md-6 justify-content-center ">
+          {/* <Form.Group className="col-12 col-md-6 justify-content-center ">
             <Form.Label>Tipo di proprietà</Form.Label>
             <Form.Select
               name="propertyType"
@@ -159,8 +159,8 @@ export default function SearchBar({ propertiesList }) {
               <option value="Chalet">Chalet</option>
               <option value="Baita">Baita</option>
             </Form.Select>
-          </Form.Group>
-          <div className="d-flex flex-wrap align-items-center justify-content-space-between gap-1">
+          </Form.Group> */}
+          <div className="d-flex flex-wrap align-items-center justify-content-between gap-1">
             {propertyTypeList.map((badge) => {
               return (
                 <button
