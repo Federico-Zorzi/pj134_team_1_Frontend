@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
 
 export default function AdvancedSearchCard(params) {
   const property = params.element;
@@ -47,9 +48,9 @@ export default function AdvancedSearchCard(params) {
       className="col
     "
     >
-      <div className="card mb-3 d-flex" key={property.id}>
-        <Link to={`/${property.id}`}>
-          <div className="row g-0">
+      <div className="card search-card d-flex" key={property.id}>
+        <Link to={`/${property.id}`} className="search-card-link">
+          <div className="row g-0 search-card-grid">
             <div className="col-md-6">
               <img
                 onClick={() => console.log(property)}
@@ -61,23 +62,10 @@ export default function AdvancedSearchCard(params) {
               />
             </div>
             <div className="col-md-6 d-flex flex-grow-1">
-              <div className="card-body flex-grow-1">
+              <div className="card-body card-body-search flex-grow-1">
                 {/* Nome immobile */}
-                <div className="row d-flex">
-                  <div className="col-8">
-                    <h5 className="card-title">{property.title}</h5>
-                  </div>
-                  <div className="col-4 text-end">
-                    <a
-                      className="likes-card-text-search text-danger"
-                      onClick={() => {
-                        addLike(property.id);
-                      }}
-                    >
-                      ❤ {like}
-                    </a>
-                  </div>
-                </div>
+                <h5 className="card-title">{property.title}</h5>
+
                 <p className="card-text">
                   <i>{property.city}</i>
                 </p>
@@ -104,22 +92,31 @@ export default function AdvancedSearchCard(params) {
                   {property.address}
                 </div>
                 {/* Metri quadrati */}
-                <p className="card-text">
+                <p className="card-text mq">
                   <strong>Metri quadrati </strong>
                   {property.square_meters}
                 </p>
-                <div className="row">
-                  {/* Prezzo */}
-                  <span className="card-text col-6">€120/notte</span>
-                  <span className="card-text property-type-card-text col-6 text-align-end">
+                <Row className="align-items-end">
+                  <Col>
+                    <span className="card-text col-6">€120/notte</span>
+                  </Col>
+                  <Col className="text-end">
                     <span className="badge text-dark border border-dark">
                       {translatePropertyType(property.property_type)}
                     </span>
-                  </span>
-                </div>
+                  </Col>
+                </Row>
               </div>
             </div>
           </div>
+        </Link>
+        <Link
+          className="likes-card-text-search text-danger"
+          onClick={() => {
+            addLike(property.id);
+          }}
+        >
+          ❤ {like}
         </Link>
       </div>
     </div>

@@ -44,8 +44,12 @@ export default function HomepageCard(params) {
   }
 
   return (
-    <div className=" position-relative" key={property.id}>
-      <Link className="card homepage-card" to={`/${property.id}`}>
+    <div className="position-relative">
+      <Link
+        key={property.id}
+        className="card homepage-card"
+        to={`/${property.id}`}
+      >
         <img
           onClick={() => console.log(property)}
           src={
@@ -60,7 +64,7 @@ export default function HomepageCard(params) {
           </p>
           <Row className="align-items-end">
             <Col>
-              <span className="card-text col-6">€120/notte</span>
+              <span className="card-text">€120/notte</span>
             </Col>
             <Col className="text-end">
               <span className="badge text-dark border border-dark">

@@ -45,8 +45,8 @@ main {
 
 .homepage-card-container .likes-card-text {
   position: absolute;
-  top: 10px;
-  right: 17px;
+  top: 1rem;
+  right: 1.2rem;
   background-color: rgba(231, 231, 231, 0.5);
   color: black;
   padding: 5px;
@@ -56,6 +56,9 @@ main {
 }
 
 .homepage-card-container .likes-card-text-search {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
   background-color: rgba(231, 231, 231, 0.5);
   color: black;
   padding: 5px;
@@ -74,6 +77,22 @@ main {
 
 .card:hover {
   box-shadow: 2px 2px 10px #888888;
+}
+
+/* ADVANCE SEARCH PAGE */
+.search-card,
+.search-card-link,
+.search-card-grid {
+  height: 100%;
+}
+
+.card-body-search {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-text.mq {
+  flex-grow: 1;
 }
 
 /* REVIEWS ITEMS */
