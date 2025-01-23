@@ -47,7 +47,7 @@ export default function AdvancedSearchCard(params) {
       className="col
     "
     >
-      <div className="card h-100 mb-3 d-flex" key={property.id}>
+      <div className="card mb-3 position-relative d-flex" key={property.id}>
         <Link to={`/${property.id}`}>
           <div className="row g-0">
             <div className="col-md-6">
@@ -63,28 +63,14 @@ export default function AdvancedSearchCard(params) {
             <div className="col-md-6 d-flex flex-grow-1">
               <div className="card-body flex-grow-1">
                 {/* Nome immobile */}
-                <div className="row d-flex">
-                  <div className="col-8">
-                    <h5 className="card-title">{property.title}</h5>
-                  </div>
-                  <div className="col-4 text-end">
-                    <a
-                      className="likes-card-text-search text-danger"
-                      onClick={() => {
-                        addLike(property.id);
-                      }}
-                    >
-                      ❤ {like}
-                    </a>
-                  </div>
-                </div>
+                <h5 className="card-title">{property.title}</h5>
                 <p className="card-text">
                   <i>{property.city}</i>
                 </p>
                 <div className="d-flex gap-4 mb-3">
                   {/* Numero stanze */}
                   <div className="card-text">
-                    <i className="fa-solid fa-door-open me-2"></i>
+                    <i class="fa-solid fa-door-open me-2"></i>
                     {property.n_Rooms}
                   </div>
                   {/* Numero bagni */}
@@ -94,7 +80,7 @@ export default function AdvancedSearchCard(params) {
                   </div>
                   {/* Numero letti */}
                   <div className="card-text">
-                    <i className="fa-solid fa-bed me-2"></i>
+                    <i class="fa-solid fa-bed me-2"></i>
                     {property.n_Beds}
                   </div>
                 </div>
@@ -121,6 +107,14 @@ export default function AdvancedSearchCard(params) {
             </div>
           </div>
         </Link>
+        <a
+          className="likes-card-text text-danger"
+          onClick={() => {
+            addLike(property.id);
+          }}
+        >
+          ❤ {like}
+        </a>
       </div>
     </div>
   );
