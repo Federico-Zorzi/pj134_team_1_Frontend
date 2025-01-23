@@ -118,7 +118,7 @@ export default function SearchBar({ propertiesList }) {
             <Form.Label>Numero di stanze</Form.Label>
             <Form.Control
               type="number"
-              min={0}
+              min={1}
               value={formData.nRooms}
               name="nRooms"
               onChange={handleInputChange}
@@ -133,7 +133,7 @@ export default function SearchBar({ propertiesList }) {
             <Form.Label>Numero di letti</Form.Label>
             <Form.Control
               type="number"
-              min={0}
+              min={1}
               value={formData.nBeds}
               name="nBeds"
               onChange={handleInputChange}
