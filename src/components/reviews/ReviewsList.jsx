@@ -109,15 +109,21 @@ export default function ReviewsList() {
     <section className="my-3">
       <Row className="align-items-center">
         <Col>
-          <h2>Recensioni degli Ospiti</h2>
+          <h3>Recensioni degli Ospiti</h3>
+          <p className="text-secondary">
+            Le recensioni andranno controllate da uno staff prima di essere
+            pubblicate
+          </p>
         </Col>
         <Col className="text-end">
           <Button
             onClick={() => setOpenCollapse(!openCollapse)}
             aria-controls="collapse-form-reviews"
             aria-expanded={openCollapse}
+            className="bg-dark border-dark"
           >
-            <FontAwesomeIcon icon={faPlus} /> Aggiungi Recensione
+            <FontAwesomeIcon icon={faPlus} className="me-1" /> Aggiungi
+            Recensione
           </Button>
         </Col>
         <Collapse in={openCollapse}>
@@ -211,8 +217,8 @@ export default function ReviewsList() {
                 </Form.Group>
                 <Col xs={12} className="text-center">
                   {/* Bottone per inviare la recensione */}
-                  <Button type="submit" variant="primary">
-                    Invia
+                  <Button type="submit" variant="dark">
+                    Invia recensione
                   </Button>
                 </Col>
               </Row>
