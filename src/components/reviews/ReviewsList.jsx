@@ -29,6 +29,9 @@ export default function ReviewsList() {
   const [reviewsList, setReviewList] = useState([]);
 
   const [validated, setValidated] = useState(false);
+  const getActualDate = new Date().toJSON().slice(0, 10);
+  const currentDate = new Date(getActualDate);
+  const checkInDate = new Date(reviewFormData.check_in);
 
   const fetchIndexReviews = () => {
     fetch(serverUrl + `/${id}/reviews`)
@@ -60,6 +63,7 @@ export default function ReviewsList() {
     }
     setValidated(true);
 
+    /* validation data */
     const voteValidation =
       reviewFormData.vote &&
       reviewFormData.vote >= minVote &&
@@ -70,11 +74,14 @@ export default function ReviewsList() {
       reviewFormData.living_days >= minLivingDays &&
       reviewFormData.living_days <= maxLivingDays;
 
+    const checkInDateValidation =
+      reviewFormData.check_in && checkInDate < currentDate;
+
     if (
       reviewFormData.name &&
       voteValidation &&
       livingDaysValidation &&
-      reviewFormData.check_in &&
+      checkInDateValidation &&
       reviewFormData.content
     ) {
       fetch(serverUrl + `/${id}/addreview`, {
@@ -193,10 +200,12 @@ export default function ReviewsList() {
                     name="check_in"
                     value={reviewFormData.check_in}
                     onChange={handleInputChange}
+                    isInvalid={checkInDate >= currentDate}
                     required
                   />
                   <Form.Control.Feedback type="invalid">
-                    Inserisci la data di arrivo in questa struttura.
+                    Inserisci la data di arrivo in questa struttura. La data
+                    inserita deve essere precedente alla data attuale
                   </Form.Control.Feedback>
                 </Form.Group>
 
