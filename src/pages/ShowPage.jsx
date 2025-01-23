@@ -155,6 +155,7 @@ export default function ShowPage() {
                       className="btn btn-primary"
                       type="submit"
                       value="Invia"
+                      data-bs-dismiss="modal"
                     />
                   </div>
                 </form>
