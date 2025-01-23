@@ -4,6 +4,7 @@ import { useDataContext } from "../context/dataContext";
 import ReviewsList from "../components/reviews/ReviewsList";
 import UpdatePropertyForm from "../components/UpdatePropertyForm";
 import SendMailForm from "../components/SendMailForm";
+import PropertyDeleteButton from "../components/PropertyDeleteButton";
 
 export default function ShowPage() {
   const { id } = useParams();
@@ -81,8 +82,9 @@ export default function ShowPage() {
                 <p>{property.reference_email}</p>
               </div>
               <SendMailForm property={property} />
-              <div className="mt-2">
+              <div className="mt-2 d-flex gap-2">
                 <UpdatePropertyForm propertyData={property} />
+                <PropertyDeleteButton propertyId={id} />
               </div>
             </div>
           </div>

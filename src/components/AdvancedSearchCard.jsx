@@ -47,7 +47,7 @@ export default function AdvancedSearchCard(params) {
       className="col
     "
     >
-      <div className="card h-100 mb-3" key={property.id}>
+      <div className="card h-100 mb-3 d-flex" key={property.id}>
         <Link to={`/${property.id}`}>
           <div className="row g-0">
             <div className="col-md-6">
@@ -60,8 +60,8 @@ export default function AdvancedSearchCard(params) {
                 alt="..."
               />
             </div>
-            <div className="col-md-6">
-              <div className="card-body">
+            <div className="col-md-6 d-flex flex-grow-1">
+              <div className="card-body flex-grow-1">
                 {/* Nome immobile */}
                 <div className="row d-flex">
                   <div className="col-8">
