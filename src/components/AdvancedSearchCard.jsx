@@ -50,7 +50,7 @@ export default function AdvancedSearchCard(params) {
       <div className="card mb-3 position-relative" key={property.id}>
         <Link to={`/${property.id}`}>
           <div className="row g-0">
-            <div className="col-md-4">
+            <div className="col-md-6">
               <img
                 onClick={() => console.log(property)}
                 src={
@@ -60,7 +60,7 @@ export default function AdvancedSearchCard(params) {
                 alt="..."
               />
             </div>
-            <div className="col-md-8">
+            <div className="col-md-6">
               <div className="card-body">
                 {/* Nome immobile */}
                 <h5 className="card-title">{property.title}</h5>
@@ -103,12 +103,12 @@ export default function AdvancedSearchCard(params) {
           </div>
         </Link>
         <a
-          className="likes-card-text"
+          className="likes-card-text text-danger"
           onClick={() => {
             addLike(property.id);
           }}
         >
-          ❤{like}
+          ❤ {like}
         </a>
       </div>
     </div>
