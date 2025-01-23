@@ -12,7 +12,7 @@ export default function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
       <div className="container-fluid">
         <NavLink className="navbar-brand fw-bold fs-2 me-auto" to="/">
-          BoolB&B
+          <img className="logo-navbar" src="/src/assets/img/logo.svg" alt="" />
         </NavLink>
 
         <button

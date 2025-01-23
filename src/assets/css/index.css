@@ -136,3 +136,9 @@ main {
     display: none;
   }
 }
+
+.navbar .logo-navbar {
+  width: 150px;
+  margin-block: 10px;
+  margin-left: 10px;
+}
