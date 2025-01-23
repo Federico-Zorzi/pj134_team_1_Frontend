@@ -165,6 +165,7 @@ export default function SearchBar({ propertiesList }) {
             {propertyTypeList.map((badge) => {
               return (
                 <button
+                  key={badge}
                   onClick={handleIconClick}
                   name="propertyType"
                   value={badge}
