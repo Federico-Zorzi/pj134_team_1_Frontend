@@ -12,7 +12,7 @@ export default function UpdatePropertyForm({ propertyData }) {
 
   useEffect(() => {
     setFormData(propertyData);
-  }, []);
+  }, [propertyData]);
 
   const handleClose = () => {
     console.log(formData);

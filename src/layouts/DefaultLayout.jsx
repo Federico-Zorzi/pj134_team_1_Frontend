@@ -9,7 +9,9 @@ export default function DefaultLayout() {
     <>
       <div className="wrapper">
         <Header></Header>
-        <Outlet></Outlet>
+        <div className="flex-grow-1">
+          <Outlet></Outlet>
+        </div>
         <Footer></Footer>
       </div>
     </>

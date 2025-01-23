@@ -6,7 +6,7 @@ export default function Navbar() {
   const { isUserOwner, temporaryLogin } = userData;
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
       <div className="container-fluid">
         <NavLink className="navbar-brand fw-bold fs-2" to="/">
           BoolB&B
@@ -23,29 +23,29 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav mx-auto">
+          <ul className="navbar-nav mx-auto gap-lg-5">
             <li className="nav-item">
-              <NavLink className="nav-link active" aria-current="page" to="/">
+              <NavLink className="nav-link" aria-current="page" to="/">
                 Home
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/store">
-                Aggiungi un immobile!
-              </NavLink>
-            </li>
-            <li>
               <NavLink className="nav-link" to="/advanceSearch">
                 Cerca
               </NavLink>
             </li>
+            <li>
+              <NavLink className="nav-link" to="/store">
+                Aggiungi un immobile!
+              </NavLink>
+            </li>
           </ul>
+          <div className="mt-2 fs-5 text-white" role="button">
+            <p onClick={() => temporaryLogin()}>
+              {isUserOwner ? "Logout" : "Login"}
+            </p>
+          </div>
         </div>
-      </div>
-      <div className="mx-3 fs-5" role="button">
-        <p onClick={() => temporaryLogin()}>
-          {isUserOwner ? "Logout" : "Login"}
-        </p>
       </div>
     </nav>
   );
