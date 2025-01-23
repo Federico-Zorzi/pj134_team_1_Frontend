@@ -8,7 +8,7 @@ const initialFormData = {
   n_Rooms: 1,
   n_Beds: 1,
   n_Bathrooms: 1,
-  square_meters: 50,
+  square_meters: 100,
   address: "",
   reference_email: "",
   image: "",
@@ -25,8 +25,7 @@ export default function AddPropertyForm() {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    const newValue =
-      type === "checkbox" ? checked : type === "file" ? files[0] : value;
+    const newValue = type === "checkbox" ? checked : value;
 
     setFormData((prevData) => ({
       ...prevData,
@@ -47,23 +46,28 @@ export default function AddPropertyForm() {
       e.preventDefault();
       e.stopPropagation();
     }
+
     setValidated(true);
 
     const RoomsValidation =
-      formData.n_Rooms && formData.n_Rooms > 1 && formData.n_Rooms <= 100;
+      formData.n_Rooms &&
+      parseInt(formData.n_Rooms) > 0 &&
+      parseInt(formData.n_Rooms) <= 100;
 
     const BedsValidation =
-      formData.n_Beds && formData.n_Beds > 1 && formData.n_Beds <= 50;
+      formData.n_Beds &&
+      parseInt(formData.n_Beds) > 0 &&
+      parseInt(formData.n_Beds) <= 50;
 
     const BathroomsValidation =
       formData.n_Bathrooms &&
-      formData.n_Bathrooms > 1 &&
-      formData.n_Bathrooms <= 15;
+      parseInt(formData.n_Bathrooms) > 0 &&
+      parseInt(formData.n_Bathrooms) <= 15;
 
     const SquareMetersValidation =
       formData.square_meters &&
-      formData.square_meters > 50 &&
-      formData.square_meters <= 10000;
+      parseInt(formData.square_meters) > 50 &&
+      parseInt(formData.square_meters) <= 10000;
 
     if (
       formData.title &&
@@ -73,9 +77,7 @@ export default function AddPropertyForm() {
       SquareMetersValidation &&
       formData.address &&
       formData.reference_email &&
-      formData.image &&
-      formData.city &&
-      formData.property_type
+      formData.city
     ) {
       fetch("http://localhost:3000/properties/add", {
         method: "POST",
@@ -97,8 +99,10 @@ export default function AddPropertyForm() {
           setFormData(initialFormData);
 
           /* back to homepage */
-          // navigate("/");
+          navigate("/");
         });
+    } else {
+      console.log(formData);
     }
   };
 
@@ -210,8 +214,7 @@ export default function AddPropertyForm() {
             value={formData.square_meters}
             onChange={handleInputChange}
             required
-            min="50"
-            start="200"
+            min="100"
             max="10000"
           />
           <Form.Control.Feedback type="invalid">
@@ -222,7 +225,7 @@ export default function AddPropertyForm() {
         <Form.Group as={Col} xs={4} className="mb-3" controlId="img">
           <Form.Label>Immagine</Form.Label>
           <Form.Control
-            type="file"
+            type="text"
             // placeholder="Inserisci un'immagine"
             name="image"
             value={formData.image}
@@ -278,8 +281,8 @@ d-flex justify-content-center mt-2 ms-4 me-4"
       </div>
 
       <div className="d-flex justify-content-center mt-3">
-        <Button variant="primary" type="submit">
-          Submit
+        <Button variant="dark" type="submit">
+          Invia immobile
         </Button>
       </div>
     </Form>

@@ -1,11 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 
 export default function AdvancedSearchCard(params) {
   const property = params.element;
+  const [reviewNumber, setReviewNumber] = useState(0);
 
-  //   function to add like
+  const fetchIndexReviews = () => {
+    fetch(`http://localhost:3000/properties/${property.id}/reviews`)
+      .then((res) => res.json())
+      .then((data) => {
+        setReviewNumber(data.length);
+      });
+  };
+  useEffect(fetchIndexReviews, []);
+
   const [like, setLike] = useState(property.likes);
   const addLike = (id) => {
     const url = `http://localhost:3000/properties/${id}/addlike`;
@@ -93,12 +102,14 @@ export default function AdvancedSearchCard(params) {
                 </div>
                 {/* Metri quadrati */}
                 <p className="card-text mq">
-                  <strong>Metri quadrati </strong>
+                  <strong>Metri quadrati : </strong>
                   {property.square_meters}
                 </p>
                 <Row className="align-items-end">
                   <Col>
-                    <span className="card-text col-6">€120/notte</span>
+                    <span className="card-text col-6 fw-bold">
+                      {reviewNumber ? reviewNumber : "0"} recensioni
+                    </span>
                   </Col>
                   <Col className="text-end">
                     <span className="badge text-dark border border-dark">
