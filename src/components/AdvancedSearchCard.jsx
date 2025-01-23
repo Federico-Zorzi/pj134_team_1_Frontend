@@ -43,40 +43,6 @@ export default function AdvancedSearchCard(params) {
   }
 
   return (
-    // <div className=" position-relative" key={property.id}>
-    //   <Link className="card" to={`/${property.id}`}>
-    //     <img
-    //       onClick={() => console.log(property)}
-    //       src={
-    //         "https://hips.hearstapps.com/hmg-prod/images/torino-with-mole-antonelliana-and-the-alps-royalty-free-image-1643015862.jpg"
-    //       }
-    //       className="card-img-top"
-    //     />
-    //     <div className="card-body">
-    //       <h5 className="card-title fs-5">{property.title}</h5>
-    //       <p className="card-text">
-    //         <i>{property.city}</i>
-    //       </p>
-    //       <div className="row">
-    //         <span className="card-text col-6">€120/notte</span>
-    //         <span className="card-text property-type-card-text col-6 text-align-end">
-    //           <span className="badge text-dark border border-dark">
-    //             {translatePropertyType(property.property_type)}
-    //           </span>
-    //         </span>
-    //       </div>
-    //     </div>
-    //   </Link>
-    //   <a
-    //     className="likes-card-text"
-    //     onClick={() => {
-    //       addLike(property.id);
-    //     }}
-    //   >
-    //     ❤{like}
-    //   </a>
-    // </div>
-
     <div
       className="col
     "
@@ -96,29 +62,35 @@ export default function AdvancedSearchCard(params) {
             </div>
             <div className="col-md-8">
               <div className="card-body">
+                {/* Nome immobile */}
                 <h5 className="card-title">{property.title}</h5>
                 <p className="card-text">
                   <i>{property.city}</i>
                 </p>
-                <div className="d-flex gap-3">
-                  <p className="card-text">
-                    <strong>Stanze </strong>
+                <div className="d-flex gap-4 mb-3">
+                  {/* Numero stanze */}
+                  <div className="card-text">
+                    <i class="fa-solid fa-door-open me-2"></i>
                     {property.n_Rooms}
-                  </p>
-                  <p className="card-text">
-                    <strong>Bagni </strong>
+                  </div>
+                  {/* Numero bagni */}
+                  <div className="card-text">
+                    <i class="fa-solid fa-bath me-2"></i>
                     {property.n_Bathrooms}
-                  </p>
+                  </div>
                 </div>
-                <p className="card-text">
-                  <strong>Indirizzo </strong>
+                {/* Indirizzo */}
+                <div className="card-text mb-3">
+                  <i class="fa-solid fa-location-dot me-2"></i>
                   {property.address}
-                </p>
+                </div>
+                {/* Metri quadrati */}
                 <p className="card-text">
                   <strong>Metri quadrati </strong>
                   {property.square_meters}
                 </p>
                 <div className="row">
+                  {/* Prezzo */}
                   <span className="card-text col-6">€120/notte</span>
                   <span className="card-text property-type-card-text col-6 text-align-end">
                     <span className="badge text-dark border border-dark">
