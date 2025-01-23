@@ -217,8 +217,8 @@ export default function ReviewsList() {
                 </Form.Group>
                 <Col xs={12} className="text-center">
                   {/* Bottone per inviare la recensione */}
-                  <Button type="submit" variant="primary">
-                    Invia
+                  <Button type="submit" variant="dark">
+                    Invia recensione
                   </Button>
                 </Col>
               </Row>
