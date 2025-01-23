@@ -37,7 +37,6 @@ export default function ReviewsList() {
     fetch(serverUrl + `/${id}/reviews`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("show reviews", data);
         setReviewList(data);
       });
   };
