@@ -80,10 +80,10 @@ export default function ShowPage() {
                 <strong>Email di riferimento</strong>
                 <p>{property.reference_email}</p>
               </div>
+              <SendMailForm property={property} />
               <div className="mt-2">
                 <UpdatePropertyForm propertyData={property} />
               </div>
-              <SendMailForm property={property} />
             </div>
           </div>
           <hr />
