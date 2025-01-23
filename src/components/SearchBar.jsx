@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 import { useDataContext } from "../context/dataContext";
+import { Row, Col } from "react-bootstrap";
 
 const initialFormData = {
   city: "",
@@ -64,7 +65,6 @@ export default function SearchBar({ propertiesList }) {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    console.log(name, value, type, checked);
 
     const newValue = type === "checkbox" ? checked : value;
 
@@ -75,7 +75,6 @@ export default function SearchBar({ propertiesList }) {
   };
 
   useEffect(() => {
-    console.log(formData.propertyType);
     fetchFilterProperties(formData);
   }, [formData]);
 
@@ -109,8 +108,7 @@ export default function SearchBar({ propertiesList }) {
               placeholder="Indirizzo"
             />
           </Form.Group>
-        </div>
-        <div className="row">
+
           <Form.Group
             className="col-12 col-md-6 mb-4"
             controlId="exampleForm.ControlInput1"
@@ -161,26 +159,29 @@ export default function SearchBar({ propertiesList }) {
               <option value="other">Altro</option>
             </Form.Select>
           </Form.Group> */}
-          <div className="d-flex badge-container flex-wrap align-items-center justify-content-between gap-3">
-            {propertyTypeList.map((badge) => {
-              return (
-                <button
-                  key={badge}
-                  onClick={handleIconClick}
-                  name="propertyType"
-                  value={badge}
-                  type="text"
-                  className={
-                    formData.propertyType == badge
-                      ? ` btn btn-primary`
-                      : ` btn btn-secondary opacity-50`
-                  }
-                >
-                  {translatePropertyType(badge)}
-                </button>
-              );
-            })}
-          </div>
+          <Col xs={12}>
+            <Row className="badge-container row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-6 g-2">
+              {propertyTypeList.map((badge, index) => {
+                return (
+                  <Col key={index}>
+                    <button
+                      onClick={handleIconClick}
+                      name="propertyType"
+                      value={badge}
+                      type="text"
+                      className={
+                        formData.propertyType == badge
+                          ? ` btn btn-primary`
+                          : ` btn btn-secondary opacity-50` + `w-100`
+                      }
+                    >
+                      {translatePropertyType(badge)}
+                    </button>
+                  </Col>
+                );
+              })}
+            </Row>
+          </Col>
         </div>
       </Form>
     </div>
