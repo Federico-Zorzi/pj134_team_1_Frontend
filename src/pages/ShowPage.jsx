@@ -13,6 +13,27 @@ export default function ShowPage() {
     fetchShowProperties(id), setLoader(false);
   }, []);
 
+  function translatePropertyType(propertyType) {
+    switch (propertyType) {
+      case "apartment":
+        return "Appartamento";
+      case "independent_house":
+        return "Casa indipendente";
+      case "villa":
+        return "Villa";
+      case "terraced_villa":
+        return "Villetta a schiera";
+      case "chalet":
+        return "Chalet";
+      case "cabin":
+        return "Baita";
+      case "other":
+        return "Altro";
+      default:
+        return "Tipo sconosciuto";
+    }
+  }
+
   return (
     <>
       {loader ? (
@@ -36,7 +57,7 @@ export default function ShowPage() {
 
               <div className="mt-2">
                 <strong>Tipologia di immobile</strong>
-                <p>{property.property_type}</p>
+                <p>{translatePropertyType(property.property_type)}</p>
               </div>
 
               <div className="mt-2">
