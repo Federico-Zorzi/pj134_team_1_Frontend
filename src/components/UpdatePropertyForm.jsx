@@ -35,9 +35,24 @@ export default function UpdatePropertyForm({ propertyData }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setShow(false);
-    console.log(formData);
+    fetch(`http://localhost:3000/properties/${formData.id}/update`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to submit the form");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+
+        setShow(false);
+      });
   };
 
   return (
@@ -146,6 +161,7 @@ export default function UpdatePropertyForm({ propertyData }) {
                         value={formData.square_meters}
                         onChange={handleInputChange}
                         required
+                        min="50"
                       />
                     </Form.Group>
                   </div>

@@ -18,10 +18,11 @@ export default function HomePage() {
         <div className="d-flex justify-content-between align-items-center my-5">
           <h1>I più gettonati✨</h1>
 
-          <Button as={Link} to="/store">
-            Aggiungi un nuovo immobile
-          </Button>
-          <Button as={Link} to="/advanceSearch">
+          <Button
+            className="bg-dark text-white border-dark p-2"
+            as={Link}
+            to="/advanceSearch"
+          >
             Vai alla ricerca avanzata
           </Button>
         </div>

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
 import ReviewsList from "../components/reviews/ReviewsList";
 import UpdatePropertyForm from "../components/UpdatePropertyForm";
+import SendMailForm from "../components/SendMailForm";
 
 export default function ShowPage() {
   const { id } = useParams();
@@ -12,6 +13,27 @@ export default function ShowPage() {
   useEffect(() => {
     fetchShowProperties(id), setLoader(false);
   }, []);
+
+  function translatePropertyType(propertyType) {
+    switch (propertyType) {
+      case "apartment":
+        return "Appartamento";
+      case "independent_house":
+        return "Casa indipendente";
+      case "villa":
+        return "Villa";
+      case "terraced_villa":
+        return "Villetta a schiera";
+      case "chalet":
+        return "Chalet";
+      case "cabin":
+        return "Baita";
+      case "other":
+        return "Altro";
+      default:
+        return "Tipo sconosciuto";
+    }
+  }
 
   return (
     <>
@@ -36,7 +58,7 @@ export default function ShowPage() {
 
               <div className="mt-2">
                 <strong>Tipologia di immobile</strong>
-                <p>{property.property_type}</p>
+                <p>{translatePropertyType(property.property_type)}</p>
               </div>
 
               <div className="mt-2">
@@ -61,6 +83,7 @@ export default function ShowPage() {
               <div className="mt-2">
                 <UpdatePropertyForm propertyData={property} />
               </div>
+              <SendMailForm property={property} />
             </div>
           </div>
           <hr />

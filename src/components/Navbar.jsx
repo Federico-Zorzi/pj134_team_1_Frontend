@@ -38,11 +38,13 @@ export default function Navbar() {
                 Cerca
               </NavLink>
             </li>
-            <li>
-              <NavLink className="nav-link" to="/store">
-                Aggiungi un immobile!
-              </NavLink>
-            </li>
+            {isUserOwner && (
+              <li>
+                <NavLink className="nav-link" to="/store">
+                  Aggiungi un immobile!
+                </NavLink>
+              </li>
+            )}
           </ul>
 
           <div className="fs-5 text-white" role="button">
