@@ -5,10 +5,10 @@ import { useDataContext } from "../context/dataContext";
 
 const initialFormData = {
   title: "",
-  n_Rooms: 1,
-  n_Beds: 1,
-  n_Bathrooms: 1,
-  square_meters: 100,
+  n_Rooms: null,
+  n_Beds: null,
+  n_Bathrooms: null,
+  square_meters: null,
   address: "",
   reference_email: "",
   image: "",
@@ -226,7 +226,7 @@ export default function AddPropertyForm() {
           <Form.Label>Immagine</Form.Label>
           <Form.Control
             type="text"
-            // placeholder="Inserisci un'immagine"
+            placeholder="Inserisci un'immagine"
             name="image"
             value={formData.image}
             onChange={handleInputChange}

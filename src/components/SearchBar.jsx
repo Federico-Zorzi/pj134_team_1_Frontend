@@ -152,14 +152,16 @@ export default function SearchBar({ propertiesList }) {
                       type="text"
                       className={
                         formData.propertyType == badge
-                          ? `d-flex align-items-center justify-content-center flex-column btn active `
-                          : `d-flex align-items-center justify-content-center flex-column btn btn-light` +
-                            `w-100`
+                          ? ` active ` +
+                            `w-100 d-flex align-items-center justify-content-center flex-column btn`
+                          : ` btn-light` +
+                            `w-100 d-flex align-items-center justify-content-center flex-column btn`
                       }
                     >
                       {/* icons for badges */}
                       {badge == "villa" && (
                         <img
+                          onClick={handleIconClick}
                           src="https://a0.muscache.com/pictures/78ba8486-6ba6-4a43-a56d-f556189193da.jpg"
                           className="d-block"
                           style={{ width: "20px", height: "20px" }}
