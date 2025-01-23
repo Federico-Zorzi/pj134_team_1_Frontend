@@ -35,6 +35,24 @@ export default function UpdatePropertyForm({ propertyData }) {
   };
 
   const handleSubmit = (e) => {
+    //controlli
+    if (isNaN(formData.square_meters) || formData.square_meters < 50) {
+      alert("I metri quadrati sono invalidi.");
+      return;
+    }
+    if (isNaN(formData.n_Rooms) || formData.n_Rooms < 1) {
+      alert("Il numero di stanze è invalido.");
+      return;
+    }
+    if (isNaN(formData.n_Beds) || formData.n_Beds < 1) {
+      alert("Il numero di letti è invalido.");
+      return;
+    }
+    if (isNaN(formData.n_Bathrooms) || formData.n_Bathrooms < 1) {
+      alert("Il numero dei bagni è invalido.");
+      return;
+    }
+
     fetch(`http://localhost:3000/properties/${formData.id}/update`, {
       method: "PUT",
       headers: {
@@ -44,9 +62,9 @@ export default function UpdatePropertyForm({ propertyData }) {
     })
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Failed to submit the form");
+          alert("l'email inserita è invalida");
         }
-        return res.json();
+        return;
       })
       .then((data) => {
         console.log(data);
@@ -59,7 +77,7 @@ export default function UpdatePropertyForm({ propertyData }) {
     <>
       {isUserOwner ? (
         <>
-          <Button variant="light border-dark" onClick={handleShow}>
+          <Button variant="dark" onClick={handleShow}>
             Modifica l'immobile
           </Button>
 
@@ -126,6 +144,7 @@ export default function UpdatePropertyForm({ propertyData }) {
                         onChange={handleInputChange}
                         required
                         min="1"
+                        start="1"
                       />
                     </Form.Group>
 
@@ -138,6 +157,7 @@ export default function UpdatePropertyForm({ propertyData }) {
                         onChange={handleInputChange}
                         required
                         min="1"
+                        start="1"
                       />
                     </Form.Group>
 
@@ -162,6 +182,7 @@ export default function UpdatePropertyForm({ propertyData }) {
                         onChange={handleInputChange}
                         required
                         min="50"
+                        start="50"
                       />
                     </Form.Group>
                   </div>
