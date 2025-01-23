@@ -99,7 +99,7 @@ export default function AddPropertyForm() {
           setFormData(initialFormData);
 
           /* back to homepage */
-          // navigate("/");
+          navigate("/");
         });
     } else {
       console.log(formData);
@@ -281,8 +281,8 @@ d-flex justify-content-center mt-2 ms-4 me-4"
       </div>
 
       <div className="d-flex justify-content-center mt-3">
-        <Button variant="primary" type="submit">
-          Submit
+        <Button variant="dark" type="submit">
+          Invia immobile
         </Button>
       </div>
     </Form>
