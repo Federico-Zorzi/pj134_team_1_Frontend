@@ -47,7 +47,7 @@ export default function AdvancedSearchCard(params) {
       className="col
     "
     >
-      <div className="card  mb-3 d-flex" key={property.id}>
+      <div className="card mb-3 d-flex" key={property.id}>
         <Link to={`/${property.id}`}>
           <div className="row g-0">
             <div className="col-md-6">
