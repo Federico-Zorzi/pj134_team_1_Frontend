@@ -83,11 +83,10 @@ export default function ShowPage() {
               <div className="mt-2">
                 <UpdatePropertyForm propertyData={property} />
               </div>
+              <SendMailForm property={property} />
             </div>
           </div>
           <hr />
-
-          <SendMailForm property={property} />
 
           <ReviewsList id={property.id} />
         </div>
