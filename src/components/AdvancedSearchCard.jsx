@@ -63,9 +63,7 @@ export default function AdvancedSearchCard(params) {
             <div className="col-md-6">
               <img
                 onClick={() => console.log(property)}
-                src={
-                  "https://hips.hearstapps.com/hmg-prod/images/torino-with-mole-antonelliana-and-the-alps-royalty-free-image-1643015862.jpg"
-                }
+                src={`/img_properties/${property.image}`}
                 className="img-fluid rounded-start h-100 w-100"
                 alt="..."
               />
