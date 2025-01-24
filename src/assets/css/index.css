@@ -22,6 +22,12 @@ main {
   margin: 0;
 }
 
+.login-text,
+.navbar-user-name {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
 .logout-icon {
   color: #ff0000;
 }
@@ -44,11 +50,6 @@ main {
   color: white;
   font-weight: bold;
   font-size: 1.4rem;
-}
-
-.navbar-user-name {
-  font-size: 1rem;
-  font-weight: normal;
 }
 
 /* HOMEPAGE */
