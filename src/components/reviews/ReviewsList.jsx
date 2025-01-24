@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Col, Row, Button, Collapse } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-
+import { useDataContext } from "../../context/dataContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
@@ -111,6 +111,43 @@ export default function ReviewsList() {
     }
   };
 
+  //controllo se lo user è owner per bloccare il form di invio recensioni
+  const { userData } = useDataContext();
+  const { userInformation } = userData;
+  const [isOwner, setIsOwner] = useState(false);
+
+  useEffect(() => {
+    const checkOwnership = async () => {
+      const ownerStatus = await isUserPropertyOwner(userInformation.id, id);
+      setIsOwner(ownerStatus);
+    };
+
+    checkOwnership();
+  }, [userInformation.id, id]);
+
+  async function isUserPropertyOwner(userId, propertyId) {
+    try {
+      const response = await fetch(
+        "http://localhost:3000/properties/" + propertyId
+      );
+      if (!response.ok) {
+        throw new Error(`Error fetching property: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      const propertyInformation = data[0];
+
+      if (!propertyInformation) {
+        console.error("No property information found");
+        return false;
+      }
+      return propertyInformation.owner_id === parseInt(userId);
+    } catch (error) {
+      console.error("Error in isUserPropertyOwner:", error.message);
+      return false;
+    }
+  }
+
   return (
     <section className="my-3">
       <Row className="align-items-center">
@@ -125,15 +162,21 @@ export default function ReviewsList() {
           </p>
         </Col>
         <Col className="text-end">
-          <Button
-            onClick={() => setOpenCollapse(!openCollapse)}
-            aria-controls="collapse-form-reviews"
-            aria-expanded={openCollapse}
-            className="bg-dark border-dark"
-          >
-            <FontAwesomeIcon icon={faPlus} className="me-1" /> Aggiungi
-            Recensione
-          </Button>
+          {isOwner ? (
+            ""
+          ) : (
+            <>
+              <Button
+                onClick={() => setOpenCollapse(!openCollapse)}
+                aria-controls="collapse-form-reviews"
+                aria-expanded={openCollapse}
+                className="bg-dark border-dark"
+              >
+                <FontAwesomeIcon icon={faPlus} className="me-1" /> Aggiungi
+                Recensione
+              </Button>
+            </>
+          )}
         </Col>
         <Collapse in={openCollapse}>
           <div id="collapse-form-reviews">

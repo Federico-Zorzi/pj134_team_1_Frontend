@@ -105,15 +105,13 @@ export default function ShowPage() {
                 </div>
               </div>
 
-              <div className="row d-flex gap-2">
+              <div className="d-flex flex-column gap-2 mt-3">
                 {/* Bottone per invio mail */}
                 <SendMailForm property={property} />
-                <div className="d-flex gap-2 p-0">
-                  {/* Bottone per modificare l'immobile */}
-                  <UpdatePropertyForm propertyData={property} />
-                  {/* Bottone per cancellare l'immobile */}
-                  <PropertyDeleteButton propertyId={id} />
-                </div>
+                {/* Bottone per modificare l'immobile */}
+                <UpdatePropertyForm propertyData={property} />
+                {/* Bottone per cancellare l'immobile */}
+                <PropertyDeleteButton propertyId={id} />
               </div>
             </div>
           </div>

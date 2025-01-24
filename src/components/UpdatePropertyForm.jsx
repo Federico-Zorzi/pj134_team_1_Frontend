@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -9,7 +9,6 @@ export default function UpdatePropertyForm({ propertyData }) {
   const { id } = useParams();
   const { userData, fetchShowProperties } = useDataContext();
   const { userInformation } = userData;
-  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [formData, setFormData] = useState([]);
   const [isOwner, setIsOwner] = useState(false);
@@ -118,7 +117,7 @@ export default function UpdatePropertyForm({ propertyData }) {
         <>
           <Button
             variant="dark"
-            className="col-lg-6 col-md-6 col-sm-6"
+            className="col-lg-6 col-md-6 col-sm-6 rounded-pill"
             onClick={handleShow}
           >
             Modifica l'immobile

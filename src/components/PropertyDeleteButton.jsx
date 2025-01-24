@@ -70,7 +70,7 @@ export default function PropertyDeleteButton({ propertyId }) {
       {isOwner ? (
         <>
           <Button
-            className="col-lg-6 col-md-6 col-sm-6"
+            className="col-lg-6 col-md-6 col-sm-6 rounded-pill"
             variant="danger"
             onClick={handleShow}
           >
