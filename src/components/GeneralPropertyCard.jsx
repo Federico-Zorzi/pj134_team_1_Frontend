@@ -46,7 +46,6 @@ export default function GeneralPropertyCard(params) {
           <div className="row g-0 search-card-grid">
             <div className="col-md-6">
               <img
-                onClick={() => console.log(property)}
                 src={`/img_properties/${property.image}`}
                 className="img-fluid rounded-start h-100 w-100"
                 alt="..."
