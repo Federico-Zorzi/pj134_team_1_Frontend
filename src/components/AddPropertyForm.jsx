@@ -109,8 +109,11 @@ export default function AddPropertyForm() {
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
       <Row>
-        <Form.Group as={Col} xs={4} className="mb-3" controlId="title">
-          <Form.Label>Titolo immobile</Form.Label>
+        <Form.Group as={Col} xs={4} className="mb-3 " controlId="title">
+          <Form.Label>
+            Titolo immobile
+            <i class="fa-solid fa-building ms-2"></i>
+          </Form.Label>
           <Form.Control
             type="text"
             placeholder="Titolo dell'immobile "
@@ -124,8 +127,11 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3" controlId="city">
-          <Form.Label>Città</Form.Label>
+        <Form.Group as={Col} xs={4} className="mb-3 " controlId="city">
+          <Form.Label>
+            Città
+            <i class="fa-solid fa-city ms-2"></i>
+          </Form.Label>
           <Form.Control
             type="text"
             placeholder="Inserisci la città"
@@ -139,8 +145,11 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3" controlId="address">
-          <Form.Label>Indirizzo completo</Form.Label>
+        <Form.Group as={Col} xs={4} className="mb-3 " controlId="address">
+          <Form.Label>
+            Indirizzo completo
+            <i class="fa-solid fa-location-dot ms-2"></i>
+          </Form.Label>
           <Form.Control
             type="text"
             placeholder="Inserisci l'indirizzo"
@@ -154,8 +163,11 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3" controlId="rooms">
-          <Form.Label>Numero di stanze</Form.Label>
+        <Form.Group as={Col} xs={4} className="mb-3 " controlId="rooms">
+          <Form.Label>
+            Numero di stanze
+            <i class="fa-solid fa-door-open ms-2"></i>
+          </Form.Label>
           <Form.Control
             type="number"
             placeholder="Inserisci il numero di stanze"
@@ -171,8 +183,11 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3" controlId="beds">
-          <Form.Label>Numero di letti</Form.Label>
+        <Form.Group as={Col} xs={4} className="mb-3 " controlId="beds">
+          <Form.Label>
+            Numero di letti
+            <i className="fa-solid fa-bed ms-2"></i>
+          </Form.Label>
           <Form.Control
             type="number"
             placeholder="Inserisci il numero di letti"
@@ -188,8 +203,11 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3" controlId="bathrooms">
-          <Form.Label>Numero di bagni</Form.Label>
+        <Form.Group as={Col} xs={4} className="mb-3 " controlId="bathrooms">
+          <Form.Label>
+            Numero di bagni
+            <i className="fa-solid fa-bath ms-2"></i>
+          </Form.Label>
           <Form.Control
             type="number"
             placeholder="Inserisci il numero di bagni"
@@ -205,8 +223,11 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3" controlId="square-meters">
-          <Form.Label>Metri quadrati</Form.Label>
+        <Form.Group as={Col} xs={4} className="mb-3 " controlId="square-meters">
+          <Form.Label>
+            Metri quadrati
+            <i class="fa-solid fa-expand ms-2"></i>
+          </Form.Label>
           <Form.Control
             type="number"
             placeholder="Inserisci i metri quadrati"
@@ -222,8 +243,11 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3" controlId="img">
-          <Form.Label>Immagine</Form.Label>
+        <Form.Group as={Col} xs={4} className="mb-3 " controlId="img">
+          <Form.Label>
+            Immagine
+            <i class="fa-solid fa-image ms-2"></i>
+          </Form.Label>
           <Form.Control
             type="text"
             placeholder="Inserisci un'immagine"
@@ -236,8 +260,11 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3" controlId="Email">
-          <Form.Label>Email</Form.Label>
+        <Form.Group as={Col} xs={4} className="mb-3 " controlId="Email">
+          <Form.Label>
+            Email
+            <i class="fa-solid fa-envelope ms-2"></i>
+          </Form.Label>
           <Form.Control
             type="email"
             placeholder="Inserisci l'email"
@@ -256,7 +283,10 @@ export default function AddPropertyForm() {
 d-flex justify-content-center mt-2 ms-4 me-4"
       >
         <Form.Group as={Col} xs={4} className="property-type ">
-          <Form.Label className="text-center">Tipo di proprietà</Form.Label>
+          <Form.Label>
+            Tipo di proprietà
+            <i class="fa-solid fa-building-circle-exclamation ms-2"></i>
+          </Form.Label>
           <Form.Select
             name="property_type"
             onChange={handleInputChange}
@@ -280,9 +310,9 @@ d-flex justify-content-center mt-2 ms-4 me-4"
         </Form.Group>
       </div>
 
-      <div className="d-flex justify-content-center mt-3">
-        <Button variant="dark" type="submit">
-          Invia immobile
+      <div className="d-flex justify-content-center mt-4">
+        <Button className="custom-button" type="submit">
+          <div className="text-color">Invia immobile</div>
         </Button>
       </div>
     </Form>
