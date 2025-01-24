@@ -44,14 +44,12 @@ export default function HomePage() {
   return (
     <main>
       <div className="container py-3">
-        <div className="d-flex flex-column gap-3 align-items-center my-5">
-          <h1 className="fw-bold ">
-            I migliori per te
-            <i className="fa-regular fa-map ms-3" />
-          </h1>
-        </div>
         <HomepageCarousel />
 
+        <h1 className="fw-bold mb-3">
+          I migliori per te
+          <i className="fa-regular fa-map ms-3" />
+        </h1>
         <Row className="align-items-center">
           <Col xs={1}>
             {/* backward arrow */}
