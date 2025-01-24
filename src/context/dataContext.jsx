@@ -18,6 +18,15 @@ export const DataContextProvider = ({ children }) => {
   const serverUrl = import.meta.env.VITE_SERVER_URL + "/properties";
 
   const [propertiesList, setPropertiesList] = useState([]);
+  const [mostPopularPropertiesList, setMostPopularPropertiesList] = useState(
+    []
+  );
+  const [restrictedMostPopPropertiesList, setRestrictedMostPopProperties] =
+    useState([]);
+
+  const numPopularProperties = 8;
+  const numRestrictedPopularProperties = 4;
+
   const [property, setProperty] = useState([]);
 
   const [userInformation, setUserInformation] = useState(initialUserData);
@@ -29,8 +38,17 @@ export const DataContextProvider = ({ children }) => {
     fetch(serverUrl)
       .then((res) => res.json())
       .then((data) => {
-        console.log("index", data);
         setPropertiesList(data);
+
+        const filterPopularProperties = data.filter(
+          (property, index) => index < numPopularProperties
+        );
+        setMostPopularPropertiesList(filterPopularProperties);
+
+        const restrictedFilterPopularProperties = data.filter(
+          (property, index) => index < numRestrictedPopularProperties
+        );
+        setRestrictedMostPopProperties(restrictedFilterPopularProperties);
       });
   };
 
@@ -75,6 +93,9 @@ export const DataContextProvider = ({ children }) => {
   const dataContext = {
     propertiesList,
     property,
+    mostPopularPropertiesList,
+    restrictedMostPopPropertiesList,
+    setRestrictedMostPopProperties,
     fetchIndexProperties,
     fetchShowProperties,
     fetchFilterProperties,

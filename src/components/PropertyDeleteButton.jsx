@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 export default function PropertyDeleteButton({ propertyId }) {
@@ -21,19 +22,24 @@ export default function PropertyDeleteButton({ propertyId }) {
     checkOwnership();
   }, [userInformation.id, propertyId]);
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const handleClose = () => setShowDeleteModal(false);
+  const handleShow = () => setShowDeleteModal(true);
+
   function handleDeleteButtonClick(propertyId) {
-    if (window.confirm("Sei sicuro di voler cancellare questo immobile?")) {
-      fetch(`http://localhost:3000/properties/${propertyId}/delete`, {
-        method: "DELETE",
+    fetch(`http://localhost:3000/properties/${propertyId}/delete`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to delete the property");
+        }
+        return res.json();
       })
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error("Failed to delete the property");
-          }
-          return res.json();
-        })
-        .then(navigate("/"));
-    }
+      .then((data) => {
+        setShowDeleteModal(false);
+        navigate("/");
+      });
   }
 
   async function isUserPropertyOwner(userId, propertyId) {
@@ -63,12 +69,28 @@ export default function PropertyDeleteButton({ propertyId }) {
   return (
     <>
       {isOwner ? (
-        <Button
-          variant="danger"
-          onClick={() => handleDeleteButtonClick(propertyId)}
-        >
-          Cancella l'immobile
-        </Button>
+        <>
+          <Button variant="danger" onClick={handleShow}>
+            Cancella l'immobile
+          </Button>
+          <Modal show={showDeleteModal} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Eliminazione immobile</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Vuoi davvero eliminare questo immobile?</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Annulla
+              </Button>
+              <Button
+                variant="danger"
+                onClick={() => handleDeleteButtonClick(propertyId)}
+              >
+                Elimina
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </>
       ) : (
         ""
       )}
