@@ -64,7 +64,7 @@ export default function ShowPage() {
 
                 {/* Tipologia */}
                 <div className="xs-device col-lg-12 col-md-4 col-sm-6  mt-2">
-                  <i class="fa-solid fa-building me-2"></i>
+                  <i className="fa-solid fa-building me-2"></i>
 
                   <strong>Tipologia di immobile</strong>
 
@@ -98,7 +98,7 @@ export default function ShowPage() {
                 </div>
                 {/* Email */}
                 <div className="mt-2">
-                  <i class="fa-solid fa-envelope me-2"></i>
+                  <i className="fa-solid fa-envelope me-2"></i>
 
                   <strong>Email di riferimento</strong>
                   <p>{property.reference_email}</p>

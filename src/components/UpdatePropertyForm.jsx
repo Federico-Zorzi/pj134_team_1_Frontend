@@ -136,7 +136,7 @@ export default function UpdatePropertyForm({ propertyData }) {
                   <div className="col-6">
                     <Form.Group className="mb-3" controlId="title">
                       <Form.Label>
-                        <i class="fa-solid fa-building me-2 ms-1"></i>
+                        <i className="fa-solid fa-building me-2 ms-1"></i>
                         Titolo immobile
                       </Form.Label>
                       <Form.Control
@@ -149,7 +149,7 @@ export default function UpdatePropertyForm({ propertyData }) {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="address">
                       <Form.Label>
-                        <i class="fa-solid fa-location-dot me-2 ms-1"></i>
+                        <i className="fa-solid fa-location-dot me-2 ms-1"></i>
                         Indirizzo
                       </Form.Label>
                       <Form.Control
@@ -163,7 +163,7 @@ export default function UpdatePropertyForm({ propertyData }) {
 
                     <Form.Group className="mb-3" controlId="Email">
                       <Form.Label>
-                        <i class="fa-solid fa-envelope me-2 ms-1"></i>
+                        <i className="fa-solid fa-envelope me-2 ms-1"></i>
                         Email
                       </Form.Label>
                       <Form.Control
@@ -176,7 +176,7 @@ export default function UpdatePropertyForm({ propertyData }) {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="city">
                       <Form.Label>
-                        <i class="fa-solid fa-city me-2 ms-1"></i>
+                        <i className="fa-solid fa-city me-2 ms-1"></i>
                         Città
                       </Form.Label>
                       <Form.Control
@@ -192,7 +192,7 @@ export default function UpdatePropertyForm({ propertyData }) {
                   <div className="col-6">
                     <Form.Group className="mb-3" controlId="rooms">
                       <Form.Label>
-                        <i class="fa-solid fa-door-open me-2 ms-1"></i>
+                        <i className="fa-solid fa-door-open me-2 ms-1"></i>
                         Numero di stanze
                       </Form.Label>
                       <Form.Control
@@ -239,7 +239,7 @@ export default function UpdatePropertyForm({ propertyData }) {
 
                     <Form.Group className="mb-3" controlId="square-meters">
                       <Form.Label>
-                        <i class="fa-solid fa-expand me-2 ms-1"></i>
+                        <i className="fa-solid fa-expand me-2 ms-1"></i>
                         Metri quadrati
                       </Form.Label>
                       <Form.Control
@@ -257,7 +257,7 @@ export default function UpdatePropertyForm({ propertyData }) {
 
                 <Form.Group className="mb-3" controlId="img">
                   <Form.Label>
-                    <i class="fa-solid fa-image me-2 ms-1"></i>
+                    <i className="fa-solid fa-image me-2 ms-1"></i>
                     Immagine
                   </Form.Label>
                   <Form.Control
@@ -270,7 +270,7 @@ export default function UpdatePropertyForm({ propertyData }) {
 
                 <Form.Group className="property-type">
                   <Form.Label>
-                    <i class="fa-solid fa-building-circle-exclamation me-2 ms-1 mt-2"></i>
+                    <i className="fa-solid fa-building-circle-exclamation me-2 ms-1 mt-2"></i>
                     Tipo di proprietà
                   </Form.Label>
                   <Form.Select

@@ -87,7 +87,7 @@ export default function SearchBar({ propertiesList }) {
             controlId="exampleForm.ControlInput1"
           >
             <Form.Label>
-              <i class="fa-solid fa-city me-2 ms-1"></i>
+              <i className="fa-solid fa-city me-2 ms-1"></i>
               Cerca la città che desideri
             </Form.Label>
             <Form.Control
@@ -103,7 +103,7 @@ export default function SearchBar({ propertiesList }) {
             controlId="exampleForm.ControlInput1"
           >
             <Form.Label>
-              <i class="fa-solid fa-location-dot me-2 ms-1"></i>
+              <i className="fa-solid fa-location-dot me-2 ms-1"></i>
               Cerca l'indirizzo
             </Form.Label>
             <Form.Control
@@ -120,7 +120,7 @@ export default function SearchBar({ propertiesList }) {
             controlId="exampleForm.ControlInput1"
           >
             <Form.Label>
-              <i class="fa-solid fa-door-open me-2 ms-1"></i>
+              <i className="fa-solid fa-door-open me-2 ms-1"></i>
               Numero di stanze
             </Form.Label>
             <Form.Control
