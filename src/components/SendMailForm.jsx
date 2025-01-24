@@ -47,14 +47,14 @@ export default function SendMailForm({ property }) {
             </div>
             <div className="modal-body">
               <div className="p-3">
-                <label>Nome</label>
+                <label>Il tuo nome</label>
                 <input
                   required
                   className="form-control mb-3"
                   type="text"
                   name="from_name"
                 />
-                <label>Email</label>
+                <label>La tua email</label>
                 <input
                   required
                   className="form-control mb-3"
