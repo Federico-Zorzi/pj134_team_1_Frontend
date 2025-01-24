@@ -23,6 +23,10 @@ main {
 }
 
 /* HOMEPAGE */
+.most-searched-properties {
+  position: relative;
+}
+
 .arrows-btn {
   border: none;
   color: #a3a3a3;
@@ -40,6 +44,21 @@ main {
 .arrows-btn:active {
   border: none;
   color: #474747;
+}
+
+.left-arrow,
+.right-arrow {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+}
+
+.left-arrow {
+  left: -3rem;
+}
+
+.right-arrow {
+  right: -3rem;
 }
 
 .homepage-card {

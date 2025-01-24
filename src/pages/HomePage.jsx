@@ -50,61 +50,54 @@ export default function HomePage() {
           I più cercati
           <i className="fa-regular fa-map ms-3" />
         </h1>
-        <Row className="align-items-center">
-          <Col xs={1}>
-            {/* backward arrow */}
-            {actualIndex > 0 ? (
-              <button
-                className="arrows-btn bg-transparent"
-                onClick={backwardMostPopularProp}
-              >
-                <FontAwesomeIcon
-                  className="arrows-btn-icon"
-                  icon={faArrowRightLong}
-                  size="2xl"
-                  flip="horizontal"
-                />
-              </button>
-            ) : (
-              ""
-            )}
-          </Col>
+        <div className="most-searched-properties">
+          {/* backward arrow */}
+          {actualIndex > 0 ? (
+            <button
+              className="left-arrow arrows-btn bg-transparent"
+              onClick={backwardMostPopularProp}
+            >
+              <FontAwesomeIcon
+                className="arrows-btn-icon"
+                icon={faArrowRightLong}
+                size="2xl"
+                flip="horizontal"
+              />
+            </button>
+          ) : (
+            ""
+          )}
+          {/* forward arrow */}
+          {actualIndex < mostPopularPropertiesList.length - 4 ? (
+            <button
+              className="right-arrow arrows-btn bg-transparent"
+              onClick={forwardMostPopularProp}
+            >
+              <FontAwesomeIcon
+                className="arrows-btn-icon"
+                icon={faArrowRightLong}
+                size="2xl"
+              />
+            </button>
+          ) : (
+            ""
+          )}
 
-          <Col>
-            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3 homepage-card-container">
-              {/* Cards */}
-              {restrictedMostPopPropertiesList.map((property) => {
-                return (
-                  <HomepageCard
-                    key={property.id}
-                    element={property}
-                    link={{
-                      to: "/properties/" + property.id,
-                    }}
-                  />
-                );
-              })}
-            </div>
-          </Col>
-
-          <Col xs={1}>
-            {/* forward arrow */}
-            {actualIndex < mostPopularPropertiesList.length - 4 ? (
-              <button
-                className="arrows-btn bg-transparent"
-                onClick={forwardMostPopularProp}
-              >
-                <FontAwesomeIcon
-                  className="arrows-btn-icon"
-                  icon={faArrowRightLong}
-                  size="2xl"
+          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3 homepage-card-container">
+            {/* Cards */}
+            {restrictedMostPopPropertiesList.map((property) => {
+              return (
+                <HomepageCard
+                  key={property.id}
+                  element={property}
+                  link={{
+                    to: "/properties/" + property.id,
+                  }}
                 />
-              </button>
-            ) : (
-              ""
-            )}
-          </Col>
-        </Row>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </main>
   );
