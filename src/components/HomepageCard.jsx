@@ -3,6 +3,14 @@ import { Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 
 export default function HomepageCard(params) {
+  // function to remove spaces
+  const removeSpaces = (str) => {
+    str = str.replace(/\s+/g, "-");
+    str = str.toLowerCase();
+    console.log(str);
+    return str;
+  };
+
   const property = params.element;
 
   //   function to add like
@@ -51,10 +59,9 @@ export default function HomepageCard(params) {
         to={`/${property.id}`}
       >
         <img
-          onClick={() => console.log(property)}
-          src={
-            "https://hips.hearstapps.com/hmg-prod/images/torino-with-mole-antonelliana-and-the-alps-royalty-free-image-1643015862.jpg"
-          }
+          src={`../public/properties-img/${removeSpaces(
+            property.title
+          )}-main.webp`}
           className="card-img-top"
         />
         <div className="card-body homepage-card-body">
