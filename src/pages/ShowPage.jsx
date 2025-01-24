@@ -47,7 +47,7 @@ export default function ShowPage() {
             {/* Immagine */}
             <div className="col-lg-8 col-md-12">
               <img
-                src="https://media.discordapp.net/attachments/1331260746847490151/1331307684045262928/default.jpg?ex=6791cd26&is=67907ba6&hm=68129dd9717776887f2e64fb8e9cecb6a1f94ebfd773908fa28b8ad2c739cbf7&=&format=webp"
+                src={`/img_properties/${property.image}`}
                 className="card-img-top"
                 alt="..."
               />
