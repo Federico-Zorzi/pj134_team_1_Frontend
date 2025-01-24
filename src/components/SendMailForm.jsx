@@ -27,7 +27,10 @@ export default function SendMailForm({ property }) {
 
   return (
     <>
-      <button onClick={() => setShow(true)} className="btn btn-primary">
+      <button
+        onClick={() => setShow(true)}
+        className="col-lg-12 col-md-12 col-sm-12 btn btn-primary"
+      >
         Scrivi una mail al proprietario
       </button>
       <Modal show={show} data-bs-keyboard="false" tabIndex="-1">
