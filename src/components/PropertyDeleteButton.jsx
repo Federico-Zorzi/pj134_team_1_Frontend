@@ -72,7 +72,7 @@ export default function PropertyDeleteButton({ propertyId }) {
           <Button
             className="col-lg-6 col-md-6 col-sm-6"
             variant="danger"
-            onClick={() => handleDeleteButtonClick(propertyId)}
+            onClick={handleShow}
           >
             Cancella l'immobile
           </Button>
