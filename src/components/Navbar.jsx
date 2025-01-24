@@ -47,7 +47,7 @@ export default function Navbar() {
                 Cerca
               </NavLink>
             </li>
-            {userInformation.isOwner === 1 ? (
+            {userInformation.id !== 0 ? (
               <>
                 <li>
                   <NavLink className="nav-link" to="/store">
