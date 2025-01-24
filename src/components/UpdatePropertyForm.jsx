@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export default function UpdatePropertyForm({ propertyData }) {
-  const { userData } = useDataContext();
+  const { id } = useParams();
+  const { userData, fetchShowProperties } = useDataContext();
   const { userInformation } = userData;
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [formData, setFormData] = useState([]);
   const [isOwner, setIsOwner] = useState(false);
@@ -48,6 +51,8 @@ export default function UpdatePropertyForm({ propertyData }) {
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
+
     //controlli
     if (isNaN(formData.square_meters) || formData.square_meters < 50) {
       alert("I metri quadrati sono invalidi.");
@@ -83,6 +88,7 @@ export default function UpdatePropertyForm({ propertyData }) {
         console.log(data);
 
         setShow(false);
+        fetchShowProperties(id);
       });
   };
 
