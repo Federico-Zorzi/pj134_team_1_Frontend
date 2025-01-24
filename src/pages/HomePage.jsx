@@ -16,7 +16,7 @@ export default function HomePage() {
         <div className="d-flex flex-column gap-3 align-items-center my-5">
           <h1 className="fw-bold ">
             I migliori per te
-            <i class="fa-regular fa-map ms-3" />
+            <i className="fa-regular fa-map ms-3" />
           </h1>
         </div>
         <HomepageCarousel />
