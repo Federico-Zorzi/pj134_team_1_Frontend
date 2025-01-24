@@ -1,9 +1,19 @@
 import { useDataContext } from "../context/dataContext";
 import GeneralPropertyCard from "../components/GeneralPropertyCard";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function UserPropertiesPage() {
+  const navigate = useNavigate();
   const { userData } = useDataContext();
-  const { userProperties } = userData;
+  const { userProperties, userInformation } = userData;
+
+  useEffect(() => {
+    if (userInformation.isOwner === 0) {
+      navigate("/");
+    }
+  }, [userInformation.isOwner]);
+
   return (
     <>
       <div className="container min-vh-100">
