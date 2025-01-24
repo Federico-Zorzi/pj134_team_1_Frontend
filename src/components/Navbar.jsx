@@ -68,8 +68,11 @@ export default function Navbar() {
           <div className="fs-5 text-white" role="button">
             {userInformation.id !== 0 ? (
               <>
-                <span className="me-3">
-                  {"Benvenuto " + userInformation.name}
+                <span className="navbar-user-icon">
+                  {userInformation.name[0]}
+                </span>
+                <span className="navbar-user-name me-3">
+                  {userInformation.name}
                 </span>
                 <button className="logout-btn" onClick={userLogout}>
                   <FontAwesomeIcon
