@@ -14,6 +14,7 @@ let initialFormData = {
   image: "",
   city: "",
   property_type: "",
+  owner_id: 0,
 };
 
 export default function AddPropertyForm() {
@@ -70,6 +71,8 @@ export default function AddPropertyForm() {
       formData.square_meters &&
       parseInt(formData.square_meters) > 50 &&
       parseInt(formData.square_meters) <= 10000;
+
+    formData.owner_id = userInformation.id;
 
     if (
       formData.title &&
