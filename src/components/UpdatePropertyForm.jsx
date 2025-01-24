@@ -18,15 +18,16 @@ export default function UpdatePropertyForm({ propertyData }) {
   }, [propertyData]);
 
   useEffect(() => {
-    const checkOwnership = async () => {
-      const ownerStatus = await isUserPropertyOwner(
-        userInformation.id,
-        propertyData.id
-      );
-      setIsOwner(ownerStatus);
-    };
-
-    checkOwnership();
+    if (userInformation && propertyData) {
+      const checkOwnership = async () => {
+        const ownerStatus = await isUserPropertyOwner(
+          userInformation.id,
+          propertyData.id
+        );
+        setIsOwner(ownerStatus);
+      };
+      checkOwnership();
+    }
   }, [userInformation.id, propertyData.id]);
 
   const handleClose = () => {
