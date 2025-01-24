@@ -47,7 +47,7 @@ export default function HomePage() {
         <HomepageCarousel />
 
         <h1 className="fw-bold mb-3">
-          I migliori per te
+          I più cercati
           <i className="fa-regular fa-map ms-3" />
         </h1>
         <Row className="align-items-center">
