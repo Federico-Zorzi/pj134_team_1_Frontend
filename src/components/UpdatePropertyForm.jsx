@@ -1,18 +1,34 @@
 import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export default function UpdatePropertyForm({ propertyData }) {
-  const { userData } = useDataContext();
-  const { isUserOwner } = userData;
+  const { id } = useParams();
+  const { userData, fetchShowProperties } = useDataContext();
+  const { userInformation } = userData;
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [formData, setFormData] = useState([]);
+  const [isOwner, setIsOwner] = useState(false);
 
   useEffect(() => {
     setFormData(propertyData);
   }, [propertyData]);
+
+  useEffect(() => {
+    const checkOwnership = async () => {
+      const ownerStatus = await isUserPropertyOwner(
+        userInformation.id,
+        propertyData.id
+      );
+      setIsOwner(ownerStatus);
+    };
+
+    checkOwnership();
+  }, [userInformation.id, propertyData.id]);
 
   const handleClose = () => {
     console.log(formData);
@@ -35,6 +51,7 @@ export default function UpdatePropertyForm({ propertyData }) {
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     //controlli
     if (isNaN(formData.square_meters) || formData.square_meters < 50) {
       alert("I metri quadrati sono invalidi.");
@@ -67,17 +84,43 @@ export default function UpdatePropertyForm({ propertyData }) {
         return;
       })
       .then((data) => {
-        console.log(data);
-
         setShow(false);
+        fetchShowProperties(id);
       });
   };
 
+  async function isUserPropertyOwner(userId, propertyId) {
+    try {
+      const response = await fetch(
+        "http://localhost:3000/properties/" + propertyId
+      );
+      if (!response.ok) {
+        throw new Error(`Error fetching property: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      const propertyInformation = data[0];
+
+      if (!propertyInformation) {
+        console.error("No property information found");
+        return false;
+      }
+      return propertyInformation.owner_id === parseInt(userId);
+    } catch (error) {
+      console.error("Error in isUserPropertyOwner:", error.message);
+      return false;
+    }
+  }
+
   return (
     <>
-      {isUserOwner ? (
+      {isOwner ? (
         <>
-          <Button variant="dark" onClick={handleShow}>
+          <Button
+            variant="dark"
+            className="col-lg-6 col-md-6 col-sm-6"
+            onClick={handleShow}
+          >
             Modifica l'immobile
           </Button>
 

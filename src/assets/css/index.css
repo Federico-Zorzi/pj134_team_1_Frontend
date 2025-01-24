@@ -22,9 +22,42 @@ main {
   margin: 0;
 }
 
+.logout-icon {
+  color: #ff0000;
+}
+
+.logout-btn {
+  background-color: transparent;
+  border: none;
+}
+
+.navbar-user-icon {
+  background-color: grey;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+
+  color: white;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.navbar-user-name {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
 /* HOMEPAGE */
 .most-searched-properties {
   position: relative;
+}
+
+.logo-green {
+  background-color: #0a8d48;
 }
 
 .arrows-btn {
@@ -176,6 +209,13 @@ main {
 
   .form-label {
     display: none;
+  }
+}
+
+/* Breackpoint xs-device */
+@media (max-width: 576px) {
+  .xs-device {
+    width: 240px;
   }
 }
 

@@ -3,25 +3,28 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
 
-const initialFormData = {
+let initialFormData = {
   title: "",
-  n_Rooms: null,
-  n_Beds: null,
-  n_Bathrooms: null,
-  square_meters: null,
+  n_Rooms: "",
+  n_Beds: "",
+  n_Bathrooms: "",
+  square_meters: "",
   address: "",
   reference_email: "",
   image: "",
   city: "",
   property_type: "",
+  owner_id: 0,
 };
 
 export default function AddPropertyForm() {
-  const [formData, setFormData] = useState(initialFormData);
   const navigate = useNavigate();
   const { userData } = useDataContext();
-  const { isUserOwner } = userData;
+  const { userInformation } = userData;
   const [validated, setValidated] = useState(false);
+
+  initialFormData = { reference_email: userInformation.email };
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -34,10 +37,10 @@ export default function AddPropertyForm() {
   };
 
   useEffect(() => {
-    if (!isUserOwner) {
+    if (userInformation.id === 0) {
       navigate("/");
     }
-  }, [isUserOwner]);
+  }, [userInformation.isOwner]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,6 +72,8 @@ export default function AddPropertyForm() {
       parseInt(formData.square_meters) > 50 &&
       parseInt(formData.square_meters) <= 10000;
 
+    formData.owner_id = userInformation.id;
+
     if (
       formData.title &&
       RoomsValidation &&
@@ -93,8 +98,6 @@ export default function AddPropertyForm() {
           return res.json();
         })
         .then((data) => {
-          console.log(data);
-
           setValidated(false);
           setFormData(initialFormData);
 

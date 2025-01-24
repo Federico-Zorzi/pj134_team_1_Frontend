@@ -27,7 +27,10 @@ export default function SendMailForm({ property }) {
 
   return (
     <>
-      <button onClick={() => setShow(true)} className="btn btn-primary">
+      <button
+        onClick={() => setShow(true)}
+        className="col-lg-12 col-md-12 col-sm-12 btn btn-primary"
+      >
         Scrivi una mail al proprietario
       </button>
       <Modal show={show} data-bs-keyboard="false" tabIndex="-1">
@@ -44,14 +47,14 @@ export default function SendMailForm({ property }) {
             </div>
             <div className="modal-body">
               <div className="p-3">
-                <label>Nome</label>
+                <label>Il tuo nome</label>
                 <input
                   required
                   className="form-control mb-3"
                   type="text"
                   name="from_name"
                 />
-                <label>Email</label>
+                <label>La tua email</label>
                 <input
                   required
                   className="form-control mb-3"
