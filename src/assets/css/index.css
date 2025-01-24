@@ -7,6 +7,10 @@ a {
   text-decoration: none;
 }
 
+.color-logo {
+  color: #00e167;
+}
+
 .wrapper {
   min-height: 100vh;
   display: flex;
@@ -247,14 +251,20 @@ main {
 .custom-button {
   border-color: rgb(33 37 41);
   background-color: rgb(33 37 41);
-  color: #00e167;
 }
 
 .custom-button:hover {
   background-color: rgb(33 37 41);
-  color: #00e167;
   border-color: rgb(33 37 41);
   transform: scale(1.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button.custom-button:focus,
+button.custom-button:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: rgb(33 37 41) !important;
+  border-color: rgb(33 37 41) !important;
 }

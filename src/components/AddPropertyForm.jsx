@@ -114,12 +114,12 @@ export default function AddPropertyForm() {
       <Row>
         <Form.Group as={Col} xs={4} className="mb-3 " controlId="title">
           <Form.Label>
+            <i class="fa-solid fa-building me-2"></i>
             Titolo immobile
-            <i class="fa-solid fa-building ms-2"></i>
           </Form.Label>
           <Form.Control
             type="text"
-            placeholder="Titolo dell'immobile "
+            placeholder="Inserisci il titolo dell'immobile... "
             name="title"
             value={formData.title}
             onChange={handleInputChange}
@@ -132,12 +132,12 @@ export default function AddPropertyForm() {
 
         <Form.Group as={Col} xs={4} className="mb-3 " controlId="city">
           <Form.Label>
+            <i class="fa-solid fa-city me-2"></i>
             Città
-            <i class="fa-solid fa-city ms-2"></i>
           </Form.Label>
           <Form.Control
             type="text"
-            placeholder="Inserisci la città"
+            placeholder="Inserisci la città..."
             name="city"
             value={formData.city}
             onChange={handleInputChange}
@@ -150,12 +150,12 @@ export default function AddPropertyForm() {
 
         <Form.Group as={Col} xs={4} className="mb-3 " controlId="address">
           <Form.Label>
+            <i class="fa-solid fa-location-dot me-2"></i>
             Indirizzo completo
-            <i class="fa-solid fa-location-dot ms-2"></i>
           </Form.Label>
           <Form.Control
             type="text"
-            placeholder="Inserisci l'indirizzo"
+            placeholder="Inserisci l'indirizzo..."
             name="address"
             value={formData.address}
             onChange={handleInputChange}
@@ -168,12 +168,12 @@ export default function AddPropertyForm() {
 
         <Form.Group as={Col} xs={4} className="mb-3 " controlId="rooms">
           <Form.Label>
+            <i class="fa-solid fa-door-open me-2"></i>
             Numero di stanze
-            <i class="fa-solid fa-door-open ms-2"></i>
           </Form.Label>
           <Form.Control
             type="number"
-            placeholder="Inserisci il numero di stanze"
+            placeholder="Inserisci il numero di stanze..."
             name="n_Rooms"
             value={formData.n_Rooms}
             onChange={handleInputChange}
@@ -188,12 +188,12 @@ export default function AddPropertyForm() {
 
         <Form.Group as={Col} xs={4} className="mb-3 " controlId="beds">
           <Form.Label>
+            <i className="fa-solid fa-bed me-2"></i>
             Numero di letti
-            <i className="fa-solid fa-bed ms-2"></i>
           </Form.Label>
           <Form.Control
             type="number"
-            placeholder="Inserisci il numero di letti"
+            placeholder="Inserisci il numero di letti..."
             name="n_Beds"
             value={formData.n_Beds}
             onChange={handleInputChange}
@@ -208,12 +208,12 @@ export default function AddPropertyForm() {
 
         <Form.Group as={Col} xs={4} className="mb-3 " controlId="bathrooms">
           <Form.Label>
+            <i className="fa-solid fa-bath me-2"></i>
             Numero di bagni
-            <i className="fa-solid fa-bath ms-2"></i>
           </Form.Label>
           <Form.Control
             type="number"
-            placeholder="Inserisci il numero di bagni"
+            placeholder="Inserisci il numero di bagni..."
             name="n_Bathrooms"
             value={formData.n_Bathrooms}
             onChange={handleInputChange}
@@ -228,12 +228,12 @@ export default function AddPropertyForm() {
 
         <Form.Group as={Col} xs={4} className="mb-3 " controlId="square-meters">
           <Form.Label>
+            <i class="fa-solid fa-expand me-2"></i>
             Metri quadrati
-            <i class="fa-solid fa-expand ms-2"></i>
           </Form.Label>
           <Form.Control
             type="number"
-            placeholder="Inserisci i metri quadrati"
+            placeholder="Inserisci i metri quadrati..."
             name="square_meters"
             value={formData.square_meters}
             onChange={handleInputChange}
@@ -248,12 +248,12 @@ export default function AddPropertyForm() {
 
         <Form.Group as={Col} xs={4} className="mb-3 " controlId="img">
           <Form.Label>
+            <i class="fa-solid fa-image me-2"></i>
             Immagine
-            <i class="fa-solid fa-image ms-2"></i>
           </Form.Label>
           <Form.Control
             type="text"
-            placeholder="Inserisci un'immagine"
+            placeholder="Inserisci un'immagine..."
             name="image"
             value={formData.image}
             onChange={handleInputChange}
@@ -265,12 +265,12 @@ export default function AddPropertyForm() {
 
         <Form.Group as={Col} xs={4} className="mb-3 " controlId="Email">
           <Form.Label>
+            <i class="fa-solid fa-envelope me-2"></i>
             Email
-            <i class="fa-solid fa-envelope ms-2"></i>
           </Form.Label>
           <Form.Control
             type="email"
-            placeholder="Inserisci l'email"
+            placeholder="Inserisci la mail per i contatti..."
             name="reference_email"
             value={formData.reference_email}
             onChange={handleInputChange}
@@ -287,8 +287,8 @@ d-flex justify-content-center mt-2 ms-4 me-4"
       >
         <Form.Group as={Col} xs={4} className="property-type ">
           <Form.Label>
+            <i class="fa-solid fa-building-circle-exclamation me-2"></i>
             Tipo di proprietà
-            <i class="fa-solid fa-building-circle-exclamation ms-2"></i>
           </Form.Label>
           <Form.Select
             name="property_type"
@@ -315,7 +315,7 @@ d-flex justify-content-center mt-2 ms-4 me-4"
 
       <div className="d-flex justify-content-center mt-4">
         <Button className="custom-button" type="submit">
-          <div className="text-color">Invia immobile</div>
+          <div className="text-color color-logo">Invia immobile</div>
         </Button>
       </div>
     </Form>
