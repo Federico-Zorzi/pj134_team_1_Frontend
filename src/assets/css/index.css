@@ -183,6 +183,13 @@ main {
   }
 }
 
+/* Breackpoint xs-device */
+@media (max-width: 576px) {
+  .xs-device {
+    width: 240px;
+  }
+}
+
 .navbar .logo-navbar {
   width: 150px;
   margin-block: 10px;
