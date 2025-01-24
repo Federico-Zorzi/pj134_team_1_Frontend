@@ -25,6 +25,7 @@ export default function PropertyDeleteButton({ propertyId }) {
     <>
       {isUserOwner ? (
         <Button
+          className="col-lg-6 col-md-6 col-sm-6"
           variant="danger"
           onClick={() => handleDeleteButtonClick(propertyId)}
         >
