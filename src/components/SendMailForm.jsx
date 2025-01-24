@@ -74,7 +74,10 @@ export default function SendMailForm({ property }) {
             </div>
             <div className="modal-body">
               <div className="p-3">
-                <label htmlFor="from_name">Il tuo nome</label>
+                <label htmlFor="from_name">
+                  <i class="fa-solid fa-user me-2"></i>
+                  Il tuo nome
+                </label>
                 <input
                   required
                   id="from_name"
@@ -83,7 +86,10 @@ export default function SendMailForm({ property }) {
                   name="from_name"
                 />
 
-                <label htmlFor="from_email">La tua email</label>
+                <label htmlFor="from_email">
+                  <i class="fa-solid fa-envelope me-2"></i>
+                  La tua email
+                </label>
                 <input
                   required
                   id="from_email"
@@ -103,7 +109,10 @@ export default function SendMailForm({ property }) {
                   defaultValue={property.reference_email}
                 />
 
-                <label htmlFor="message">Messaggio</label>
+                <label htmlFor="message">
+                  <i class="fa-solid fa-message me-2"></i>
+                  Messaggio
+                </label>
                 <textarea
                   required
                   id="message"

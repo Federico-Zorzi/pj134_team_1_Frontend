@@ -315,7 +315,7 @@ d-flex justify-content-center mt-2 ms-4 me-4"
 
       <div className="d-flex justify-content-center mt-4">
         <Button className="custom-button" type="submit">
-          <div className="text-color color-logo">Invia</div>
+          Invia immobile
         </Button>
       </div>
     </Form>
