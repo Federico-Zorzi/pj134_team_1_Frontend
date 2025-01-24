@@ -112,7 +112,7 @@ export default function AddPropertyForm() {
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
       <Row>
-        <Form.Group as={Col} xs={4} className="mb-3 " controlId="title">
+        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="title">
           <Form.Label>
             <i className="fa-solid fa-building me-2"></i>
             Titolo immobile
@@ -130,7 +130,7 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3 " controlId="city">
+        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="city">
           <Form.Label>
             <i className="fa-solid fa-city me-2"></i>
             Città
@@ -148,7 +148,13 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3 " controlId="address">
+        <Form.Group
+          as={Col}
+          xs={6}
+          md={4}
+          className="mb-3 "
+          controlId="address"
+        >
           <Form.Label>
             <i className="fa-solid fa-location-dot me-2"></i>
             Indirizzo completo
@@ -166,7 +172,7 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3 " controlId="rooms">
+        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="rooms">
           <Form.Label>
             <i className="fa-solid fa-door-open me-2"></i>
             Numero di stanze
@@ -186,7 +192,7 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3 " controlId="beds">
+        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="beds">
           <Form.Label>
             <i className="fa-solid fa-bed me-2"></i>
             Numero di letti
@@ -206,7 +212,13 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3 " controlId="bathrooms">
+        <Form.Group
+          as={Col}
+          xs={6}
+          md={4}
+          className="mb-3 "
+          controlId="bathrooms"
+        >
           <Form.Label>
             <i className="fa-solid fa-bath me-2"></i>
             Numero di bagni
@@ -226,7 +238,13 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3 " controlId="square-meters">
+        <Form.Group
+          as={Col}
+          xs={6}
+          md={4}
+          className="mb-3 "
+          controlId="square-meters"
+        >
           <Form.Label>
             <i className="fa-solid fa-expand me-2"></i>
             Metri quadrati
@@ -246,7 +264,7 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3 " controlId="img">
+        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="img">
           <Form.Label>
             <i className="fa-solid fa-image me-2"></i>
             Immagine
@@ -263,7 +281,7 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={4} className="mb-3 " controlId="Email">
+        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="Email">
           <Form.Label>
             <i className="fa-solid fa-envelope me-2"></i>
             Email
@@ -280,12 +298,8 @@ export default function AddPropertyForm() {
             Inserisci la tua email.
           </Form.Control.Feedback>
         </Form.Group>
-      </Row>
-      <div
-        className="
-d-flex justify-content-center mt-2 ms-4 me-4"
-      >
-        <Form.Group as={Col} xs={4} className="property-type ">
+
+        <Form.Group as={Col} xs={6} md={12} className="property-type ">
           <Form.Label>
             <i className="fa-solid fa-building-circle-exclamation me-2"></i>
             Tipo di proprietà
@@ -311,7 +325,7 @@ d-flex justify-content-center mt-2 ms-4 me-4"
             Seleziona il tipo di proprietà.
           </Form.Control.Feedback>
         </Form.Group>
-      </div>
+      </Row>
 
       <div className="d-flex justify-content-center mt-4">
         <Button className="custom-button" type="submit">
