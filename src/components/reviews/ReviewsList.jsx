@@ -145,7 +145,10 @@ export default function ReviewsList() {
               <Row>
                 {/* Nome */}
                 <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
-                  <Form.Label>Nome</Form.Label>
+                  <Form.Label>
+                    <i class="fa-solid fa-user me-2"></i>
+                    Nome
+                  </Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Inserisci nome..."
@@ -160,7 +163,10 @@ export default function ReviewsList() {
                 </Form.Group>
                 {/* Voto */}
                 <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
-                  <Form.Label>Vote</Form.Label>
+                  <Form.Label>
+                    <i class="fa-regular fa-star me-2"></i>
+                    Vote
+                  </Form.Label>
                   <Form.Control
                     type="number"
                     placeholder="Inserisci voto..."
@@ -178,7 +184,10 @@ export default function ReviewsList() {
                 </Form.Group>
                 {/* Tempo di permanenza */}
                 <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
-                  <Form.Label>Tempo di permanenza</Form.Label>
+                  <Form.Label>
+                    <i class="fa-solid fa-clock me-2"></i>
+                    Tempo di permanenza
+                  </Form.Label>
                   <Form.Control
                     type="number"
                     placeholder="Giorni di permanenza..."
@@ -196,7 +205,10 @@ export default function ReviewsList() {
                 </Form.Group>
                 {/* Check-in */}
                 <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
-                  <Form.Label>Check-in</Form.Label>
+                  <Form.Label>
+                    <i class="fa-solid fa-calendar-days me-2"></i>
+                    Check-in
+                  </Form.Label>
                   <Form.Control
                     type="date"
                     name="check_in"
@@ -213,7 +225,10 @@ export default function ReviewsList() {
 
                 {/* Testo */}
                 <Form.Group as={Col} xs={12} className="mb-3" controlId="title">
-                  <Form.Label>Recensione</Form.Label>
+                  <Form.Label>
+                    <i class="fa-solid fa-pen me-2"></i>
+                    Recensione
+                  </Form.Label>
                   <Form.Control
                     as="textarea"
                     placeholder="Inserisci contenuto recensione..."
@@ -228,7 +243,7 @@ export default function ReviewsList() {
                 </Form.Group>
                 <Col xs={12} className="text-center">
                   {/* Bottone per inviare la recensione */}
-                  <Button type="submit" variant="dark">
+                  <Button type="submit" variant="success">
                     Invia recensione
                   </Button>
                 </Col>
