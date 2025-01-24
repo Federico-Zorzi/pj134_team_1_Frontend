@@ -26,6 +26,11 @@ main {
   color: #ff0000;
 }
 
+.logout-btn {
+  background-color: transparent;
+  border: none;
+}
+
 /* HOMEPAGE */
 .most-searched-properties {
   position: relative;

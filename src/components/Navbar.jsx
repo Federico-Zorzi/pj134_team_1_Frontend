@@ -11,7 +11,11 @@ import {
 
 export default function Navbar() {
   const { userData } = useDataContext();
-  const { userInformation } = userData;
+  const { initialUserData, userInformation, setUserInformation } = userData;
+
+  const userLogout = () => {
+    setUserInformation(initialUserData);
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4 px-3">
@@ -67,10 +71,12 @@ export default function Navbar() {
                 <span className="me-3">
                   {"Benvenuto " + userInformation.name}
                 </span>
-                <FontAwesomeIcon
-                  className="logout-icon"
-                  icon={faArrowRightFromBracket}
-                />
+                <button className="logout-btn" onClick={userLogout}>
+                  <FontAwesomeIcon
+                    className="logout-icon"
+                    icon={faArrowRightFromBracket}
+                  />
+                </button>
               </>
             ) : (
               <div className="d-flex">

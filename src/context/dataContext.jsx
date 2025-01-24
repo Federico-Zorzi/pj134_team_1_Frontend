@@ -92,6 +92,7 @@ export const DataContextProvider = ({ children }) => {
   };
 
   const userData = {
+    initialUserData,
     userInformation,
     setUserInformation,
     userProperties,
