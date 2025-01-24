@@ -175,25 +175,6 @@ main {
   color: #ec8d44;
 }
 
-/* Breakpoint per smartphone (portrait) */
-@media (max-width: 480px) {
-  .card img {
-    height: 150px;
-    object-fit: cover;
-  }
-
-  .form-label {
-    display: none;
-  }
-}
-
-/* Breackpoint xs-device */
-@media (max-width: 576px) {
-  .xs-device {
-    width: 240px;
-  }
-}
-
 .navbar .logo-navbar {
   width: 150px;
   margin-block: 10px;
@@ -216,4 +197,48 @@ main {
   position: absolute;
   padding: 10px 50px;
   text-align: center;
+}
+
+/* Breakpoint per smartphone (portrait) */
+@media (max-width: 480px) {
+  .card img {
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .form-label {
+    display: none;
+  }
+}
+
+/* Breackpoint xs-device */
+@media (max-width: 576px) {
+  .w-sm-device {
+    width: 350px;
+  }
+}
+
+/* Breackpoint xs-device */
+@media (min-width: 576px) {
+  .xs-device {
+    width: 240px;
+  }
+
+  .w-sm-device {
+    width: 350px;
+  }
+}
+
+/* Breackpoint md-device */
+@media (min-width: 768px) {
+  .w-md-device {
+    width: 350px;
+  }
+}
+
+/* Breackpoint lg-device */
+@media (min-width: 992px) {
+  .w-lg-device {
+    width: 500px;
+  }
 }

@@ -94,7 +94,7 @@ export default function RegistrationPage() {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <div className="border border-dark w-25 mx-auto rounded-5 pt-4 pb-4 px-3 bg-dark text-white mt-5">
+        <div className="border border-dark w-lg-device w-md-device w-sm-device mx-auto rounded-5 pt-4 pb-4 px-3 bg-dark text-white mt-5">
           <p className="text-white text-center fs-2 pb-3 fw-bold">
             Registrazione
           </p>
