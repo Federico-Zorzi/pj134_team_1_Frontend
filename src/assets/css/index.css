@@ -160,6 +160,23 @@ main {
 }
 
 /* ADVANCE SEARCH PAGE */
+.page-link {
+  background-color: #38393a;
+  border-color: #212529;
+  color: #00e167;
+  font-size: 1.2rem;
+}
+
+.page-link:hover {
+  background-color: #212529;
+  color: #ffffff;
+}
+
+.page-item.active .page-link {
+  background-color: #00e167;
+  border-color: #00e167;
+  color: #38393a;
+}
 
 .badge-container button {
   width: 100%;
