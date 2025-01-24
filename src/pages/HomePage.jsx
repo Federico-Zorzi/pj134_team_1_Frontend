@@ -46,7 +46,7 @@ export default function HomePage() {
       <div className="container py-3">
         <HomepageCarousel />
 
-        <h1 className="fw-bold mb-3">
+        <h1 className="fw-bold mb-4 homepage-most-searched">
           I più cercati
           <i className="fa-regular fa-map ms-3" />
         </h1>

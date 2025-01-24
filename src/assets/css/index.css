@@ -29,6 +29,10 @@ main {
   transition-duration: 300ms;
 }
 
+.homepage-most-searched {
+  margin-inline-start: 7rem;
+}
+
 .arrows-btn:hover {
   border: none;
   color: #474747;
