@@ -35,11 +35,9 @@ export default function LoginPage() {
       const response = await fetch("http://localhost:3000/users/emails");
 
       if (!response.ok) {
-        throw new Error(
-          `Server responded with status ${response.status}: ${response.statusText}`
-        );
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Unknown server error");
       }
-
       const data = await response.json();
 
       const emailList = data.map((email) => email.email);
