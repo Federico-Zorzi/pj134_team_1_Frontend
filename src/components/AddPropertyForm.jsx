@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
 
-const initialFormData = {
+let initialFormData = {
   title: "",
   n_Rooms: null,
   n_Beds: null,
@@ -17,11 +17,13 @@ const initialFormData = {
 };
 
 export default function AddPropertyForm() {
-  const [formData, setFormData] = useState(initialFormData);
   const navigate = useNavigate();
   const { userData } = useDataContext();
-  const { isUserOwner } = userData;
+  const { userInformation } = userData;
   const [validated, setValidated] = useState(false);
+
+  initialFormData = { reference_email: userInformation.email };
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -34,10 +36,10 @@ export default function AddPropertyForm() {
   };
 
   useEffect(() => {
-    if (!isUserOwner) {
+    if (!userInformation.isOwner) {
       navigate("/");
     }
-  }, [isUserOwner]);
+  }, [userInformation.isOwner]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
