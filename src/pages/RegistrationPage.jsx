@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useDataContext } from "../context/dataContext";
 
 const initialFormData = {
   name: "",
@@ -12,6 +12,10 @@ const initialFormData = {
 
 export default function RegistrationPage() {
   const [formData, setFormData] = useState(initialFormData);
+  const [loading, setLoading] = useState(false);
+  const [formMessage, setFormMessage] = useState("");
+  const { userData } = useDataContext();
+  const { userInformation, setUserInformation } = userData;
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -23,9 +27,68 @@ export default function RegistrationPage() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const validateForm = () => {
+    const { name, surname, email, phone } = formData;
+
+    if (name.length < 3 || name.length > 50) {
+      return "Il nome deve essere tra 3 e 50 caratteri.";
+    }
+
+    if (surname.length < 3 || surname.length > 50) {
+      return "Il cognome deve essere tra 3 e 50 caratteri.";
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return "L'indirizzo email non è valido.";
+    }
+
+    const phoneRegex = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
+    if (!phoneRegex.test(phone)) {
+      return "Il numero di telefono deve essere nel formato 123-456-7890.";
+    }
+
+    return null;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData.email);
+    setFormMessage("");
+    setLoading(true);
+
+    const validationError = validateForm();
+    if (validationError) {
+      setFormMessage(validationError);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/users/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Errore durante la registrazione. Riprova più tardi.");
+      }
+
+      setFormMessage("Registrazione completata con successo!");
+
+      fetch(`http://localhost:3000/users/specificuser?email=${formData.email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setUserInformation(data[0]);
+          navigate("/");
+        });
+    } catch (error) {
+      setFormMessage(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -38,12 +101,12 @@ export default function RegistrationPage() {
           <Form.Group className="mb-3" controlId="name">
             <Form.Label>Nome</Form.Label>
             <Form.Control
-              type="tet"
+              type="text"
               name="name"
               value={formData.name}
               onChange={handleInputChange}
               required
-              className="form-control rounded-4 rounded-4 bg-white border-dark text-dark"
+              className="form-control rounded-4 bg-white border-dark text-dark"
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="surname">
@@ -54,10 +117,10 @@ export default function RegistrationPage() {
               value={formData.surname}
               onChange={handleInputChange}
               required
-              className="form-control rounded-4 rounded-4 bg-white border-dark text-dark"
+              className="form-control rounded-4 bg-white border-dark text-dark"
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="Email">
+          <Form.Group className="mb-3" controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
@@ -65,20 +128,33 @@ export default function RegistrationPage() {
               value={formData.email}
               onChange={handleInputChange}
               required
-              className="form-control rounded-4 rounded-4 bg-white border-dark text-dark"
+              className="form-control rounded-4 bg-white border-dark text-dark"
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="phone">
             <Form.Label>Telefono</Form.Label>
             <Form.Control
-              type="number"
+              type="tel"
               name="phone"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
               value={formData.phone}
               onChange={handleInputChange}
               required
-              className="form-control rounded-4 rounded-4 bg-white border-dark text-dark"
+              placeholder="123-456-7890"
+              className="form-control rounded-4 bg-white border-dark text-dark"
             />
           </Form.Group>
+          {formMessage && (
+            <p
+              className={`text-center ${
+                formMessage.startsWith("Registrazione")
+                  ? "text-success"
+                  : "text-danger"
+              }`}
+            >
+              {formMessage}
+            </p>
+          )}
           <div className="mb-5">
             <NavLink
               to="/register"
@@ -92,8 +168,9 @@ export default function RegistrationPage() {
             <button
               type="submit"
               className="btn logo-green text-white p-2 w-100 rounded-pill"
+              disabled={loading}
             >
-              Login
+              {loading ? "Registrazione..." : "Registrati"}
             </button>
           </div>
         </div>
