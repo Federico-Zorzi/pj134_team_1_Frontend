@@ -7,6 +7,10 @@ a {
   text-decoration: none;
 }
 
+.color-logo {
+  color: #00e167;
+}
+
 .wrapper {
   min-height: 100vh;
   display: flex;
@@ -22,8 +26,34 @@ main {
   margin: 0;
 }
 
+.login-text,
+.navbar-user-name {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
 .logout-icon {
   color: #ff0000;
+}
+
+.logout-btn {
+  background-color: transparent;
+  border: none;
+}
+
+.navbar-user-icon {
+  background-color: grey;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+
+  color: white;
+  font-weight: bold;
+  font-size: 1.4rem;
 }
 
 /* HOMEPAGE */
@@ -197,6 +227,28 @@ main {
   position: absolute;
   padding: 10px 50px;
   text-align: center;
+}
+
+/* STORE PROPERTIES  */
+.custom-button {
+  border-color: rgb(33 37 41);
+  background-color: rgb(33 37 41);
+}
+
+.custom-button:hover {
+  background-color: rgb(33 37 41);
+  border-color: rgb(33 37 41);
+  transform: scale(1.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button.custom-button:focus,
+button.custom-button:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: rgb(33 37 41) !important;
+  border-color: rgb(33 37 41) !important;
 }
 
 /* Breakpoint per smartphone (portrait) */

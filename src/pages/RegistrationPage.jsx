@@ -73,7 +73,8 @@ export default function RegistrationPage() {
       });
 
       if (!response.ok) {
-        throw new Error("Errore durante la registrazione. Riprova più tardi.");
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Unknown server error");
       }
 
       setFormMessage("Registrazione completata con successo!");

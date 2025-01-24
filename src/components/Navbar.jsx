@@ -3,6 +3,10 @@ import { useDataContext } from "../context/dataContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faMagnifyingGlass,
+  faHouseChimneyMedical,
+  faBuildingUser,
+  faHouse,
   faUser,
   faUserPen,
   faUserPlus,
@@ -11,7 +15,11 @@ import {
 
 export default function Navbar() {
   const { userData } = useDataContext();
-  const { userInformation } = userData;
+  const { initialUserData, userInformation, setUserInformation } = userData;
+
+  const userLogout = () => {
+    setUserInformation(initialUserData);
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4 px-3">
@@ -35,24 +43,32 @@ export default function Navbar() {
           <ul className="navbar-nav mx-auto gap-lg-5">
             <li className="nav-item">
               <NavLink className="nav-link" aria-current="page" to="/">
-                Home
+                <FontAwesomeIcon icon={faHouse} /> Home
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/advanceSearch">
-                Cerca
+                <FontAwesomeIcon icon={faMagnifyingGlass} /> Cerca
               </NavLink>
             </li>
-            {userInformation.isOwner === 1 ? (
+            {userInformation.id !== 0 ? (
               <>
                 <li>
                   <NavLink className="nav-link" to="/store">
-                    Aggiungi un immobile
+                    <FontAwesomeIcon icon={faHouseChimneyMedical} /> Aggiungi un
+                    immobile
                   </NavLink>
                 </li>
+              </>
+            ) : (
+              ""
+            )}
+
+            {userInformation.isOwner ? (
+              <>
                 <li>
                   <NavLink className="nav-link" to="/userproperties">
-                    I tuoi immobili
+                    <FontAwesomeIcon icon={faBuildingUser} /> I tuoi immobili
                   </NavLink>
                 </li>
               </>
@@ -64,22 +80,29 @@ export default function Navbar() {
           <div className="fs-5 text-white" role="button">
             {userInformation.id !== 0 ? (
               <>
-                <span className="me-3">
-                  {"Benvenuto " + userInformation.name}
+                <span className="navbar-user-icon">
+                  {userInformation.name[0]}
                 </span>
-                <FontAwesomeIcon
-                  className="logout-icon"
-                  icon={faArrowRightFromBracket}
-                />
+                <span className="navbar-user-name me-3">
+                  {userInformation.name}
+                </span>
+                <button className="logout-btn" onClick={userLogout}>
+                  <FontAwesomeIcon
+                    className="logout-icon"
+                    icon={faArrowRightFromBracket}
+                  />
+                </button>
               </>
             ) : (
               <div className="d-flex">
                 <NavLink className="nav-link pe-3" to="/register">
-                  <FontAwesomeIcon icon={faUserPen} /> Register
+                  <FontAwesomeIcon icon={faUserPen} />{" "}
+                  <span className="login-text"> Register</span>
                 </NavLink>
                 {/* <FontAwesomeIcon icon={faUser} className="me-2" /> */}
                 <NavLink className="nav-link" to="/login">
-                  <FontAwesomeIcon icon={faUser} /> Login
+                  <FontAwesomeIcon icon={faUser} />{" "}
+                  <span className="login-text"> Login</span>
                 </NavLink>
               </div>
             )}
