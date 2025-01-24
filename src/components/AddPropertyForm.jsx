@@ -5,10 +5,10 @@ import { useDataContext } from "../context/dataContext";
 
 const initialFormData = {
   title: "",
-  n_Rooms: null,
-  n_Beds: null,
-  n_Bathrooms: null,
-  square_meters: null,
+  n_Rooms: "",
+  n_Beds: "",
+  n_Bathrooms: "",
+  square_meters: "",
   address: "",
   reference_email: "",
   image: "",
