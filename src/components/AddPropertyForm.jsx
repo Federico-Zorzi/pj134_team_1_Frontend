@@ -37,7 +37,7 @@ export default function AddPropertyForm() {
   };
 
   useEffect(() => {
-    if (!userInformation.isOwner) {
+    if (userInformation.id === 0) {
       navigate("/");
     }
   }, [userInformation.isOwner]);
