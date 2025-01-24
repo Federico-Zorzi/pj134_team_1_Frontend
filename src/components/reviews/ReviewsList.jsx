@@ -115,9 +115,12 @@ export default function ReviewsList() {
     <section className="my-3">
       <Row className="align-items-center">
         <Col>
-          <h3>Recensioni degli Ospiti</h3>
+          <h3>
+            Recensioni degli Ospiti
+            <i class="fa-solid fa-pen-to-square ms-2"></i>
+          </h3>
           <p className="text-secondary">
-            Le recensioni andranno controllate da uno staff prima di essere
+            Le recensioni saranno controllate da uno staff prima di essere
             pubblicate
           </p>
         </Col>

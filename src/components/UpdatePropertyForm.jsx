@@ -135,7 +135,10 @@ export default function UpdatePropertyForm({ propertyData }) {
                 <div className="row">
                   <div className="col-6">
                     <Form.Group className="mb-3" controlId="title">
-                      <Form.Label>Titolo immobile</Form.Label>
+                      <Form.Label>
+                        <i class="fa-solid fa-building me-2 ms-1"></i>
+                        Titolo immobile
+                      </Form.Label>
                       <Form.Control
                         type="text"
                         name="title"
@@ -145,7 +148,10 @@ export default function UpdatePropertyForm({ propertyData }) {
                       />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="address">
-                      <Form.Label>Indirizzo</Form.Label>
+                      <Form.Label>
+                        <i class="fa-solid fa-location-dot me-2 ms-1"></i>
+                        Indirizzo
+                      </Form.Label>
                       <Form.Control
                         type="text"
                         name="address"
@@ -156,7 +162,10 @@ export default function UpdatePropertyForm({ propertyData }) {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="Email">
-                      <Form.Label>Email</Form.Label>
+                      <Form.Label>
+                        <i class="fa-solid fa-envelope me-2 ms-1"></i>
+                        Email
+                      </Form.Label>
                       <Form.Control
                         type="email"
                         name="reference_email"
@@ -166,7 +175,10 @@ export default function UpdatePropertyForm({ propertyData }) {
                       />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="city">
-                      <Form.Label>Città</Form.Label>
+                      <Form.Label>
+                        <i class="fa-solid fa-city me-2 ms-1"></i>
+                        Città
+                      </Form.Label>
                       <Form.Control
                         type="text"
                         placeholder="Inserisci la città"
@@ -179,7 +191,10 @@ export default function UpdatePropertyForm({ propertyData }) {
                   </div>
                   <div className="col-6">
                     <Form.Group className="mb-3" controlId="rooms">
-                      <Form.Label>Numero di stanze</Form.Label>
+                      <Form.Label>
+                        <i class="fa-solid fa-door-open me-2 ms-1"></i>
+                        Numero di stanze
+                      </Form.Label>
                       <Form.Control
                         type="number"
                         name="n_Rooms"
@@ -192,7 +207,10 @@ export default function UpdatePropertyForm({ propertyData }) {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="beds">
-                      <Form.Label>Numero di letti</Form.Label>
+                      <Form.Label>
+                        <i className="fa-solid fa-bed me-2 ms-1"></i>
+                        Numero di letti
+                      </Form.Label>
                       <Form.Control
                         type="number"
                         name="n_Beds"
@@ -205,7 +223,10 @@ export default function UpdatePropertyForm({ propertyData }) {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="bathrooms">
-                      <Form.Label>Numero di bagni</Form.Label>
+                      <Form.Label>
+                        <i className="fa-solid fa-bath me-2 ms-1"></i>
+                        Numero di bagni
+                      </Form.Label>
                       <Form.Control
                         type="number"
                         name="n_Bathrooms"
@@ -217,7 +238,10 @@ export default function UpdatePropertyForm({ propertyData }) {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="square-meters">
-                      <Form.Label>Metri quadrati</Form.Label>
+                      <Form.Label>
+                        <i class="fa-solid fa-expand me-2 ms-1"></i>
+                        Metri quadrati
+                      </Form.Label>
                       <Form.Control
                         type="number"
                         name="square_meters"
@@ -232,7 +256,10 @@ export default function UpdatePropertyForm({ propertyData }) {
                 </div>
 
                 <Form.Group className="mb-3" controlId="img">
-                  <Form.Label>Immagine</Form.Label>
+                  <Form.Label>
+                    <i class="fa-solid fa-image me-2 ms-1"></i>
+                    Immagine
+                  </Form.Label>
                   <Form.Control
                     type="text"
                     name="image"
@@ -242,7 +269,10 @@ export default function UpdatePropertyForm({ propertyData }) {
                 </Form.Group>
 
                 <Form.Group className="property-type">
-                  <Form.Label>Tipo di proprietà</Form.Label>
+                  <Form.Label>
+                    <i class="fa-solid fa-building-circle-exclamation me-2 ms-1 mt-2"></i>
+                    Tipo di proprietà
+                  </Form.Label>
                   <Form.Select
                     name="property_type"
                     value={formData.property_type}
@@ -261,7 +291,7 @@ export default function UpdatePropertyForm({ propertyData }) {
                 </Form.Group>
 
                 <div className="d-flex justify-content-center mt-3">
-                  <Button variant="dark" type="submit">
+                  <Button variant="success" type="submit">
                     Applica le modifiche
                   </Button>
                 </div>
