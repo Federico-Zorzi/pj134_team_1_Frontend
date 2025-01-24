@@ -59,6 +59,13 @@ export default function Navbar() {
                     immobile
                   </NavLink>
                 </li>
+              </>
+            ) : (
+              ""
+            )}
+
+            {userInformation.isOwner ? (
+              <>
                 <li>
                   <NavLink className="nav-link" to="/userproperties">
                     <FontAwesomeIcon icon={faBuildingUser} /> I tuoi immobili
