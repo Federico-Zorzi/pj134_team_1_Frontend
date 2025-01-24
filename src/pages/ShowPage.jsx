@@ -55,7 +55,7 @@ export default function ShowPage() {
             <div className="col-lg-4 col-md-12 mt-3">
               <div className="row d-flex">
                 {/* Indirizzo*/}
-                <div className="col-lg-12 col-md-4 col-sm-6  mt-2">
+                <div className="xs-device col-lg-12 col-md-4 col-sm-6  mt-2">
                   <i className="fa-solid fa-location-dot me-2"></i>
 
                   <strong>Indirizzo</strong>
@@ -63,7 +63,7 @@ export default function ShowPage() {
                 </div>
 
                 {/* Tipologia */}
-                <div className="col-lg-12 col-md-4 col-sm-6  mt-2">
+                <div className="xs-device col-lg-12 col-md-4 col-sm-6  mt-2">
                   <i class="fa-solid fa-building me-2"></i>
 
                   <strong>Tipologia di immobile</strong>
@@ -71,28 +71,28 @@ export default function ShowPage() {
                   <p>{translatePropertyType(property.property_type)}</p>
                 </div>
                 {/* Numero Stanze */}
-                <div className="col-lg-12 col-md-4 col-sm-6 mt-2">
+                <div className="xs-device col-lg-12 col-md-4 col-sm-6 mt-2">
                   <i className="fa-solid fa-door-open me-2"></i>
 
                   <strong>Numero di stanze</strong>
                   <p>{property.n_Rooms}</p>
                 </div>
                 {/* Numero Bagni */}
-                <div className="col-lg-12 col-md-4 col-sm-6 mt-2">
+                <div className="xs-device col-lg-12 col-md-4 col-sm-6 mt-2">
                   <i className="fa-solid fa-bath me-2"></i>
 
                   <strong>Numero di bagni</strong>
                   <p>{property.n_Bathrooms}</p>
                 </div>
                 {/* Numero Letti */}
-                <div className="col-lg-12 col-md-4 col-sm-6 mt-2">
+                <div className="xs-device col-lg-12 col-md-4 col-sm-6 mt-2">
                   <i className="fa-solid fa-bed me-2"></i>
 
                   <strong>Numero di letti</strong>
                   <p>{property.n_Beds}</p>
                 </div>
                 {/* Metri Quadrati */}
-                <div className="col-lg-12 col-md-4 col-sm-6 mt-2">
+                <div className="xs-device col-lg-12 col-md-4 col-sm-6 mt-2">
                   <strong>Metri quadrati</strong>
                   <p>{property.square_meters}</p>
                 </div>
