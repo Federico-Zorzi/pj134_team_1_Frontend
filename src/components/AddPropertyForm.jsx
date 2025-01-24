@@ -95,8 +95,6 @@ export default function AddPropertyForm() {
           return res.json();
         })
         .then((data) => {
-          console.log(data);
-
           setValidated(false);
           setFormData(initialFormData);
 
