@@ -6,7 +6,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
   const { userData } = useDataContext();
-  const { isUserOwner, temporaryLogin } = userData;
+  const { userInformation } = userData;
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4 px-3">
@@ -38,20 +38,31 @@ export default function Navbar() {
                 Cerca
               </NavLink>
             </li>
-            {isUserOwner && (
+            {userInformation.isOwner === 1 ? (
               <li>
                 <NavLink className="nav-link" to="/store">
                   Aggiungi un immobile
                 </NavLink>
               </li>
+            ) : (
+              ""
             )}
           </ul>
 
           <div className="fs-5 text-white" role="button">
-            <p onClick={() => temporaryLogin()} className="login">
-              <FontAwesomeIcon icon={faUser} className="me-2" />
-              {isUserOwner ? "Logout" : "Login"}
-            </p>
+            {userInformation.id !== 0 ? (
+              "Benvenuto " + userInformation.name
+            ) : (
+              <div className="d-flex">
+                <NavLink className="nav-link px-2" to="/register">
+                  Register
+                </NavLink>
+                {/* <FontAwesomeIcon icon={faUser} className="me-2" /> */}
+                <NavLink className="nav-link" to="/login">
+                  Login
+                </NavLink>
+              </div>
+            )}
           </div>
         </div>
       </div>

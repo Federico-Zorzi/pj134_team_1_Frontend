@@ -6,13 +6,26 @@ import Button from "react-bootstrap/Button";
 
 export default function UpdatePropertyForm({ propertyData }) {
   const { userData } = useDataContext();
-  const { isUserOwner } = userData;
+  const { userInformation } = userData;
   const [show, setShow] = useState(false);
   const [formData, setFormData] = useState([]);
+  const [isOwner, setIsOwner] = useState(false);
 
   useEffect(() => {
     setFormData(propertyData);
   }, [propertyData]);
+
+  useEffect(() => {
+    const checkOwnership = async () => {
+      const ownerStatus = await isUserPropertyOwner(
+        userInformation.id,
+        propertyData.id
+      );
+      setIsOwner(ownerStatus);
+    };
+
+    checkOwnership();
+  }, [userInformation.id, propertyData.id]);
 
   const handleClose = () => {
     console.log(formData);
@@ -73,9 +86,38 @@ export default function UpdatePropertyForm({ propertyData }) {
       });
   };
 
+  async function isUserPropertyOwner(userId, propertyId) {
+    try {
+      const response = await fetch(
+        "http://localhost:3000/properties/" + propertyId
+      );
+      if (!response.ok) {
+        throw new Error(`Error fetching property: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      const propertyInformation = data[0];
+
+      if (!propertyInformation) {
+        console.error("No property information found");
+        return false;
+      }
+      console.log(
+        "owner_id:",
+        propertyInformation.owner_id,
+        typeof propertyInformation.owner_id
+      );
+      console.log("userId:", userId, typeof userId);
+      return propertyInformation.owner_id === parseInt(userId);
+    } catch (error) {
+      console.error("Error in isUserPropertyOwner:", error.message);
+      return false;
+    }
+  }
+
   return (
     <>
-      {isUserOwner ? (
+      {isOwner ? (
         <>
           <Button
             variant="dark"

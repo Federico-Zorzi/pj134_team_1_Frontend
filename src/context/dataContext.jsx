@@ -1,6 +1,14 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const DataContext = createContext();
+
+const initialUserData = {
+  name: "",
+  surname: "",
+  email: "",
+  id: 0,
+  isOwner: 0,
+};
 
 //* export context for consumers
 export const useDataContext = () => useContext(DataContext);
@@ -10,24 +18,37 @@ export const DataContextProvider = ({ children }) => {
   const serverUrl = import.meta.env.VITE_SERVER_URL + "/properties";
 
   const [propertiesList, setPropertiesList] = useState([]);
+  const [mostPopularPropertiesList, setMostPopularPropertiesList] = useState(
+    []
+  );
+  const [restrictedMostPopPropertiesList, setRestrictedMostPopProperties] =
+    useState([]);
+
+  const numPopularProperties = 8;
+  const numRestrictedPopularProperties = 4;
+
   const [property, setProperty] = useState([]);
 
-  const [isUserOwner, toggleIsUserOwner] = useState(false);
+  const [userInformation, setUserInformation] = useState(initialUserData);
 
-  function temporaryLogin() {
-    if (isUserOwner) {
-      toggleIsUserOwner(false);
-    } else toggleIsUserOwner(true);
-    //mostro l'opposto di user owner perchè essendo una variabile reattiva il console log avviene prima del cambio, quindi mostra la variabile all'inizio della funzione
-    console.log("is User owner? : ", !isUserOwner);
-  }
+  //debug
+  useEffect(() => console.log(userInformation), [userInformation]);
 
   const fetchIndexProperties = () => {
     fetch(serverUrl)
       .then((res) => res.json())
       .then((data) => {
-        console.log("index", data);
         setPropertiesList(data);
+
+        const filterPopularProperties = data.filter(
+          (property, index) => index < numPopularProperties
+        );
+        setMostPopularPropertiesList(filterPopularProperties);
+
+        const restrictedFilterPopularProperties = data.filter(
+          (property, index) => index < numRestrictedPopularProperties
+        );
+        setRestrictedMostPopProperties(restrictedFilterPopularProperties);
       });
   };
 
@@ -65,13 +86,16 @@ export const DataContextProvider = ({ children }) => {
   };
 
   const userData = {
-    temporaryLogin,
-    isUserOwner,
+    userInformation,
+    setUserInformation,
   };
 
   const dataContext = {
     propertiesList,
     property,
+    mostPopularPropertiesList,
+    restrictedMostPopPropertiesList,
+    setRestrictedMostPopProperties,
     fetchIndexProperties,
     fetchShowProperties,
     fetchFilterProperties,
