@@ -3,6 +3,8 @@ import { useDataContext } from "../context/dataContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faMagnifyingGlass,
+  faHouse,
   faUser,
   faUserPen,
   faUserPlus,
@@ -39,12 +41,12 @@ export default function Navbar() {
           <ul className="navbar-nav mx-auto gap-lg-5">
             <li className="nav-item">
               <NavLink className="nav-link" aria-current="page" to="/">
-                Home
+                <FontAwesomeIcon icon={faHouse} /> Home
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/advanceSearch">
-                Cerca
+                <FontAwesomeIcon icon={faMagnifyingGlass} /> Cerca
               </NavLink>
             </li>
             {userInformation.id !== 0 ? (
@@ -84,11 +86,13 @@ export default function Navbar() {
             ) : (
               <div className="d-flex">
                 <NavLink className="nav-link pe-3" to="/register">
-                  <FontAwesomeIcon icon={faUserPen} /> Register
+                  <FontAwesomeIcon icon={faUserPen} />{" "}
+                  <span className="login-text"> Register</span>
                 </NavLink>
                 {/* <FontAwesomeIcon icon={faUser} className="me-2" /> */}
                 <NavLink className="nav-link" to="/login">
-                  <FontAwesomeIcon icon={faUser} /> Login
+                  <FontAwesomeIcon icon={faUser} />{" "}
+                  <span className="login-text"> Login</span>
                 </NavLink>
               </div>
             )}
