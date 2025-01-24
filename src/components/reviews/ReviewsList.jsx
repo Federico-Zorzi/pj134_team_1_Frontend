@@ -154,7 +154,7 @@ export default function ReviewsList() {
         <Col>
           <h3>
             Recensioni degli Ospiti
-            <i class="fa-solid fa-pen-to-square ms-2"></i>
+            <i className="fa-solid fa-pen-to-square ms-2"></i>
           </h3>
           <p className="text-secondary">
             Le recensioni saranno controllate da uno staff prima di essere
@@ -189,7 +189,7 @@ export default function ReviewsList() {
                 {/* Nome */}
                 <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
                   <Form.Label>
-                    <i class="fa-solid fa-user me-2"></i>
+                    <i className="fa-solid fa-user me-2"></i>
                     Nome
                   </Form.Label>
                   <Form.Control
@@ -207,7 +207,7 @@ export default function ReviewsList() {
                 {/* Voto */}
                 <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
                   <Form.Label>
-                    <i class="fa-regular fa-star me-2"></i>
+                    <i className="fa-regular fa-star me-2"></i>
                     Vote
                   </Form.Label>
                   <Form.Control
@@ -228,7 +228,7 @@ export default function ReviewsList() {
                 {/* Tempo di permanenza */}
                 <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
                   <Form.Label>
-                    <i class="fa-solid fa-clock me-2"></i>
+                    <i className="fa-solid fa-clock me-2"></i>
                     Tempo di permanenza
                   </Form.Label>
                   <Form.Control
@@ -249,7 +249,7 @@ export default function ReviewsList() {
                 {/* Check-in */}
                 <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
                   <Form.Label>
-                    <i class="fa-solid fa-calendar-days me-2"></i>
+                    <i className="fa-solid fa-calendar-days me-2"></i>
                     Check-in
                   </Form.Label>
                   <Form.Control
@@ -269,7 +269,7 @@ export default function ReviewsList() {
                 {/* Testo */}
                 <Form.Group as={Col} xs={12} className="mb-3" controlId="title">
                   <Form.Label>
-                    <i class="fa-solid fa-pen me-2"></i>
+                    <i className="fa-solid fa-pen me-2"></i>
                     Recensione
                   </Form.Label>
                   <Form.Control
