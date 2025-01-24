@@ -22,6 +22,10 @@ main {
   margin: 0;
 }
 
+.logout-icon {
+  color: #ff0000;
+}
+
 /* HOMEPAGE */
 .most-searched-properties {
   position: relative;

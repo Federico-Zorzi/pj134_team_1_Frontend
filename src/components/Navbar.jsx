@@ -2,7 +2,12 @@ import { NavLink } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faUserPen,
+  faUserPlus,
+  faArrowRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
   const { userData } = useDataContext();
@@ -58,15 +63,23 @@ export default function Navbar() {
 
           <div className="fs-5 text-white" role="button">
             {userInformation.id !== 0 ? (
-              "Benvenuto " + userInformation.name
+              <>
+                <span className="me-3">
+                  {"Benvenuto " + userInformation.name}
+                </span>
+                <FontAwesomeIcon
+                  className="logout-icon"
+                  icon={faArrowRightFromBracket}
+                />
+              </>
             ) : (
               <div className="d-flex">
-                <NavLink className="nav-link px-2" to="/register">
-                  Register
+                <NavLink className="nav-link pe-3" to="/register">
+                  <FontAwesomeIcon icon={faUserPen} /> Register
                 </NavLink>
                 {/* <FontAwesomeIcon icon={faUser} className="me-2" /> */}
                 <NavLink className="nav-link" to="/login">
-                  Login
+                  <FontAwesomeIcon icon={faUser} /> Login
                 </NavLink>
               </div>
             )}
