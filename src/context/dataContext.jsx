@@ -29,10 +29,18 @@ export const DataContextProvider = ({ children }) => {
 
   const [property, setProperty] = useState([]);
 
+  //Users data
   const [userInformation, setUserInformation] = useState(initialUserData);
+  const [userProperties, setUserProperties] = useState([]);
 
-  //debug
-  useEffect(() => console.log(userInformation), [userInformation]);
+  useEffect(() => {
+    fetch("http://localhost:3000/users/getproperties/" + userInformation.id)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setUserProperties(data);
+      });
+  }, [userInformation.id]);
 
   const fetchIndexProperties = () => {
     fetch(serverUrl)
@@ -56,7 +64,6 @@ export const DataContextProvider = ({ children }) => {
     fetch(serverUrl + `/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("show", data);
         setProperty(data[0]);
       });
   };
@@ -78,7 +85,6 @@ export const DataContextProvider = ({ children }) => {
       const response = await fetch(`${serverUrl}/filtered?${queryParams}`);
       if (!response.ok) throw new Error("Failed to fetch filtered properties");
       const data = await response.json();
-      console.log("filtered data", data);
       setPropertiesList(data);
     } catch (error) {
       console.error("Error fetching filtered properties:", error);
@@ -88,6 +94,7 @@ export const DataContextProvider = ({ children }) => {
   const userData = {
     userInformation,
     setUserInformation,
+    userProperties,
   };
 
   const dataContext = {

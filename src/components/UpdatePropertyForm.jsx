@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -6,6 +7,7 @@ import Button from "react-bootstrap/Button";
 
 export default function UpdatePropertyForm({ propertyData }) {
   const { userData } = useDataContext();
+  const navigate = useNavigate();
   const { userInformation } = userData;
   const [show, setShow] = useState(false);
   const [formData, setFormData] = useState([]);
@@ -48,6 +50,7 @@ export default function UpdatePropertyForm({ propertyData }) {
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     //controlli
     if (isNaN(formData.square_meters) || formData.square_meters < 50) {
       alert("I metri quadrati sono invalidi.");
@@ -80,8 +83,6 @@ export default function UpdatePropertyForm({ propertyData }) {
         return;
       })
       .then((data) => {
-        console.log(data);
-
         setShow(false);
       });
   };
@@ -102,12 +103,6 @@ export default function UpdatePropertyForm({ propertyData }) {
         console.error("No property information found");
         return false;
       }
-      console.log(
-        "owner_id:",
-        propertyInformation.owner_id,
-        typeof propertyInformation.owner_id
-      );
-      console.log("userId:", userId, typeof userId);
       return propertyInformation.owner_id === parseInt(userId);
     } catch (error) {
       console.error("Error in isUserPropertyOwner:", error.message);
