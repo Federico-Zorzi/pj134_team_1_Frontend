@@ -4,6 +4,8 @@ import { useDataContext } from "../context/dataContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
+  faHouseChimneyMedical,
+  faBuildingUser,
   faHouse,
   faUser,
   faUserPen,
@@ -53,12 +55,13 @@ export default function Navbar() {
               <>
                 <li>
                   <NavLink className="nav-link" to="/store">
-                    Aggiungi un immobile
+                    <FontAwesomeIcon icon={faHouseChimneyMedical} /> Aggiungi un
+                    immobile
                   </NavLink>
                 </li>
                 <li>
                   <NavLink className="nav-link" to="/userproperties">
-                    I tuoi immobili
+                    <FontAwesomeIcon icon={faBuildingUser} /> I tuoi immobili
                   </NavLink>
                 </li>
               </>
