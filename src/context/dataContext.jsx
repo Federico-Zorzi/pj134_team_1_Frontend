@@ -34,12 +34,13 @@ export const DataContextProvider = ({ children }) => {
   const [userProperties, setUserProperties] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/users/getproperties/" + userInformation.id)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setUserProperties(data);
-      });
+    if (userInformation.id !== 0) {
+      fetch("http://localhost:3000/users/getproperties/" + userInformation.id)
+        .then((res) => res.json())
+        .then((data) => {
+          setUserProperties(data);
+        });
+    }
   }, [userInformation.id]);
 
   const fetchIndexProperties = () => {
