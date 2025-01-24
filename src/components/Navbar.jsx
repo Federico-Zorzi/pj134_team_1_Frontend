@@ -39,11 +39,18 @@ export default function Navbar() {
               </NavLink>
             </li>
             {userInformation.isOwner === 1 ? (
-              <li>
-                <NavLink className="nav-link" to="/store">
-                  Aggiungi un immobile
-                </NavLink>
-              </li>
+              <>
+                <li>
+                  <NavLink className="nav-link" to="/store">
+                    Aggiungi un immobile
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="nav-link" to="/userproperties">
+                    I tuoi immobili
+                  </NavLink>
+                </li>
+              </>
             ) : (
               ""
             )}

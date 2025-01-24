@@ -12,6 +12,7 @@ import AddPropertyPage from "./pages/AddPropertyPage";
 import AdvanceSearchPage from "./pages/AdvanceSearchPage";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
+import UserProperties from "./pages/UserProperties";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route path="/store" Component={AddPropertyPage} />
               <Route path="/login" Component={LoginPage} />
               <Route path="/register" Component={RegistrationPage} />
+              <Route path="/userproperties" Component={UserProperties} />
             </Route>
           </Routes>
         </BrowserRouter>

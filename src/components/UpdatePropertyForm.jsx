@@ -52,7 +52,6 @@ export default function UpdatePropertyForm({ propertyData }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     //controlli
     if (isNaN(formData.square_meters) || formData.square_meters < 50) {
       alert("I metri quadrati sono invalidi.");
@@ -85,8 +84,6 @@ export default function UpdatePropertyForm({ propertyData }) {
         return;
       })
       .then((data) => {
-        console.log(data);
-
         setShow(false);
         fetchShowProperties(id);
       });
@@ -108,12 +105,6 @@ export default function UpdatePropertyForm({ propertyData }) {
         console.error("No property information found");
         return false;
       }
-      console.log(
-        "owner_id:",
-        propertyInformation.owner_id,
-        typeof propertyInformation.owner_id
-      );
-      console.log("userId:", userId, typeof userId);
       return propertyInformation.owner_id === parseInt(userId);
     } catch (error) {
       console.error("Error in isUserPropertyOwner:", error.message);
@@ -125,7 +116,11 @@ export default function UpdatePropertyForm({ propertyData }) {
     <>
       {isOwner ? (
         <>
-          <Button variant="dark" onClick={handleShow}>
+          <Button
+            variant="dark"
+            className="col-lg-6 col-md-6 col-sm-6"
+            onClick={handleShow}
+          >
             Modifica l'immobile
           </Button>
 

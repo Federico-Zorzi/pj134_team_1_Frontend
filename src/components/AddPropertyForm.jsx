@@ -14,6 +14,7 @@ let initialFormData = {
   image: "",
   city: "",
   property_type: "",
+  owner_id: 0,
 };
 
 export default function AddPropertyForm() {
@@ -71,6 +72,8 @@ export default function AddPropertyForm() {
       parseInt(formData.square_meters) > 50 &&
       parseInt(formData.square_meters) <= 10000;
 
+    formData.owner_id = userInformation.id;
+
     if (
       formData.title &&
       RoomsValidation &&
@@ -95,8 +98,6 @@ export default function AddPropertyForm() {
           return res.json();
         })
         .then((data) => {
-          console.log(data);
-
           setValidated(false);
           setFormData(initialFormData);
 

@@ -69,7 +69,11 @@ export default function PropertyDeleteButton({ propertyId }) {
     <>
       {isOwner ? (
         <>
-          <Button variant="danger" onClick={handleShow}>
+          <Button
+            className="col-lg-6 col-md-6 col-sm-6"
+            variant="danger"
+            onClick={() => handleDeleteButtonClick(propertyId)}
+          >
             Cancella l'immobile
           </Button>
           <Modal show={showDeleteModal} onHide={handleClose}>
