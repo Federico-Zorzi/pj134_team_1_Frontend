@@ -26,13 +26,13 @@ main {
 .arrows-btn {
   border: none;
   color: #a3a3a3;
+  transition-duration: 300ms;
 }
 
 .arrows-btn:hover {
   border: none;
   color: #474747;
 
-  transition-duration: 300ms;
   transition-property: transform;
   transform: scale(1.2);
 }
