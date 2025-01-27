@@ -98,13 +98,17 @@ export default function AdvanceSearchPage() {
     <>
       <div className="container min-vh-100">
         <SearchBar propertiesList={propertiesList} />
-        <div className="my-5"></div>
+        <div className="my-4"></div>
 
-        <div>
-          <Pagination className="justify-content-end">{pagItems}</Pagination>
+        {/* Risultati Trovati */}
+        <div className="d-flex justify-content-center mb-4">
+          <h5 className="text-secondary fs-6">
+            Risultati trovati: {propertiesList.length}{" "}
+          </h5>
         </div>
+
         {/* card container */}
-        <div className="row row-cols-1 row-cols-xl-2 g-4 homepage-card-container">
+        <div className="row row-cols-1 row-cols-xl-2 g-4 homepage-card-container mb-4">
           {/* Cards */}
           {propertiesList.length > 0 &&
             actualCardsVis.map((property) => {
@@ -112,6 +116,12 @@ export default function AdvanceSearchPage() {
                 <AdvancedSearchCard key={property.id} element={property} />
               );
             })}
+        </div>
+
+        <div>
+          <Pagination className="justify-content-center mt-3">
+            {pagItems}
+          </Pagination>
         </div>
       </div>
     </>
