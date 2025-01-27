@@ -75,21 +75,21 @@ export default function ShowPage() {
                   <i className="fa-solid fa-door-open me-2"></i>
 
                   <strong>Numero di stanze</strong>
-                  <p>{property.n_Rooms}</p>
+                  <p>{property.number_of_rooms}</p>
                 </div>
                 {/* Numero Bagni */}
                 <div className="xs-device col-lg-12 col-md-4 col-sm-6 mt-2">
                   <i className="fa-solid fa-bath me-2"></i>
 
                   <strong>Numero di bagni</strong>
-                  <p>{property.n_Bathrooms}</p>
+                  <p>{property.number_of_bathrooms}</p>
                 </div>
                 {/* Numero Letti */}
                 <div className="xs-device col-lg-12 col-md-4 col-sm-6 mt-2">
                   <i className="fa-solid fa-bed me-2"></i>
 
                   <strong>Numero di letti</strong>
-                  <p>{property.n_Beds}</p>
+                  <p>{property.number_of_beds}</p>
                 </div>
                 {/* Metri Quadrati */}
                 <div className="xs-device col-lg-12 col-md-4 col-sm-6 mt-2">
