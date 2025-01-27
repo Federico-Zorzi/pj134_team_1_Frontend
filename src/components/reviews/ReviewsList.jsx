@@ -169,7 +169,7 @@ export default function ReviewsList() {
           </p>
         </Col>
         {isLoadingItems ? (
-          <div className="d-flex justify-content-center">
+          <div className="d-flex spinner-container justify-content-center">
             <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>
             </div>

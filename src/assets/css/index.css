@@ -26,6 +26,11 @@ main {
 }
 
 /* LOADER */
+.spinner-container {
+  height: 200px;
+  align-items: center;
+}
+
 .spinner-border {
   width: 4rem;
   height: 4rem;
