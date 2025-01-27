@@ -8,11 +8,11 @@ import PropertyDeleteButton from "../components/PropertyDeleteButton";
 
 export default function ShowPage() {
   const { id } = useParams();
-  const { property, fetchShowProperties } = useDataContext();
-  const [loader, setLoader] = useState(true);
+  const { property, fetchShowProperties, isLoading, setIsLoading } =
+    useDataContext();
 
   useEffect(() => {
-    fetchShowProperties(id), setLoader(false);
+    fetchShowProperties(id);
   }, []);
 
   function translatePropertyType(propertyType) {
@@ -38,8 +38,12 @@ export default function ShowPage() {
 
   return (
     <>
-      {loader ? (
-        ""
+      {isLoading ? (
+        <div className="d-flex justify-content-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
       ) : (
         <div className="container mt-5">
           <h1>{property.title}</h1>

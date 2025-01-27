@@ -10,8 +10,8 @@ import { faAnglesRight, faAnglesLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function AdvanceSearchPage() {
   // take data from global context
-  const dataContext = useDataContext();
-  const { propertiesList, fetchIndexProperties } = dataContext;
+  const { propertiesList, fetchIndexProperties, isLoading } = useDataContext();
+
   useEffect(fetchIndexProperties, []);
 
   const numForPagination = 6;
@@ -100,29 +100,39 @@ export default function AdvanceSearchPage() {
         <SearchBar propertiesList={propertiesList} />
         <div className="my-4"></div>
 
-        {/* Risultati Trovati */}
-        <div className="d-flex justify-content-center mb-4">
-          <h5 className="text-secondary fs-6">
-            Risultati trovati: {propertiesList.length}{" "}
-          </h5>
-        </div>
+        {isLoading ? (
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        ) : (
+          <>
+            {/* Risultati Trovati */}
+            <div className="d-flex justify-content-center mb-4">
+              <h5 className="text-secondary fs-6">
+                Risultati trovati: {propertiesList.length}{" "}
+              </h5>
+            </div>
 
-        {/* card container */}
-        <div className="row row-cols-1 row-cols-xl-2 g-4 homepage-card-container mb-4">
-          {/* Cards */}
-          {propertiesList.length > 0 &&
-            actualCardsVis.map((property) => {
-              return (
-                <AdvancedSearchCard key={property.id} element={property} />
-              );
-            })}
-        </div>
+            {/* card container */}
+            <div className="row row-cols-1 row-cols-xl-2 g-4 homepage-card-container mb-4">
+              {/* Cards */}
+              {propertiesList.length > 0 &&
+                actualCardsVis.map((property) => {
+                  return (
+                    <AdvancedSearchCard key={property.id} element={property} />
+                  );
+                })}
+            </div>
 
-        <div>
-          <Pagination className="justify-content-center mt-3">
-            {pagItems}
-          </Pagination>
-        </div>
+            <div>
+              <Pagination className="justify-content-center mt-3">
+                {pagItems}
+              </Pagination>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

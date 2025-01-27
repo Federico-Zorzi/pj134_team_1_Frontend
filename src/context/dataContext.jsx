@@ -24,6 +24,8 @@ export const DataContextProvider = ({ children }) => {
   const [restrictedMostPopPropertiesList, setRestrictedMostPopProperties] =
     useState([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const numPopularProperties = 8;
   const numRestrictedPopularProperties = 4;
 
@@ -44,6 +46,8 @@ export const DataContextProvider = ({ children }) => {
   }, [userInformation.id]);
 
   const fetchIndexProperties = () => {
+    setIsLoading(true);
+
     fetch(serverUrl)
       .then((res) => res.json())
       .then((data) => {
@@ -58,14 +62,20 @@ export const DataContextProvider = ({ children }) => {
           (property, index) => index < numRestrictedPopularProperties
         );
         setRestrictedMostPopProperties(restrictedFilterPopularProperties);
+
+        setIsLoading(false);
       });
   };
 
   const fetchShowProperties = (id) => {
+    setIsLoading(true);
+
     fetch(serverUrl + `/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProperty(data[0]);
+
+        setIsLoading(false);
       });
   };
 
@@ -87,6 +97,8 @@ export const DataContextProvider = ({ children }) => {
       if (!response.ok) throw new Error("Failed to fetch filtered properties");
       const data = await response.json();
       setPropertiesList(data);
+
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching filtered properties:", error);
     }
@@ -109,6 +121,8 @@ export const DataContextProvider = ({ children }) => {
     fetchShowProperties,
     fetchFilterProperties,
     userData,
+    isLoading,
+    setIsLoading,
   };
 
   return (
