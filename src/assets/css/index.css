@@ -61,6 +61,10 @@ main {
   position: relative;
 }
 
+.img-homepage {
+  height: 200px;
+}
+
 .logo-green {
   background-color: #0a8d48;
 }
