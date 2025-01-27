@@ -33,6 +33,12 @@ main {
   color: var(--logo-color);
 }
 
+.spinner-border-reviews {
+  width: 1rem;
+  height: 1rem;
+  color: grey;
+}
+
 /* NAVBAR */
 .login {
   margin: 0;
