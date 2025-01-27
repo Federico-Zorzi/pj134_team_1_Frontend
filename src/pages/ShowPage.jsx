@@ -45,14 +45,14 @@ export default function ShowPage() {
           <h1>{property.title}</h1>
           <div className="row d-flex">
             {/* Immagine */}
-            <div className="col-lg-6 col-md-12">
+            <div className="col-xl-6 col-md-12">
               <img
                 src={`/img_properties/${property.image}`}
-                className="card-img-top"
+                className="card-img-top size-image"
                 alt="..."
               />
             </div>
-            <div className="col-lg-6 col-md-12 mt-3">
+            <div className="col-xl-6 col-md-12 mt-3">
               <div className="row d-flex">
                 {/* Indirizzo*/}
                 <div className="xs-device col-lg-12 col-md-4 col-sm-6  mt-2">
@@ -97,7 +97,7 @@ export default function ShowPage() {
                   <p>{property.square_meters}</p>
                 </div>
                 {/* Email */}
-                <div className="mt-2">
+                <div className="xs-device col-lg-12 col-md-4 col-sm-6 mt-2 mt-2">
                   <i className="fa-solid fa-envelope me-2"></i>
 
                   <strong>Email di riferimento</strong>
