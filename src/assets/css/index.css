@@ -207,6 +207,14 @@ main {
   flex-grow: 1;
 }
 
+/* ShowPage Image */
+
+.size-image {
+  border-radius: 7px;
+  height: 100%;
+  width: 100%;
+}
+
 /* REVIEWS ITEMS */
 .cards-review {
   height: 100%;
