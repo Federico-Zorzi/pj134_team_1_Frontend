@@ -333,7 +333,7 @@ export default function AddPropertyForm() {
             Descrizione
           </Form.Label>
           <Form.Control
-            type="textarea"
+            as={"textarea"}
             placeholder="Inserisci una breve descrizione..."
             name="description"
             value={formData.description}
