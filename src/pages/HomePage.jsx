@@ -43,13 +43,17 @@ export default function HomePage() {
 
   return (
     <main>
-      <div className="container py-3">
+      <div className="container">
+        <h1 className=" fw-bold text-center mb-2">
+          Prenota case al mare, ville, chalet e molto altro per le tue vacanze
+          in tutta Italia
+        </h1>
         <HomepageCarousel />
 
-        <h1 className="fw-bold mb-4 homepage-most-searched">
+        <h2 className="fw-bold mb-4 homepage-most-searched">
           I più cercati
           <i className="fa-regular fa-map ms-3" />
-        </h1>
+        </h2>
         <div className="most-searched-properties">
           {/* backward arrow */}
           {actualIndex > 0 ? (

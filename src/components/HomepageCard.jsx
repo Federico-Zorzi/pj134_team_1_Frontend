@@ -53,7 +53,7 @@ export default function HomepageCard(params) {
         <img
           onClick={() => console.log(property)}
           src={`/img_properties/${property.image}`}
-          className="card-img-top"
+          className="card-img-top img-homepage"
         />
         <div className="card-body homepage-card-body">
           <h5 className="card-title fs-5">{property.title}</h5>

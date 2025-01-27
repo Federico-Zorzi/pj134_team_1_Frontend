@@ -45,14 +45,14 @@ export default function ShowPage() {
           <h1>{property.title}</h1>
           <div className="row d-flex">
             {/* Immagine */}
-            <div className="col-lg-8 col-md-12">
+            <div className="col-lg-6 col-md-12">
               <img
                 src={`/img_properties/${property.image}`}
                 className="card-img-top"
                 alt="..."
               />
             </div>
-            <div className="col-lg-4 col-md-12 mt-3">
+            <div className="col-lg-6 col-md-12 mt-3">
               <div className="row d-flex">
                 {/* Indirizzo*/}
                 <div className="xs-device col-lg-12 col-md-4 col-sm-6  mt-2">
@@ -103,9 +103,20 @@ export default function ShowPage() {
                   <strong>Email di riferimento</strong>
                   <p>{property.reference_email}</p>
                 </div>
+
+                {/* Descrizione */}
+                <div className="mt-2">
+                  <strong>Descrizione</strong>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Veritatis dolorum possimus asperiores, quis modi dolore
+                    error harum? Vel, animi quibusdam, ipsum dolorem deserunt
+                    repellat cum fugiat, enim nisi sequi minima?
+                  </p>
+                </div>
               </div>
 
-              <div className="d-flex flex-column gap-2 mt-3">
+              <div className="d-flex gap-2 mt-3">
                 {/* Bottone per invio mail */}
                 <SendMailForm property={property} />
                 {/* Bottone per modificare l'immobile */}
