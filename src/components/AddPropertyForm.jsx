@@ -327,7 +327,7 @@ export default function AddPropertyForm() {
             Seleziona il tipo di proprietà.
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} xs={6} md={12}>
+        <Form.Group as={Col} xs={12} md={12}>
           <Form.Label>
             <i className="fa-solid fa-book me-2"></i>
             Descrizione
