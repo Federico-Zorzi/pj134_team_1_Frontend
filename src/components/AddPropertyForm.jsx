@@ -313,10 +313,9 @@ export default function AddPropertyForm() {
             className="align-self-center form-control"
             aria-label="Default select example"
           >
-            <option default value="">
-              Qualsiasi
+            <option default value="2">
+              Appartamento
             </option>
-            <option value="2">Appartamento</option>
             <option value="3">Casa indipendente</option>
             <option value="4">Villa</option>
             <option value="5">Villetta a schiera</option>

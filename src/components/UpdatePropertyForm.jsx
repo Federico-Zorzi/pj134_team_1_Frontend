@@ -300,14 +300,15 @@ export default function UpdatePropertyForm({ propertyData }) {
                     onChange={handleInputChange}
                     className="align-self-center form-control"
                   >
-                    <option value="">Qualsiasi</option>
-                    <option value="apartment">Appartamento</option>
-                    <option value="independent_house">Casa indipendente</option>
-                    <option value="villa">Villa</option>
-                    <option value="terraced_villa">Villetta a schiera</option>
-                    <option value="chalet">Chalet</option>
-                    <option value="cabin">Baita</option>
-                    <option value="other">Altro</option>
+                    <option default value="2">
+                      Appartamento
+                    </option>
+                    <option value="3">Casa indipendente</option>
+                    <option value="4">Villa</option>
+                    <option value="5">Villetta a schiera</option>
+                    <option value="6">Chalet</option>
+                    <option value="7">Baita</option>
+                    <option value="1">Altro</option>
                   </Form.Select>
                 </Form.Group>
 
