@@ -57,15 +57,18 @@ export default function UpdatePropertyForm({ propertyData }) {
       alert("I metri quadrati sono invalidi.");
       return;
     }
-    if (isNaN(formData.n_Rooms) || formData.n_Rooms < 1) {
+    if (isNaN(formData.number_of_rooms) || formData.number_of_rooms < 1) {
       alert("Il numero di stanze è invalido.");
       return;
     }
-    if (isNaN(formData.n_Beds) || formData.n_Beds < 1) {
+    if (isNaN(formData.number_of_beds) || formData.number_of_beds < 1) {
       alert("Il numero di letti è invalido.");
       return;
     }
-    if (isNaN(formData.n_Bathrooms) || formData.n_Bathrooms < 1) {
+    if (
+      isNaN(formData.number_of_bathrooms) ||
+      formData.number_of_bathrooms < 1
+    ) {
       alert("Il numero dei bagni è invalido.");
       return;
     }
@@ -197,8 +200,8 @@ export default function UpdatePropertyForm({ propertyData }) {
                       </Form.Label>
                       <Form.Control
                         type="number"
-                        name="n_Rooms"
-                        value={formData.n_Rooms}
+                        name="number_of_rooms"
+                        value={formData.number_of_rooms}
                         onChange={handleInputChange}
                         required
                         min="1"
@@ -213,8 +216,8 @@ export default function UpdatePropertyForm({ propertyData }) {
                       </Form.Label>
                       <Form.Control
                         type="number"
-                        name="n_Beds"
-                        value={formData.n_Beds}
+                        name="number_of_beds"
+                        value={formData.number_of_beds}
                         onChange={handleInputChange}
                         required
                         min="1"
@@ -229,8 +232,8 @@ export default function UpdatePropertyForm({ propertyData }) {
                       </Form.Label>
                       <Form.Control
                         type="number"
-                        name="n_Bathrooms"
-                        value={formData.n_Bathrooms}
+                        name="number_of_bathrooms"
+                        value={formData.number_of_bathrooms}
                         onChange={handleInputChange}
                         required
                         min="1"
@@ -268,6 +271,24 @@ export default function UpdatePropertyForm({ propertyData }) {
                   />
                 </Form.Group>
 
+                <Form.Group>
+                  <Form.Label>
+                    <i className="fa-solid fa-book me-2"></i>
+                    Descrizione
+                  </Form.Label>
+                  <Form.Control
+                    type="textarea"
+                    placeholder="Inserisci una breve descrizione..."
+                    name="description"
+                    value={formData.description}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Inserisci la descrizione.
+                  </Form.Control.Feedback>
+                </Form.Group>
+
                 <Form.Group className="property-type">
                   <Form.Label>
                     <i className="fa-solid fa-building-circle-exclamation me-2 ms-1 mt-2"></i>
@@ -279,14 +300,15 @@ export default function UpdatePropertyForm({ propertyData }) {
                     onChange={handleInputChange}
                     className="align-self-center form-control"
                   >
-                    <option value="">Qualsiasi</option>
-                    <option value="apartment">Appartamento</option>
-                    <option value="independent_house">Casa indipendente</option>
-                    <option value="villa">Villa</option>
-                    <option value="terraced_villa">Villetta a schiera</option>
-                    <option value="chalet">Chalet</option>
-                    <option value="cabin">Baita</option>
-                    <option value="other">Altro</option>
+                    <option default value="2">
+                      Appartamento
+                    </option>
+                    <option value="3">Casa indipendente</option>
+                    <option value="4">Villa</option>
+                    <option value="5">Villetta a schiera</option>
+                    <option value="6">Chalet</option>
+                    <option value="7">Baita</option>
+                    <option value="1">Altro</option>
                   </Form.Select>
                 </Form.Group>
 

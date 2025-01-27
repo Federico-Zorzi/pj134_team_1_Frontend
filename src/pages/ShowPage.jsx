@@ -17,20 +17,20 @@ export default function ShowPage() {
 
   function translatePropertyType(propertyType) {
     switch (propertyType) {
-      case "apartment":
-        return "Appartamento";
-      case "independent_house":
-        return "Casa indipendente";
-      case "villa":
-        return "Villa";
-      case "terraced_villa":
-        return "Villetta a schiera";
-      case "chalet":
-        return "Chalet";
-      case "cabin":
-        return "Baita";
-      case "other":
+      case 1:
         return "Altro";
+      case 2:
+        return "Appartamento";
+      case 3:
+        return "Casa indipendente";
+      case 4:
+        return "Villa";
+      case 5:
+        return "Villetta a schiera";
+      case 6:
+        return "Chalet";
+      case 7:
+        return "Baita";
       default:
         return "Tipo sconosciuto";
     }
@@ -106,13 +106,9 @@ export default function ShowPage() {
 
                 {/* Descrizione */}
                 <div className="mt-2">
+                  <i className="fa-solid fa-book me-2"></i>
                   <strong>Descrizione</strong>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veritatis dolorum possimus asperiores, quis modi dolore
-                    error harum? Vel, animi quibusdam, ipsum dolorem deserunt
-                    repellat cum fugiat, enim nisi sequi minima?
-                  </p>
+                  <p>{property.description}</p>
                 </div>
               </div>
 

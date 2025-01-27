@@ -33,20 +33,20 @@ export default function AdvancedSearchCard(params) {
 
   function translatePropertyType(propertyType) {
     switch (propertyType) {
-      case "apartment":
-        return "Appartamento";
-      case "independent_house":
-        return "Casa indipendente";
-      case "villa":
-        return "Villa";
-      case "terraced_villa":
-        return "Villetta a schiera";
-      case "chalet":
-        return "Chalet";
-      case "cabin":
-        return "Baita";
-      case "other":
+      case 1:
         return "Altro";
+      case 2:
+        return "Appartamento";
+      case 3:
+        return "Casa indipendente";
+      case 4:
+        return "Villa";
+      case 5:
+        return "Villetta a schiera";
+      case 6:
+        return "Chalet";
+      case 7:
+        return "Baita";
       default:
         return "Tipo sconosciuto";
     }
@@ -80,17 +80,17 @@ export default function AdvancedSearchCard(params) {
                   {/* Numero stanze */}
                   <div className="card-text">
                     <i className="fa-solid fa-door-open me-2"></i>
-                    {property.n_Rooms}
+                    {property.number_of_rooms}
                   </div>
                   {/* Numero bagni */}
                   <div className="card-text">
                     <i className="fa-solid fa-bath me-2"></i>
-                    {property.n_Bathrooms}
+                    {property.number_of_bathrooms}
                   </div>
                   {/* Numero letti */}
                   <div className="card-text">
                     <i className="fa-solid fa-bed me-2"></i>
-                    {property.n_Beds}
+                    {property.number_of_beds}
                   </div>
                 </div>
                 {/* Indirizzo */}

@@ -57,6 +57,11 @@ main {
 }
 
 /* HOMEPAGE */
+.text-shadow {
+  background-color: transparent;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
 .most-searched-properties {
   position: relative;
 }
