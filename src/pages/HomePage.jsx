@@ -10,14 +10,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function HomePage() {
   // take data from global context
-  const dataContext = useDataContext();
   const {
-    propertiesList,
     mostPopularPropertiesList,
     restrictedMostPopPropertiesList,
     setRestrictedMostPopProperties,
     fetchIndexProperties,
-  } = dataContext;
+    isLoading,
+  } = useDataContext();
 
   useEffect(fetchIndexProperties, []);
 
@@ -83,20 +82,28 @@ export default function HomePage() {
             ""
           )}
 
-          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3 homepage-card-container">
-            {/* Cards */}
-            {restrictedMostPopPropertiesList.map((property) => {
-              return (
-                <HomepageCard
-                  key={property.id}
-                  element={property}
-                  link={{
-                    to: "/properties/" + property.id,
-                  }}
-                />
-              );
-            })}
-          </div>
+          {isLoading ? (
+            <div className="d-flex justify-content-center">
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          ) : (
+            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3 homepage-card-container">
+              {/* Cards */}
+              {restrictedMostPopPropertiesList.map((property) => {
+                return (
+                  <HomepageCard
+                    key={property.id}
+                    element={property}
+                    link={{
+                      to: "/properties/" + property.id,
+                    }}
+                  />
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     </main>

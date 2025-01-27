@@ -18,10 +18,18 @@ export default function ReviewsList() {
   };
   const serverUrl = import.meta.env.VITE_SERVER_URL + "/properties";
   const { id } = useParams();
+
+  const { userData } = useDataContext();
   const minVote = 1;
   const maxVote = 5;
   const minLivingDays = 1;
   const maxLivingDays = 9999;
+
+  const [isLoadingItems, setIsLoadingItems] = useState(false);
+
+  //controllo se lo user è owner per bloccare il form di invio recensioni
+  const { userInformation } = userData;
+  const [isOwner, setIsOwner] = useState(false);
 
   const [openCollapse, setOpenCollapse] = useState(false);
 
@@ -34,10 +42,14 @@ export default function ReviewsList() {
   const checkInDate = new Date(reviewFormData.check_in);
 
   const fetchIndexReviews = () => {
+    setIsLoadingItems(true);
+
     fetch(serverUrl + `/${id}/reviews`)
       .then((res) => res.json())
       .then((data) => {
         setReviewList(data);
+
+        setIsLoadingItems(false);
       });
   };
   useEffect(fetchIndexReviews, []);
@@ -111,11 +123,6 @@ export default function ReviewsList() {
     }
   };
 
-  //controllo se lo user è owner per bloccare il form di invio recensioni
-  const { userData } = useDataContext();
-  const { userInformation } = userData;
-  const [isOwner, setIsOwner] = useState(false);
-
   useEffect(() => {
     const checkOwnership = async () => {
       const ownerStatus = await isUserPropertyOwner(userInformation.id, id);
@@ -161,163 +168,184 @@ export default function ReviewsList() {
             pubblicate
           </p>
         </Col>
-        <Col className="text-end">
-          {isOwner ? (
-            ""
-          ) : (
-            <>
-              <Button
-                onClick={() => setOpenCollapse(!openCollapse)}
-                aria-controls="collapse-form-reviews"
-                aria-expanded={openCollapse}
-                className="bg-dark border-dark"
-              >
-                <FontAwesomeIcon icon={faPlus} className="me-1" /> Aggiungi
-                Recensione
-              </Button>
-            </>
-          )}
-        </Col>
-        <Collapse in={openCollapse}>
-          <div id="collapse-form-reviews">
-            <Form
-              noValidate
-              validated={validated}
-              onSubmit={handleReviewSubmit}
-            >
-              <Row>
-                {/* Nome */}
-                <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
-                  <Form.Label>
-                    <i className="fa-solid fa-user me-2"></i>
-                    Nome
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Inserisci nome..."
-                    name="name"
-                    value={reviewFormData.name}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Inserisci il tuo nome.
-                  </Form.Control.Feedback>
-                </Form.Group>
-                {/* Voto */}
-                <Form.Group as={Col} xs={6} className="mb-3" controlId="vote">
-                  <Form.Label>
-                    <i className="fa-regular fa-star me-2"></i>
-                    Vote
-                  </Form.Label>
-                  <Form.Control
-                    type="number"
-                    placeholder="Inserisci voto..."
-                    min={minVote}
-                    max={maxVote}
-                    name="vote"
-                    value={reviewFormData.vote}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Inserisci un voto alla recensione (da {minVote} a {maxVote}
-                    ).
-                  </Form.Control.Feedback>
-                </Form.Group>
-                {/* Tempo di permanenza */}
-                <Form.Group
-                  as={Col}
-                  xs={6}
-                  className="mb-3"
-                  controlId="living-days"
-                >
-                  <Form.Label>
-                    <i className="fa-solid fa-clock me-2"></i>
-                    Tempo di permanenza
-                  </Form.Label>
-                  <Form.Control
-                    type="number"
-                    placeholder="Giorni di permanenza..."
-                    name="living_days"
-                    value={reviewFormData.living_days}
-                    onChange={handleInputChange}
-                    min={minLivingDays}
-                    max={maxLivingDays}
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Inserisci il numero di giorni di permanenza presso questa
-                    struttura (da {minLivingDays} a {maxLivingDays}).
-                  </Form.Control.Feedback>
-                </Form.Group>
-                {/* Check-in */}
-                <Form.Group
-                  as={Col}
-                  xs={6}
-                  className="mb-3"
-                  controlId="check-in"
-                >
-                  <Form.Label>
-                    <i className="fa-solid fa-calendar-days me-2"></i>
-                    Check-in
-                  </Form.Label>
-                  <Form.Control
-                    type="date"
-                    name="check_in"
-                    value={reviewFormData.check_in}
-                    onChange={handleInputChange}
-                    isInvalid={checkInDate >= currentDate}
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Inserisci la data di arrivo in questa struttura. La data
-                    inserita deve essere precedente alla data attuale
-                  </Form.Control.Feedback>
-                </Form.Group>
-
-                {/* Testo */}
-                <Form.Group
-                  as={Col}
-                  xs={12}
-                  className="mb-3"
-                  controlId="content"
-                >
-                  <Form.Label>
-                    <i className="fa-solid fa-pen me-2"></i>
-                    Recensione
-                  </Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    placeholder="Inserisci contenuto recensione..."
-                    name="content"
-                    value={reviewFormData.content}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Inserisci una recensione a questa struttura.
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <Col xs={12} className="text-center">
-                  {/* Bottone per inviare la recensione */}
-                  <Button type="submit" variant="success">
-                    Invia recensione
-                  </Button>
-                </Col>
-              </Row>
-            </Form>
+        {isLoadingItems ? (
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
           </div>
-        </Collapse>
+        ) : (
+          <>
+            <Col className="text-end">
+              {isOwner ? (
+                ""
+              ) : (
+                <>
+                  <Button
+                    onClick={() => setOpenCollapse(!openCollapse)}
+                    aria-controls="collapse-form-reviews"
+                    aria-expanded={openCollapse}
+                    className="bg-dark border-dark"
+                  >
+                    <FontAwesomeIcon icon={faPlus} className="me-1" /> Aggiungi
+                    Recensione
+                  </Button>
+                </>
+              )}
+            </Col>
+            <Collapse in={openCollapse}>
+              <div id="collapse-form-reviews">
+                <Form
+                  noValidate
+                  validated={validated}
+                  onSubmit={handleReviewSubmit}
+                >
+                  <Row>
+                    {/* Nome */}
+                    <Form.Group
+                      as={Col}
+                      xs={6}
+                      className="mb-3"
+                      controlId="title"
+                    >
+                      <Form.Label>
+                        <i className="fa-solid fa-user me-2"></i>
+                        Nome
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Inserisci nome..."
+                        name="name"
+                        value={reviewFormData.name}
+                        onChange={handleInputChange}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        Inserisci il tuo nome.
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                    {/* Voto */}
+                    <Form.Group
+                      as={Col}
+                      xs={6}
+                      className="mb-3"
+                      controlId="vote"
+                    >
+                      <Form.Label>
+                        <i className="fa-regular fa-star me-2"></i>
+                        Vote
+                      </Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="Inserisci voto..."
+                        min={minVote}
+                        max={maxVote}
+                        name="vote"
+                        value={reviewFormData.vote}
+                        onChange={handleInputChange}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        Inserisci un voto alla recensione (da {minVote} a{" "}
+                        {maxVote}
+                        ).
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                    {/* Tempo di permanenza */}
+                    <Form.Group
+                      as={Col}
+                      xs={6}
+                      className="mb-3"
+                      controlId="living-days"
+                    >
+                      <Form.Label>
+                        <i className="fa-solid fa-clock me-2"></i>
+                        Tempo di permanenza
+                      </Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="Giorni di permanenza..."
+                        name="living_days"
+                        value={reviewFormData.living_days}
+                        onChange={handleInputChange}
+                        min={minLivingDays}
+                        max={maxLivingDays}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        Inserisci il numero di giorni di permanenza presso
+                        questa struttura (da {minLivingDays} a {maxLivingDays}).
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                    {/* Check-in */}
+                    <Form.Group
+                      as={Col}
+                      xs={6}
+                      className="mb-3"
+                      controlId="check-in"
+                    >
+                      <Form.Label>
+                        <i className="fa-solid fa-calendar-days me-2"></i>
+                        Check-in
+                      </Form.Label>
+                      <Form.Control
+                        type="date"
+                        name="check_in"
+                        value={reviewFormData.check_in}
+                        onChange={handleInputChange}
+                        isInvalid={checkInDate >= currentDate}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        Inserisci la data di arrivo in questa struttura. La data
+                        inserita deve essere precedente alla data attuale
+                      </Form.Control.Feedback>
+                    </Form.Group>
+
+                    {/* Testo */}
+                    <Form.Group
+                      as={Col}
+                      xs={12}
+                      className="mb-3"
+                      controlId="content"
+                    >
+                      <Form.Label>
+                        <i className="fa-solid fa-pen me-2"></i>
+                        Recensione
+                      </Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        placeholder="Inserisci contenuto recensione..."
+                        name="content"
+                        value={reviewFormData.content}
+                        onChange={handleInputChange}
+                        required
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        Inserisci una recensione a questa struttura.
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                    <Col xs={12} className="text-center">
+                      {/* Bottone per inviare la recensione */}
+                      <Button type="submit" variant="success">
+                        Invia recensione
+                      </Button>
+                    </Col>
+                  </Row>
+                </Form>
+              </div>
+            </Collapse>
+          </>
+        )}
       </Row>
 
       <Row>
-        {reviewsList.length > 0 ? (
+        {reviewsList.length <= 0 && !isLoadingItems ? (
+          <h5>Nessuna Recensione</h5>
+        ) : (
           reviewsList.map((review, index) => (
             <ReviewItem key={index} review={review} />
           ))
-        ) : (
-          <h5>Nessuna Recensione</h5>
         )}
       </Row>
     </section>

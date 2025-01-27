@@ -1,3 +1,7 @@
+:root {
+  --logo-color: #00e167;
+}
+
 * {
   font-family: poppins, sans-serif;
 }
@@ -8,7 +12,7 @@ a {
 }
 
 .color-logo {
-  color: #00e167;
+  color: var(--logo-color);
 }
 
 .wrapper {
@@ -19,6 +23,14 @@ a {
 
 main {
   flex-grow: 1;
+}
+
+/* LOADER */
+.spinner-border {
+  width: 4rem;
+  height: 4rem;
+
+  color: var(--logo-color);
 }
 
 /* NAVBAR */

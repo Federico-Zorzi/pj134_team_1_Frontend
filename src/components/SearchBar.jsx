@@ -36,7 +36,7 @@ function translatePropertyType(propertyType) {
 
 export default function SearchBar({ propertiesList }) {
   const [formData, setFormData] = useState(initialFormData);
-  const { fetchFilterProperties } = useDataContext();
+  const { fetchFilterProperties, setIsLoading } = useDataContext();
   const propertyTypeList = [
     "apartment",
     "independent_house",
@@ -75,6 +75,7 @@ export default function SearchBar({ propertiesList }) {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetchFilterProperties(formData);
   }, [formData]);
 

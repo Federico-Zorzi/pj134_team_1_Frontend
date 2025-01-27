@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 
+import { useDataContext } from "../context/dataContext";
+
 export default function AdvancedSearchCard(params) {
+  const { isLoading, setIsLoading } = useDataContext();
   const property = params.element;
   const [reviewNumber, setReviewNumber] = useState(0);
 
