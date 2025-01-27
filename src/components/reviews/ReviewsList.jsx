@@ -205,7 +205,7 @@ export default function ReviewsList() {
                   </Form.Control.Feedback>
                 </Form.Group>
                 {/* Voto */}
-                <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
+                <Form.Group as={Col} xs={6} className="mb-3" controlId="vote">
                   <Form.Label>
                     <i className="fa-regular fa-star me-2"></i>
                     Vote
@@ -226,7 +226,12 @@ export default function ReviewsList() {
                   </Form.Control.Feedback>
                 </Form.Group>
                 {/* Tempo di permanenza */}
-                <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
+                <Form.Group
+                  as={Col}
+                  xs={6}
+                  className="mb-3"
+                  controlId="living-days"
+                >
                   <Form.Label>
                     <i className="fa-solid fa-clock me-2"></i>
                     Tempo di permanenza
@@ -247,7 +252,12 @@ export default function ReviewsList() {
                   </Form.Control.Feedback>
                 </Form.Group>
                 {/* Check-in */}
-                <Form.Group as={Col} xs={6} className="mb-3" controlId="title">
+                <Form.Group
+                  as={Col}
+                  xs={6}
+                  className="mb-3"
+                  controlId="check-in"
+                >
                   <Form.Label>
                     <i className="fa-solid fa-calendar-days me-2"></i>
                     Check-in
@@ -267,7 +277,12 @@ export default function ReviewsList() {
                 </Form.Group>
 
                 {/* Testo */}
-                <Form.Group as={Col} xs={12} className="mb-3" controlId="title">
+                <Form.Group
+                  as={Col}
+                  xs={12}
+                  className="mb-3"
+                  controlId="content"
+                >
                   <Form.Label>
                     <i className="fa-solid fa-pen me-2"></i>
                     Recensione
