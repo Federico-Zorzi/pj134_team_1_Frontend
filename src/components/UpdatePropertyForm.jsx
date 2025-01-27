@@ -57,15 +57,18 @@ export default function UpdatePropertyForm({ propertyData }) {
       alert("I metri quadrati sono invalidi.");
       return;
     }
-    if (isNaN(formData.n_Rooms) || formData.n_Rooms < 1) {
+    if (isNaN(formData.number_of_rooms) || formData.number_of_rooms < 1) {
       alert("Il numero di stanze è invalido.");
       return;
     }
-    if (isNaN(formData.n_Beds) || formData.n_Beds < 1) {
+    if (isNaN(formData.number_of_beds) || formData.number_of_beds < 1) {
       alert("Il numero di letti è invalido.");
       return;
     }
-    if (isNaN(formData.n_Bathrooms) || formData.n_Bathrooms < 1) {
+    if (
+      isNaN(formData.number_of_bathrooms) ||
+      formData.number_of_bathrooms < 1
+    ) {
       alert("Il numero dei bagni è invalido.");
       return;
     }
@@ -197,8 +200,8 @@ export default function UpdatePropertyForm({ propertyData }) {
                       </Form.Label>
                       <Form.Control
                         type="number"
-                        name="n_Rooms"
-                        value={formData.n_Rooms}
+                        name="number_of_rooms"
+                        value={formData.number_of_rooms}
                         onChange={handleInputChange}
                         required
                         min="1"
@@ -213,8 +216,8 @@ export default function UpdatePropertyForm({ propertyData }) {
                       </Form.Label>
                       <Form.Control
                         type="number"
-                        name="n_Beds"
-                        value={formData.n_Beds}
+                        name="number_of_beds"
+                        value={formData.number_of_beds}
                         onChange={handleInputChange}
                         required
                         min="1"
@@ -229,8 +232,8 @@ export default function UpdatePropertyForm({ propertyData }) {
                       </Form.Label>
                       <Form.Control
                         type="number"
-                        name="n_Bathrooms"
-                        value={formData.n_Bathrooms}
+                        name="number_of_bathrooms"
+                        value={formData.number_of_bathrooms}
                         onChange={handleInputChange}
                         required
                         min="1"
@@ -266,6 +269,24 @@ export default function UpdatePropertyForm({ propertyData }) {
                     value={formData.image}
                     onChange={handleInputChange}
                   />
+                </Form.Group>
+
+                <Form.Group>
+                  <Form.Label>
+                    <i className="fa-solid fa-book me-2"></i>
+                    Descrizione
+                  </Form.Label>
+                  <Form.Control
+                    type="textarea"
+                    placeholder="Inserisci una breve descrizione..."
+                    name="description"
+                    value={formData.description}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Inserisci la descrizione.
+                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="property-type">

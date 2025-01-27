@@ -5,16 +5,17 @@ import { useDataContext } from "../context/dataContext";
 
 let initialFormData = {
   title: "",
-  n_Rooms: "",
-  n_Beds: "",
-  n_Bathrooms: "",
+  number_of_rooms: "",
+  number_of_beds: "",
+  number_of_bathrooms: "",
   square_meters: "",
   address: "",
   reference_email: "",
   image: "",
   city: "",
-  property_type: "",
+  property_type: 0,
   owner_id: 0,
+  description: "",
 };
 
 export default function AddPropertyForm() {
@@ -40,7 +41,7 @@ export default function AddPropertyForm() {
     if (userInformation.id === 0) {
       navigate("/");
     }
-  }, [userInformation.isOwner]);
+  }, [userInformation.id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,19 +54,19 @@ export default function AddPropertyForm() {
     setValidated(true);
 
     const RoomsValidation =
-      formData.n_Rooms &&
-      parseInt(formData.n_Rooms) > 0 &&
-      parseInt(formData.n_Rooms) <= 100;
+      formData.number_of_rooms &&
+      parseInt(formData.number_of_rooms) > 0 &&
+      parseInt(formData.number_of_rooms) <= 100;
 
     const BedsValidation =
-      formData.n_Beds &&
-      parseInt(formData.n_Beds) > 0 &&
-      parseInt(formData.n_Beds) <= 50;
+      formData.number_of_beds &&
+      parseInt(formData.number_of_beds) > 0 &&
+      parseInt(formData.number_of_beds) <= 50;
 
     const BathroomsValidation =
-      formData.n_Bathrooms &&
-      parseInt(formData.n_Bathrooms) > 0 &&
-      parseInt(formData.n_Bathrooms) <= 15;
+      formData.number_of_bathrooms &&
+      parseInt(formData.number_of_bathrooms) > 0 &&
+      parseInt(formData.number_of_bathrooms) <= 15;
 
     const SquareMetersValidation =
       formData.square_meters &&
@@ -82,7 +83,8 @@ export default function AddPropertyForm() {
       SquareMetersValidation &&
       formData.address &&
       formData.reference_email &&
-      formData.city
+      formData.city &&
+      formData.description
     ) {
       fetch("http://localhost:3000/properties/add", {
         method: "POST",
@@ -180,8 +182,8 @@ export default function AddPropertyForm() {
           <Form.Control
             type="number"
             placeholder="Inserisci il numero di stanze..."
-            name="n_Rooms"
-            value={formData.n_Rooms}
+            name="number_of_rooms"
+            value={formData.number_of_rooms}
             onChange={handleInputChange}
             required
             min="1"
@@ -200,8 +202,8 @@ export default function AddPropertyForm() {
           <Form.Control
             type="number"
             placeholder="Inserisci il numero di letti..."
-            name="n_Beds"
-            value={formData.n_Beds}
+            name="number_of_beds"
+            value={formData.number_of_beds}
             onChange={handleInputChange}
             required
             min="1"
@@ -226,8 +228,8 @@ export default function AddPropertyForm() {
           <Form.Control
             type="number"
             placeholder="Inserisci il numero di bagni..."
-            name="n_Bathrooms"
-            value={formData.n_Bathrooms}
+            name="number_of_bathrooms"
+            value={formData.number_of_bathrooms}
             onChange={handleInputChange}
             required
             min="1"
@@ -299,13 +301,14 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={6} md={12} className="property-type ">
+        <Form.Group as={Col} xs={6} md={12} className="mb-3 property-type ">
           <Form.Label>
             <i className="fa-solid fa-building-circle-exclamation me-2"></i>
             Tipo di proprietà
           </Form.Label>
           <Form.Select
             name="property_type"
+            value={formData.property_type}
             onChange={handleInputChange}
             className="align-self-center form-control"
             aria-label="Default select example"
@@ -313,16 +316,33 @@ export default function AddPropertyForm() {
             <option default value="">
               Qualsiasi
             </option>
-            <option value="apartment">Appartamento</option>
-            <option value="independent_house">Casa indipendente</option>
-            <option value="villa">Villa</option>
-            <option value="terraced_villa">Villetta a schiera</option>
-            <option value="chalet">Chalet</option>
-            <option value="cabin">Baita</option>
-            <option value="other">Altro</option>
+            <option value="2">Appartamento</option>
+            <option value="3">Casa indipendente</option>
+            <option value="4">Villa</option>
+            <option value="5">Villetta a schiera</option>
+            <option value="6">Chalet</option>
+            <option value="7">Baita</option>
+            <option value="1">Altro</option>
           </Form.Select>
           <Form.Control.Feedback type="invalid">
             Seleziona il tipo di proprietà.
+          </Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} xs={6} md={12}>
+          <Form.Label>
+            <i className="fa-solid fa-book me-2"></i>
+            Descrizione
+          </Form.Label>
+          <Form.Control
+            type="textarea"
+            placeholder="Inserisci una breve descrizione..."
+            name="description"
+            value={formData.description}
+            onChange={handleInputChange}
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            Inserisci la descrizione.
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
