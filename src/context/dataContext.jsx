@@ -77,9 +77,9 @@ export const DataContextProvider = ({ children }) => {
       if (formFilterData.address)
         queryParams.append("address", formFilterData.address);
       if (formFilterData.nRooms)
-        queryParams.append("n_Rooms", formFilterData.nRooms);
+        queryParams.append("number_of_rooms", formFilterData.nRooms);
       if (formFilterData.nBeds)
-        queryParams.append("n_Beds", formFilterData.nBeds);
+        queryParams.append("number_of_beds", formFilterData.nBeds);
       if (formFilterData.propertyType)
         queryParams.append("property_type", formFilterData.propertyType);
 
