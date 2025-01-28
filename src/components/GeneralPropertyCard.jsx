@@ -5,12 +5,16 @@ import { Row, Col } from "react-bootstrap";
 export default function GeneralPropertyCard(params) {
   const property = params.element;
   const [reviewNumber, setReviewNumber] = useState(0);
+  const [isLoadingReviewsNum, setIsLoadingReviewsNum] = useState(false);
 
   const fetchIndexReviews = () => {
+    setIsLoadingReviewsNum(true);
+
     fetch(`http://localhost:3000/properties/${property.id}/reviews`)
       .then((res) => res.json())
       .then((data) => {
         setReviewNumber(data.length);
+        setIsLoadingReviewsNum(false);
       });
   };
   useEffect(fetchIndexReviews, []);
@@ -90,7 +94,15 @@ export default function GeneralPropertyCard(params) {
                 <Row className="align-items-end">
                   <Col>
                     <span className="card-text col-6 fw-bold">
-                      {reviewNumber ? reviewNumber : "0"} recensioni
+                      {isLoadingReviewsNum ? (
+                        <span
+                          className="spinner-border spinner-border-reviews spinner-border-sm"
+                          aria-hidden="true"
+                        ></span>
+                      ) : (
+                        reviewNumber
+                      )}{" "}
+                      recensioni
                     </span>
                   </Col>
                   <Col className="text-end">
