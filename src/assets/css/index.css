@@ -301,7 +301,8 @@ main {
 }
 
 button.custom-button:focus,
-button.custom-button:active {
+button.custom-button:active,
+button.custom-button:focus-visible {
   outline: none !important;
   box-shadow: none !important;
   background-color: rgb(33 37 41) !important;

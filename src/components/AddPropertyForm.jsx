@@ -26,6 +26,7 @@ export default function AddPropertyForm() {
 
   initialFormData = { reference_email: userInformation.email };
   const [formData, setFormData] = useState(initialFormData);
+  const [isLoadingFormData, setIsLoadingFormData] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -45,10 +46,13 @@ export default function AddPropertyForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoadingFormData(true);
+
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
+      setIsLoadingFormData(false);
     }
 
     setValidated(true);
@@ -95,6 +99,9 @@ export default function AddPropertyForm() {
       })
         .then((res) => {
           if (!res.ok) {
+            setIsLoadingFormData(false);
+            console.log(res);
+
             throw new Error("Failed to submit the form");
           }
           return res.json();
@@ -102,9 +109,12 @@ export default function AddPropertyForm() {
         .then((data) => {
           setValidated(false);
           setFormData(initialFormData);
+          setIsLoadingFormData(false);
 
           /* back to homepage */
-          navigate("/");
+          if (!isLoadingFormData) {
+            navigate("/");
+          }
         });
     } else {
       console.log(formData);
@@ -347,8 +357,12 @@ export default function AddPropertyForm() {
       </Row>
 
       <div className="d-flex justify-content-center mt-4">
-        <Button className="custom-button" type="submit">
-          Invia immobile
+        <Button
+          className="custom-button"
+          type="submit"
+          disabled={isLoadingFormData}
+        >
+          {isLoadingFormData ? "Invio in corso..." : "Invia immobile"}
         </Button>
       </div>
     </Form>
