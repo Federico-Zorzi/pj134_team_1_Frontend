@@ -75,8 +75,12 @@ export default function SearchBar({ propertiesList }) {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchFilterProperties(formData);
+    const debounceTimer = setTimeout(() => {
+      setIsLoading(true);
+      fetchFilterProperties(formData);
+    }, 300);
+
+    return () => clearTimeout(debounceTimer);
   }, [formData]);
 
   return (
