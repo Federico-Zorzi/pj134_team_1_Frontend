@@ -327,6 +327,9 @@ button.custom-button:focus-visible {
 
 /* Breackpoint xs-device */
 @media (max-width: 576px) {
+  .xs-device {
+    width: 240px;
+  }
   .w-sm-device {
     width: 350px;
   }
