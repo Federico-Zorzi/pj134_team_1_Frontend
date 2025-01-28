@@ -37,7 +37,7 @@ export default function ShowPage() {
   }
 
   return (
-    <>
+    <main>
       {isLoading ? (
         <div className="d-flex spinner-container justify-content-center">
           <div className="spinner-border" role="status">
@@ -131,6 +131,6 @@ export default function ShowPage() {
           <ReviewsList id={property.id} />
         </div>
       )}
-    </>
+    </main>
   );
 }
