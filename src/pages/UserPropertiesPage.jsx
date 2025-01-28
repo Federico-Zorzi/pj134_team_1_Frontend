@@ -15,9 +15,9 @@ export default function UserPropertiesPage() {
   }, [userInformation.isOwner]);
 
   return (
-    <>
-      <div className="container min-vh-100">
-        <h1 className="fw-bold mb-4 homepage-most-searched text-center pt-4 pb-3">
+    <main>
+      <div className="container">
+        <h1 className="fw-bold mb-4 homepage-most-searched pt-4 pb-3 text-center">
           I tuoi immobili
         </h1>
         {isLoading ? (
@@ -34,6 +34,6 @@ export default function UserPropertiesPage() {
           </div>
         )}
       </div>
-    </>
+    </main>
   );
 }
