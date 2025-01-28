@@ -83,6 +83,7 @@ export default function GeneralPropertyCard(params) {
                 </div>
                 {/* Metri quadrati */}
                 <p className="card-text mq">
+                  <i className="fa-solid fa-expand me-2"></i>
                   <strong>Metri quadrati : </strong>
                   {property.square_meters}
                 </p>
