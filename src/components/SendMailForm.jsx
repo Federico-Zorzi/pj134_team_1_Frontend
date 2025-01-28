@@ -49,7 +49,7 @@ export default function SendMailForm({ property }) {
     <>
       <button
         onClick={() => setShow(true)}
-        className="col-lg-12 col-md-12 col-sm-12 btn btn-primary"
+        className="xs-device-btn col-lg-12 col-md-12 col-sm-12 btn btn-primary"
         aria-label="Scrivi una mail al proprietario"
       >
         Scrivi una mail al proprietario

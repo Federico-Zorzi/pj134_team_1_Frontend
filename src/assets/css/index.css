@@ -330,6 +330,9 @@ button.custom-button:focus-visible {
   .xs-device {
     width: 240px;
   }
+  .xs-device-btn {
+    width: 100%;
+  }
   .w-sm-device {
     width: 350px;
   }
