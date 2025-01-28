@@ -46,7 +46,7 @@ export default function ShowPage() {
         </div>
       ) : (
         <div className="container mt-5">
-          <h1>{property.title}</h1>
+          <h1 className="my-3">{property.title}</h1>
           <div className="row d-flex">
             {/* Immagine */}
             <div className="col-xl-6 col-md-12">
