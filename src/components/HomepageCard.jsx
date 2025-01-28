@@ -33,7 +33,7 @@ export default function HomepageCard(params) {
         .then((data) => {
           console.log(data);
         });
-    }, 100),
+    }, 150),
     []
   );
 
