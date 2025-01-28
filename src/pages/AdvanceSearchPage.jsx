@@ -95,10 +95,9 @@ export default function AdvanceSearchPage() {
   }, [actualIndex]);
 
   return (
-    <>
-      <div className="container min-vh-100">
+    <main>
+      <div className="container">
         <SearchBar propertiesList={propertiesList} />
-        <div className="my-4"></div>
 
         {isLoading ? (
           <div className="d-flex spinner-container justify-content-center">
@@ -109,7 +108,7 @@ export default function AdvanceSearchPage() {
         ) : (
           <>
             {/* Risultati Trovati */}
-            <div className="d-flex justify-content-center mb-4">
+            <div className="d-flex justify-content-center my-4">
               <h5 className="text-secondary fs-6">
                 Risultati trovati: {propertiesList.length}{" "}
               </h5>
@@ -138,6 +137,6 @@ export default function AdvanceSearchPage() {
           </>
         )}
       </div>
-    </>
+    </main>
   );
 }
