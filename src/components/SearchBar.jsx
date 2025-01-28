@@ -9,26 +9,27 @@ const initialFormData = {
   address: "",
   nRooms: "",
   nBeds: "",
-  propertyType: "",
+  propertyType: 0,
 };
 
 // Translate property type
+
 function translatePropertyType(propertyType) {
   switch (propertyType) {
-    case "apartment":
-      return "Appartamento";
-    case "independent_house":
-      return "Casa indipendente";
-    case "villa":
-      return "Villa";
-    case "terraced_villa":
-      return "Villetta a schiera";
-    case "chalet":
-      return "Chalet";
-    case "cabin":
-      return "Baita";
-    case "other":
+    case 1:
       return "Altro";
+    case 2:
+      return "Appartamento";
+    case 3:
+      return "Casa indipendente";
+    case 4:
+      return "Villa";
+    case 5:
+      return "Villetta a schiera";
+    case 6:
+      return "Chalet";
+    case 7:
+      return "Baita";
     default:
       return "Tipo sconosciuto";
   }
@@ -37,14 +38,7 @@ function translatePropertyType(propertyType) {
 export default function SearchBar({ propertiesList }) {
   const [formData, setFormData] = useState(initialFormData);
   const { fetchFilterProperties, setIsLoading } = useDataContext();
-  const propertyTypeList = [
-    "apartment",
-    "independent_house",
-    "villa",
-    "terraced_villa",
-    "chalet",
-    "cabin",
-  ];
+  const propertyTypeList = [2, 3, 4, 5, 6, 7];
 
   const handleIconClick = (e) => {
     event.preventDefault();
@@ -164,7 +158,7 @@ export default function SearchBar({ propertiesList }) {
                       }
                     >
                       {/* icons for badges */}
-                      {badge == "villa" && (
+                      {badge == 4 && (
                         <img
                           onClick={handleIconClick}
                           src="https://a0.muscache.com/pictures/78ba8486-6ba6-4a43-a56d-f556189193da.jpg"
@@ -173,7 +167,7 @@ export default function SearchBar({ propertiesList }) {
                           alt=""
                         />
                       )}
-                      {badge == "apartment" && (
+                      {badge == 2 && (
                         <img
                           src="https://a0.muscache.com/pictures/7630c83f-96a8-4232-9a10-0398661e2e6f.jpg"
                           className="d-block"
@@ -181,7 +175,7 @@ export default function SearchBar({ propertiesList }) {
                           alt=""
                         />
                       )}
-                      {badge == "independent_house" && (
+                      {badge == 3 && (
                         <img
                           src="https://a0.muscache.com/pictures/6ad4bd95-f086-437d-97e3-14d12155ddfe.jpg"
                           className="d-block"
@@ -189,7 +183,7 @@ export default function SearchBar({ propertiesList }) {
                           alt=""
                         />
                       )}
-                      {badge == "terraced_villa" && (
+                      {badge == 5 && (
                         <img
                           src="https://a0.muscache.com/pictures/3271df99-f071-4ecf-9128-eb2d2b1f50f0.jpg"
                           className="d-block"
@@ -197,7 +191,7 @@ export default function SearchBar({ propertiesList }) {
                           alt=""
                         />
                       )}
-                      {badge == "chalet" && (
+                      {badge == 6 && (
                         <img
                           src="https://a0.muscache.com/pictures/c0a24c04-ce1f-490c-833f-987613930eca.jpg"
                           className="d-block"
@@ -205,7 +199,7 @@ export default function SearchBar({ propertiesList }) {
                           alt=""
                         />
                       )}
-                      {badge == "cabin" && (
+                      {badge == 7 && (
                         <img
                           src="https://a0.muscache.com/pictures/732edad8-3ae0-49a8-a451-29a8010dcc0c.jpg"
                           className="d-block"
