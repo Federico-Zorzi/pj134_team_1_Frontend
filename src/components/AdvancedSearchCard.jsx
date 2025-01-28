@@ -1,8 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 
 import { useDataContext } from "../context/dataContext";
+
+function debounce(func, delay) {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+}
 
 export default function AdvancedSearchCard(params) {
   const { isLoading, setIsLoading } = useDataContext();
@@ -22,20 +32,24 @@ export default function AdvancedSearchCard(params) {
   useEffect(fetchIndexReviews, []);
 
   const [like, setLike] = useState(property.likes);
-  const addLike = (id) => {
-    const url = `http://localhost:3000/properties/${id}/addlike`;
-    setLike(like + 1);
-    fetch(url, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  };
+
+  const addLike = useCallback(
+    debounce((id) => {
+      const url = `http://localhost:3000/properties/${id}/addlike`;
+      setLike((prev) => prev + 1);
+      fetch(url, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        });
+    }, 500),
+    []
+  );
 
   function translatePropertyType(propertyType) {
     switch (propertyType) {
@@ -85,28 +99,28 @@ export default function AdvancedSearchCard(params) {
                 <div className="d-flex gap-4 mb-3">
                   {/* Numero stanze */}
                   <div className="card-text">
-                    <i className="fa-solid fa-door-open icon-style me-2"></i>
+                    <i className="fa-solid fa-door-open me-2"></i>
                     {property.number_of_rooms}
                   </div>
                   {/* Numero bagni */}
                   <div className="card-text">
-                    <i className="fa-solid fa-bath icon-style me-2"></i>
+                    <i className="fa-solid fa-bath me-2"></i>
                     {property.number_of_bathrooms}
                   </div>
                   {/* Numero letti */}
                   <div className="card-text">
-                    <i className="fa-solid fa-bed icon-style me-2"></i>
+                    <i className="fa-solid fa-bed me-2"></i>
                     {property.number_of_beds}
                   </div>
                 </div>
                 {/* Indirizzo */}
                 <div className="card-text mb-3">
-                  <i className="fa-solid fa-location-dot icon-style me-2"></i>
+                  <i className="fa-solid fa-location-dot me-2"></i>
                   {property.address}
                 </div>
                 {/* Metri quadrati */}
                 <p className="card-text mq">
-                  <i className="fa-solid fa-expand icon-style me-2"></i>
+                  <i className="fa-solid fa-expand me-2"></i>
                   <strong>Metri quadrati : </strong>
                   {property.square_meters}
                 </p>
