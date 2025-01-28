@@ -43,12 +43,12 @@ export default function HomePage() {
   return (
     <main>
       <div className="container">
-        <h1 className="fw-bold text-center text-shadow mt-2">
+        <h1 className="fw-bold text-center text-shadow mt-4">
           Prenota{" "}
           <i className="fa-solid fa-suitcase-rolling fa-bounce fa-2xs "></i>{" "}
           case al mare, ville, chalet
         </h1>
-        <h2 className="text-center text-shadow my-3 ">
+        <h2 className="text-center text-shadow my-3 pb-4">
           e molto altro per le tue vacanze in tutta Italia!
         </h2>
 

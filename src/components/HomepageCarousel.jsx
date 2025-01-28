@@ -2,7 +2,7 @@ import Carousel from "react-bootstrap/Carousel";
 
 export default function UncontrolledExample() {
   return (
-    <Carousel className="homepage-carousel mb-5">
+    <Carousel className="homepage-carousel mb-5 h-75">
       <Carousel.Item>
         <img
           src="https://dev-snowit.ams3.digitaloceanspaces.com/uploads/2019/03/cene-in-baita.jpg"

@@ -4,7 +4,7 @@ import AddPropertyForm from "../components/AddPropertyForm";
 
 export default function AddPropertyPage() {
   return (
-    <Container className="mt-2 mb-5">
+    <Container className="mt-4 mb-5">
       <div className="text-center mb-5">
         <h1 className="fw-bold mb-4 homepage-most-searched text-center">
           Aggiungi un nuovo immobile
