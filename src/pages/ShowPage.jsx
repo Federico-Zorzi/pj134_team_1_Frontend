@@ -97,6 +97,7 @@ export default function ShowPage() {
                 </div>
                 {/* Metri Quadrati */}
                 <div className="xs-device col-lg-12 col-md-4 col-sm-6 mt-2">
+                  <i className="fa-solid fa-expand me-2"></i>
                   <strong>Metri quadrati</strong>
                   <p>{property.square_meters}</p>
                 </div>
