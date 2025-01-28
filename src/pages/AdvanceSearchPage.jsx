@@ -95,8 +95,8 @@ export default function AdvanceSearchPage() {
   }, [actualIndex]);
 
   return (
-    <main>
-      <div className="container">
+    <main className="d-flex">
+      <div className="container d-flex flex-column py-4">
         <SearchBar propertiesList={propertiesList} />
 
         {isLoading ? (
@@ -115,18 +115,23 @@ export default function AdvanceSearchPage() {
             </div>
 
             {/* card container */}
-            <div className="row row-cols-1 row-cols-xl-2 g-4 homepage-card-container mb-4">
-              {/* Cards */}
-              {propertiesList.length > 0 &&
-                actualCardsVis.map((property) => {
-                  return (
-                    <AdvancedSearchCard key={property.id} element={property} />
-                  );
-                })}
+            <div className="flex-grow-1">
+              <div className="row row-cols-1 row-cols-xl-2 g-4 homepage-card-container mb-4">
+                {/* Cards */}
+                {propertiesList.length > 0 &&
+                  actualCardsVis.map((property) => {
+                    return (
+                      <AdvancedSearchCard
+                        key={property.id}
+                        element={property}
+                      />
+                    );
+                  })}
+              </div>
             </div>
 
             {propertiesList.length > 0 ? (
-              <div>
+              <div className="pagination-container">
                 <Pagination className="justify-content-center mt-3">
                   {pagItems}
                 </Pagination>

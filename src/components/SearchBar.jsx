@@ -80,7 +80,7 @@ export default function SearchBar({ propertiesList }) {
   return (
     <div>
       <Form>
-        <div className="row mt-4">
+        <div className="row">
           <Form.Group className="col-12 col-md-6 mb-4" controlId="city">
             <Form.Label>
               <i className="fa-solid fa-city icon-style me-2 ms-1"></i>
