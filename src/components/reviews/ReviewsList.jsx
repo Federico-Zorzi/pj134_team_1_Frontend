@@ -26,6 +26,7 @@ export default function ReviewsList() {
   const maxLivingDays = 9999;
 
   const [isLoadingItems, setIsLoadingItems] = useState(false);
+  const [isLoadingFormData, setIsLoadingFormData] = useState(false);
 
   //controllo se lo user è owner per bloccare il form di invio recensioni
   const { userInformation } = userData;
@@ -66,11 +67,13 @@ export default function ReviewsList() {
 
   const handleReviewSubmit = (e) => {
     e.preventDefault();
+    setIsLoadingFormData(true);
 
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
+      setIsLoadingFormData(false);
     }
     setValidated(true);
 
@@ -116,6 +119,7 @@ export default function ReviewsList() {
           // closing form collapsing & resetting validation
           setOpenCollapse(false);
           setValidated(false);
+          setIsLoadingFormData(false);
 
           // reset form fields
           setReviewFormData(defaultReviewsForm);
@@ -282,7 +286,7 @@ export default function ReviewsList() {
                       as={Col}
                       xs={6}
                       className="mb-3"
-                      controlId="check-in"
+                      controlId="checkin"
                     >
                       <Form.Label>
                         <i className="fa-solid fa-calendar-days me-2"></i>
@@ -327,8 +331,14 @@ export default function ReviewsList() {
                     </Form.Group>
                     <Col xs={12} className="text-center">
                       {/* Bottone per inviare la recensione */}
-                      <Button type="submit" variant="success">
-                        Invia recensione
+                      <Button
+                        type="submit"
+                        variant="success"
+                        disabled={isLoadingFormData}
+                      >
+                        {isLoadingFormData
+                          ? "Invio in corso..."
+                          : "Invia recensione"}
                       </Button>
                     </Col>
                   </Row>

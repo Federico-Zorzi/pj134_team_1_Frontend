@@ -126,11 +126,15 @@ export default function AdvanceSearchPage() {
                 })}
             </div>
 
-            <div>
-              <Pagination className="justify-content-center mt-3">
-                {pagItems}
-              </Pagination>
-            </div>
+            {propertiesList.length > 0 ? (
+              <div>
+                <Pagination className="justify-content-center mt-3">
+                  {pagItems}
+                </Pagination>
+              </div>
+            ) : (
+              ""
+            )}
           </>
         )}
       </div>

@@ -36,11 +36,13 @@ export const DataContextProvider = ({ children }) => {
   const [userProperties, setUserProperties] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true);
     if (userInformation.id !== 0) {
       fetch("http://localhost:3000/users/getproperties/" + userInformation.id)
         .then((res) => res.json())
         .then((data) => {
           setUserProperties(data);
+          setIsLoading(false);
         });
     }
   }, [userInformation.id]);
