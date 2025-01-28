@@ -5,15 +5,15 @@ import { useDataContext } from "../context/dataContext";
 
 let initialFormData = {
   title: "",
-  number_of_rooms: "",
-  number_of_beds: "",
-  number_of_bathrooms: "",
-  square_meters: "",
+  number_of_rooms: 0,
+  number_of_beds: 0,
+  number_of_bathrooms: 0,
+  square_meters: 0,
   address: "",
   reference_email: "",
   image: "",
   city: "",
-  property_type: 0,
+  property_type: 1,
   owner_id: 0,
   description: "",
 };
@@ -47,6 +47,8 @@ export default function AddPropertyForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoadingFormData(true);
+
+    console.log(formData);
 
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
@@ -323,15 +325,15 @@ export default function AddPropertyForm() {
             className="align-self-center form-control"
             aria-label="Default select example"
           >
-            <option default value="2">
-              Appartamento
+            <option default value="1">
+              Altro
             </option>
+            <option value="2">Appartamento</option>
             <option value="3">Casa indipendente</option>
             <option value="4">Villa</option>
             <option value="5">Villetta a schiera</option>
             <option value="6">Chalet</option>
             <option value="7">Baita</option>
-            <option value="1">Altro</option>
           </Form.Select>
           <Form.Control.Feedback type="invalid">
             Seleziona il tipo di proprietà.
