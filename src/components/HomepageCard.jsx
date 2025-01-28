@@ -62,6 +62,7 @@ export default function HomepageCard(params) {
           </p>
           <Row className="align-items-end">
             <Col>
+              <i className="fa-solid fa-location-dot icon-style me-2"></i>
               <span className="card-text">{property.address}</span>
             </Col>
             <Col className="text-end">

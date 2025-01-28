@@ -62,28 +62,28 @@ export default function GeneralPropertyCard(params) {
                 <div className="d-flex gap-4 mb-3">
                   {/* Numero stanze */}
                   <div className="card-text">
-                    <i className="fa-solid fa-door-open me-2"></i>
+                    <i className="fa-solid fa-door-open icon-style me-2"></i>
                     {property.number_of_rooms}
                   </div>
                   {/* Numero bagni */}
                   <div className="card-text">
-                    <i className="fa-solid fa-bath me-2"></i>
+                    <i className="fa-solid fa-bath icon-style me-2"></i>
                     {property.number_of_bathrooms}
                   </div>
                   {/* Numero letti */}
                   <div className="card-text">
-                    <i className="fa-solid fa-bed me-2"></i>
+                    <i className="fa-solid fa-bed icon-style me-2"></i>
                     {property.number_of_beds}
                   </div>
                 </div>
                 {/* Indirizzo */}
                 <div className="card-text mb-3">
-                  <i className="fa-solid fa-location-dot me-2"></i>
+                  <i className="fa-solid fa-location-dot icon-style me-2"></i>
                   {property.address}
                 </div>
                 {/* Metri quadrati */}
                 <p className="card-text mq">
-                  <i className="fa-solid fa-expand me-2"></i>
+                  <i className="fa-solid fa-expand icon-style me-2"></i>
                   <strong>Metri quadrati : </strong>
                   {property.square_meters}
                 </p>
