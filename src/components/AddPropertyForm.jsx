@@ -128,7 +128,7 @@ export default function AddPropertyForm() {
       <Row>
         <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="title">
           <Form.Label>
-            <i className="fa-solid fa-building me-2"></i>
+            <i className="fa-solid fa-building icon-style me-2"></i>
             Titolo immobile
           </Form.Label>
           <Form.Control
@@ -146,7 +146,7 @@ export default function AddPropertyForm() {
 
         <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="city">
           <Form.Label>
-            <i className="fa-solid fa-city me-2"></i>
+            <i className="fa-solid fa-city icon-style me-2"></i>
             Città
           </Form.Label>
           <Form.Control
@@ -170,7 +170,7 @@ export default function AddPropertyForm() {
           controlId="address"
         >
           <Form.Label>
-            <i className="fa-solid fa-location-dot me-2"></i>
+            <i className="fa-solid fa-location-dot icon-style me-2"></i>
             Indirizzo completo
           </Form.Label>
           <Form.Control
@@ -188,7 +188,7 @@ export default function AddPropertyForm() {
 
         <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="rooms">
           <Form.Label>
-            <i className="fa-solid fa-door-open me-2"></i>
+            <i className="fa-solid fa-door-open icon-style me-2"></i>
             Numero di stanze
           </Form.Label>
           <Form.Control
@@ -208,7 +208,7 @@ export default function AddPropertyForm() {
 
         <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="beds">
           <Form.Label>
-            <i className="fa-solid fa-bed me-2"></i>
+            <i className="fa-solid fa-bed icon-style me-2"></i>
             Numero di letti
           </Form.Label>
           <Form.Control
@@ -234,7 +234,7 @@ export default function AddPropertyForm() {
           controlId="bathrooms"
         >
           <Form.Label>
-            <i className="fa-solid fa-bath me-2"></i>
+            <i className="fa-solid fa-bath icon-style me-2"></i>
             Numero di bagni
           </Form.Label>
           <Form.Control
@@ -260,7 +260,7 @@ export default function AddPropertyForm() {
           controlId="square-meters"
         >
           <Form.Label>
-            <i className="fa-solid fa-expand me-2"></i>
+            <i className="fa-solid fa-expand icon-style me-2"></i>
             Metri quadrati
           </Form.Label>
           <Form.Control
@@ -280,7 +280,7 @@ export default function AddPropertyForm() {
 
         <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="img">
           <Form.Label>
-            <i className="fa-solid fa-image me-2"></i>
+            <i className="fa-solid fa-image icon-style me-2"></i>
             Immagine
           </Form.Label>
           <Form.Control
@@ -297,7 +297,7 @@ export default function AddPropertyForm() {
 
         <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="Email">
           <Form.Label>
-            <i className="fa-solid fa-envelope me-2"></i>
+            <i className="fa-solid fa-envelope icon-style me-2"></i>
             Email
           </Form.Label>
           <Form.Control
@@ -315,7 +315,7 @@ export default function AddPropertyForm() {
 
         <Form.Group as={Col} xs={6} md={12} className="mb-3 property-type ">
           <Form.Label>
-            <i className="fa-solid fa-building-circle-exclamation me-2"></i>
+            <i className="fa-solid fa-building-circle-exclamation icon-style me-2"></i>
             Tipo di proprietà
           </Form.Label>
           <Form.Select
@@ -341,7 +341,7 @@ export default function AddPropertyForm() {
         </Form.Group>
         <Form.Group as={Col} xs={12} md={12}>
           <Form.Label>
-            <i className="fa-solid fa-book me-2"></i>
+            <i className="fa-solid fa-book icon-style me-2"></i>
             Descrizione
           </Form.Label>
           <Form.Control

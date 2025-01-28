@@ -238,6 +238,10 @@ main {
   width: 100%;
 }
 
+.icon-style {
+  font-size: 20px;
+}
+
 /* REVIEWS ITEMS */
 .cards-review {
   height: 100%;

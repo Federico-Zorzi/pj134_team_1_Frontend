@@ -60,7 +60,7 @@ export default function ShowPage() {
               <div className="row d-flex">
                 {/* Indirizzo*/}
                 <div className="xs-device col-lg-12 col-md-4 col-sm-6  mt-2">
-                  <i className="fa-solid fa-location-dot me-2"></i>
+                  <i className="fa-solid fa-location-dot icon-style me-2"></i>
 
                   <strong>Indirizzo</strong>
                   <p>{property.address}</p>
@@ -68,7 +68,7 @@ export default function ShowPage() {
 
                 {/* Tipologia */}
                 <div className="xs-device col-lg-12 col-md-4 col-sm-6  mt-2">
-                  <i className="fa-solid fa-building me-2"></i>
+                  <i className="fa-solid fa-building icon-style me-2"></i>
 
                   <strong>Tipologia di immobile</strong>
 
@@ -76,34 +76,34 @@ export default function ShowPage() {
                 </div>
                 {/* Numero Stanze */}
                 <div className="xs-device col-lg-12 col-md-4 col-sm-6 mt-2">
-                  <i className="fa-solid fa-door-open me-2"></i>
+                  <i className="fa-solid fa-door-open icon-style me-2"></i>
 
                   <strong>Numero di stanze</strong>
                   <p>{property.number_of_rooms}</p>
                 </div>
                 {/* Numero Bagni */}
                 <div className="xs-device col-lg-12 col-md-4 col-sm-6 mt-2">
-                  <i className="fa-solid fa-bath me-2"></i>
+                  <i className="fa-solid fa-bath icon-style me-2"></i>
 
                   <strong>Numero di bagni</strong>
                   <p>{property.number_of_bathrooms}</p>
                 </div>
                 {/* Numero Letti */}
                 <div className="xs-device col-lg-12 col-md-4 col-sm-6 mt-2">
-                  <i className="fa-solid fa-bed me-2"></i>
+                  <i className="fa-solid fa-bed icon-style me-2"></i>
 
                   <strong>Numero di letti</strong>
                   <p>{property.number_of_beds}</p>
                 </div>
                 {/* Metri Quadrati */}
                 <div className="xs-device col-lg-12 col-md-4 col-sm-6 mt-2">
-                  <i className="fa-solid fa-expand me-2"></i>
+                  <i className="fa-solid fa-expand icon-style me-2"></i>
                   <strong>Metri quadrati</strong>
                   <p>{property.square_meters}</p>
                 </div>
                 {/* Email */}
                 <div className="xs-device col-lg-12 col-md-4 col-sm-6 mt-2 mt-2">
-                  <i className="fa-solid fa-envelope me-2"></i>
+                  <i className="fa-solid fa-envelop icon-style me-2"></i>
 
                   <strong>Email di riferimento</strong>
                   <p>{property.reference_email}</p>
@@ -111,7 +111,7 @@ export default function ShowPage() {
 
                 {/* Descrizione */}
                 <div className="mt-2">
-                  <i className="fa-solid fa-book me-2"></i>
+                  <i className="fa-solid fa-book icon-style me-2"></i>
                   <strong>Descrizione</strong>
                   <p>{property.description}</p>
                 </div>

@@ -85,7 +85,7 @@ export default function SearchBar({ propertiesList }) {
         <div className="row mt-4">
           <Form.Group className="col-12 col-md-6 mb-4" controlId="city">
             <Form.Label>
-              <i className="fa-solid fa-city me-2 ms-1"></i>
+              <i className="fa-solid fa-city icon-style me-2 ms-1"></i>
               Cerca la città che desideri
             </Form.Label>
             <Form.Control
@@ -98,7 +98,7 @@ export default function SearchBar({ propertiesList }) {
           </Form.Group>
           <Form.Group className="col-12 col-md-6 mb-4" controlId="address">
             <Form.Label>
-              <i className="fa-solid fa-location-dot me-2 ms-1"></i>
+              <i className="fa-solid fa-location-dot icon-style me-2 ms-1"></i>
               Cerca l'indirizzo
             </Form.Label>
             <Form.Control
@@ -112,7 +112,7 @@ export default function SearchBar({ propertiesList }) {
 
           <Form.Group className="col-12 col-md-6 mb-4" controlId="rooms">
             <Form.Label>
-              <i className="fa-solid fa-door-open me-2 ms-1"></i>
+              <i className="fa-solid fa-door-open icon-style me-2 ms-1"></i>
               Numero di stanze
             </Form.Label>
             <Form.Control
@@ -127,7 +127,7 @@ export default function SearchBar({ propertiesList }) {
           </Form.Group>
           <Form.Group className="col-12 col-md-6 mb-4" controlId="beds">
             <Form.Label>
-              <i className="fa-solid fa-bed me-2 ms-1"></i>
+              <i className="fa-solid fa-bed icon-style me-2 ms-1"></i>
               Numero di letti
             </Form.Label>
             <Form.Control
