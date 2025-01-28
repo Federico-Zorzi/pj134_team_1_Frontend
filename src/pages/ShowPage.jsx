@@ -13,7 +13,7 @@ export default function ShowPage() {
 
   useEffect(() => {
     fetchShowProperties(id);
-  }, []);
+  }, [id]);
 
   function translatePropertyType(propertyType) {
     switch (propertyType) {

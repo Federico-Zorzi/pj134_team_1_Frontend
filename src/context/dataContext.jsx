@@ -36,8 +36,8 @@ export const DataContextProvider = ({ children }) => {
   const [userProperties, setUserProperties] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
     if (userInformation.id !== 0) {
+      setIsLoading(true);
       fetch("http://localhost:3000/users/getproperties/" + userInformation.id)
         .then((res) => res.json())
         .then((data) => {
@@ -75,6 +75,7 @@ export const DataContextProvider = ({ children }) => {
     fetch(serverUrl + `/${id}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data[0]);
         setProperty(data[0]);
 
         setIsLoading(false);
