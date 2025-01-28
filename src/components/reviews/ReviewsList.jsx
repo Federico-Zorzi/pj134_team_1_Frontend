@@ -111,8 +111,6 @@ export default function ReviewsList() {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("store", data);
-
           // catch reviews data updated
           fetchIndexReviews();
 

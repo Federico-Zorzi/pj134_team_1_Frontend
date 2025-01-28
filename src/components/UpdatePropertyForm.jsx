@@ -31,12 +31,10 @@ export default function UpdatePropertyForm({ propertyData }) {
   }, [userInformation.id, propertyData.id]);
 
   const handleClose = () => {
-    console.log(formData);
     setShow(false);
   };
 
   const handleShow = () => {
-    console.log(formData);
     setShow(true);
   };
 
