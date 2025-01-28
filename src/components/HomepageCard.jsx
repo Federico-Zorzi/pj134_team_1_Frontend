@@ -1,26 +1,41 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 
 export default function HomepageCard(params) {
   const property = params.element;
 
+  //  function debounce
+  function debounce(func, delay) {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        func(...args);
+      }, delay);
+    };
+  }
+
   //   function to add like
   const [like, setLike] = useState(property.likes);
-  const addLike = (id) => {
-    const url = `http://localhost:3000/properties/${id}/addlike`;
-    setLike(like + 1);
-    fetch(url, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  };
+
+  const addLike = useCallback(
+    debounce((id) => {
+      const url = `http://localhost:3000/properties/${id}/addlike`;
+      setLike((prev) => prev + 1);
+      fetch(url, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        });
+    }, 150),
+    []
+  );
 
   function translatePropertyType(propertyType) {
     switch (propertyType) {
