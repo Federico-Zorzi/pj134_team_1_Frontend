@@ -61,7 +61,7 @@ export default function Navbar() {
               <>
                 <li>
                   <NavLink className="nav-link text-center" to="/store">
-                    <FontAwesomeIcon icon={faHouseChimneyMedical} />
+                    <FontAwesomeIcon icon={faHouseChimneyMedical} />{" "}
                     <span className="d-lg-block d-xl-inline">
                       Aggiungi un immobile
                     </span>
@@ -79,7 +79,7 @@ export default function Navbar() {
                     className="nav-link text-center"
                     to="/userproperties"
                   >
-                    <FontAwesomeIcon icon={faBuildingUser} />
+                    <FontAwesomeIcon icon={faBuildingUser} />{" "}
                     <span className="d-lg-block d-xl-inline">
                       I tuoi immobili
                     </span>
@@ -91,7 +91,7 @@ export default function Navbar() {
             )}
           </ul>
 
-          <div className="fs-5 text-white" role="button">
+          <div className="fs-5 text-white text-center" role="button">
             {userInformation.id !== 0 ? (
               <>
                 <span className="navbar-user-icon">
@@ -108,7 +108,7 @@ export default function Navbar() {
                 </button>
               </>
             ) : (
-              <div className="d-flex">
+              <div className="d-flex justify-content-center">
                 <NavLink className="nav-link pe-3" to="/register">
                   <FontAwesomeIcon icon={faUserPen} />{" "}
                   <span className="login-text"> Register</span>
