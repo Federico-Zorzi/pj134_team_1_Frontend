@@ -1,21 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Spinner, Alert } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 export default function PropertyDeleteButton({ propertyId }) {
   const navigate = useNavigate();
-  const { userData } = useDataContext();
+  const { userData, setProperty } = useDataContext();
   const { userInformation } = userData;
   const [isOwner, setIsOwner] = useState(false);
+  const [loading, setLoading] = useState(true); // Track loading state
+  const [error, setError] = useState(""); // Track error state
 
   useEffect(() => {
     const checkOwnership = async () => {
-      const ownerStatus = await isUserPropertyOwner(
-        userInformation.id,
-        propertyId
-      );
-      setIsOwner(ownerStatus);
+      try {
+        const ownerStatus = await isUserPropertyOwner(
+          userInformation.id,
+          propertyId
+        );
+        setIsOwner(ownerStatus);
+        setLoading(false); // Stop loading once the check is done
+      } catch (err) {
+        setError("Unable to verify ownership.");
+        setLoading(false);
+      }
     };
 
     checkOwnership();
@@ -26,6 +34,7 @@ export default function PropertyDeleteButton({ propertyId }) {
   const handleShow = () => setShowDeleteModal(true);
 
   function handleDeleteButtonClick(propertyId) {
+    setLoading(true); // Start loading when deletion begins
     fetch(`http://localhost:3000/properties/${propertyId}/delete`, {
       method: "DELETE",
     })
@@ -37,7 +46,12 @@ export default function PropertyDeleteButton({ propertyId }) {
       })
       .then((data) => {
         setShowDeleteModal(false);
-        navigate("/");
+        setProperty([]); // Clear property context or update it accordingly
+        navigate("/"); // Redirect after deletion
+      })
+      .catch((err) => {
+        setError("Failed to delete the property. Please try again later.");
+        setLoading(false);
       });
   }
 
@@ -67,7 +81,7 @@ export default function PropertyDeleteButton({ propertyId }) {
 
   return (
     <>
-      {isOwner ? (
+      {isOwner && !loading ? (
         <>
           <Button
             className="col-lg-6 col-md-6 col-sm-6 rounded-pill"
@@ -88,8 +102,9 @@ export default function PropertyDeleteButton({ propertyId }) {
               <Button
                 variant="danger"
                 onClick={() => handleDeleteButtonClick(propertyId)}
+                disabled={loading} // Disable delete button while loading
               >
-                Elimina
+                {loading ? <Spinner animation="border" size="sm" /> : "Elimina"}
               </Button>
             </Modal.Footer>
           </Modal>
@@ -97,6 +112,8 @@ export default function PropertyDeleteButton({ propertyId }) {
       ) : (
         ""
       )}
+      {error && <Alert variant="danger">{error}</Alert>}{" "}
+      {/* Display error if any */}
     </>
   );
 }

@@ -126,6 +126,7 @@ export const DataContextProvider = ({ children }) => {
     userData,
     isLoading,
     setIsLoading,
+    setProperty,
   };
 
   return (
