@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
 import { useState, useEffect } from "react";
 import { useDataContext } from "../context/dataContext";
+import { useLayoutContext } from "../context/layoutContext";
 import { Row, Col } from "react-bootstrap";
 
 const initialFormData = {
@@ -38,6 +39,7 @@ function translatePropertyType(propertyType) {
 export default function SearchBar({ propertiesList }) {
   const [formData, setFormData] = useState(initialFormData);
   const { fetchFilterProperties, setIsLoading } = useDataContext();
+  const { toggleDarkMode } = useLayoutContext();
   const propertyTypeList = [2, 3, 4, 5, 6, 7];
 
   const handleIconClick = (e) => {
@@ -143,7 +145,7 @@ export default function SearchBar({ propertiesList }) {
             <Row className="badge-container row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-6 g-2">
               {propertyTypeList.map((badge, index) => {
                 return (
-                  <Col key={index}>
+                  <Col key={index} data-dark-mode={toggleDarkMode}>
                     <button
                       onClick={handleIconClick}
                       name="propertyType"
@@ -152,9 +154,9 @@ export default function SearchBar({ propertiesList }) {
                       className={
                         formData.propertyType == badge
                           ? ` active ` +
-                            `w-100 d-flex align-items-center justify-content-center flex-column btn`
+                            `w-100 d-flex align-items-center justify-content-center flex-column btn type-properties-badge`
                           : ` btn-light ` +
-                            `w-100 d-flex align-items-center justify-content-center flex-column btn`
+                            `w-100 d-flex align-items-center justify-content-center flex-column btn type-properties-badge`
                       }
                     >
                       {/* icons for badges */}

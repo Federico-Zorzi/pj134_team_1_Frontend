@@ -215,7 +215,7 @@ main {
 .page-link {
   background-color: #38393a;
   border-color: #212529;
-  color: #00e167;
+  color: var(--logo-color);
   font-size: 1.2rem;
 }
 
@@ -225,8 +225,8 @@ main {
 }
 
 .page-item.active .page-link {
-  background-color: #00e167;
-  border-color: #00e167;
+  background-color: var(--logo-color);
+  border-color: var(--logo-color);
   color: #38393a;
 }
 
@@ -249,6 +249,12 @@ main {
 
 .card-text.mq {
   flex-grow: 1;
+}
+
+[data-dark-mode="true"] .type-properties-badge.btn.active {
+  color: black;
+  background-color: var(--logo-color);
+  border-color: var(--logo-color);
 }
 
 /* ShowPage Image */
