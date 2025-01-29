@@ -72,7 +72,7 @@ export default function SearchBar({ propertiesList }) {
     const debounceTimer = setTimeout(() => {
       setIsLoading(true);
       fetchFilterProperties(formData);
-    }, 300);
+    }, 500);
 
     return () => clearTimeout(debounceTimer);
   }, [formData]);

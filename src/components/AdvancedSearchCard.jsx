@@ -45,7 +45,7 @@ export default function AdvancedSearchCard(params) {
       })
         .then((res) => res.json())
         .then((data) => {});
-    }, 150),
+    }, 300),
     []
   );
 

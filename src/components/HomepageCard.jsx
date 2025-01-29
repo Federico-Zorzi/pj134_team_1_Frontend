@@ -31,7 +31,7 @@ export default function HomepageCard(params) {
       })
         .then((res) => res.json())
         .then((data) => {});
-    }, 150),
+    }, 300),
     []
   );
 
