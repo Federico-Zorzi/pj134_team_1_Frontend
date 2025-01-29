@@ -2,11 +2,13 @@ import { useDataContext } from "../context/dataContext";
 import GeneralPropertyCard from "../components/GeneralPropertyCard";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useLayoutContext } from "../context/layoutContext";
 
 export default function UserPropertiesPage() {
   const navigate = useNavigate();
   const { userData } = useDataContext();
   const { userProperties, userInformation, isLoading } = userData;
+  const { toggleDarkMode } = useLayoutContext();
 
   useEffect(() => {
     if (userInformation.isOwner === 0) {
@@ -15,7 +17,7 @@ export default function UserPropertiesPage() {
   }, [userInformation.isOwner]);
 
   return (
-    <main>
+    <main data-dark-mode={toggleDarkMode}>
       <div className="container mb-5">
         <h1 className="fw-bold mb-4 homepage-most-searched pt-4 pb-3 text-center">
           I tuoi immobili

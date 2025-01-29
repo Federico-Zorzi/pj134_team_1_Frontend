@@ -2,10 +2,12 @@ import { useRef, useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import emailjs from "@emailjs/browser";
 import { useDataContext } from "../context/dataContext";
+import { useLayoutContext } from "../context/layoutContext";
 
 export default function SendMailForm({ property }) {
   const { userData } = useDataContext();
   const { userInformation } = userData;
+  const { toggleDarkMode } = useLayoutContext();
   const [isOwner, setIsOwner] = useState(false);
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -60,6 +62,7 @@ export default function SendMailForm({ property }) {
         onHide={() => setShow(false)}
         data-bs-keyboard="false"
         tabIndex="-1"
+        data-dark-mode={toggleDarkMode}
       >
         <div className="modal-content">
           <form ref={form} onSubmit={sendEmail}>

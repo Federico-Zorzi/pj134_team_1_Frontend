@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import HomepageCard from "../components/HomepageCard";
 import HomepageCarousel from "../components/HomepageCarousel";
 
-import { Col, Row } from "react-bootstrap";
-
 import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { useLayoutContext } from "../context/layoutContext";
 
 export default function HomePage() {
   // take data from global context
@@ -17,6 +17,8 @@ export default function HomePage() {
     fetchIndexProperties,
     isLoading,
   } = useDataContext();
+
+  const { toggleDarkMode } = useLayoutContext();
 
   useEffect(fetchIndexProperties, []);
 
@@ -41,7 +43,7 @@ export default function HomePage() {
   };
 
   return (
-    <main>
+    <main data-dark-mode={toggleDarkMode}>
       <div className="container">
         <h1 className="fw-bold text-center text-shadow mt-4">
           Prenota{" "}

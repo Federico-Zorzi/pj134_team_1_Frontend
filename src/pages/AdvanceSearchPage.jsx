@@ -5,12 +5,15 @@ import AdvancedSearchCard from "../components/AdvancedSearchCard";
 import SearchBar from "../components/SearchBar";
 import { Pagination } from "react-bootstrap";
 
+import { useLayoutContext } from "../context/layoutContext";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesRight, faAnglesLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function AdvanceSearchPage() {
   // take data from global context
   const { propertiesList, fetchIndexProperties, isLoading } = useDataContext();
+  const { toggleDarkMode } = useLayoutContext();
 
   useEffect(fetchIndexProperties, []);
 
@@ -95,7 +98,7 @@ export default function AdvanceSearchPage() {
   }, [actualIndex]);
 
   return (
-    <main className="d-flex">
+    <main className="d-flex" data-dark-mode={toggleDarkMode}>
       <div className="container d-flex flex-column py-4">
         <SearchBar propertiesList={propertiesList} />
 
@@ -109,7 +112,11 @@ export default function AdvanceSearchPage() {
           <>
             {/* Risultati Trovati */}
             <div className="d-flex justify-content-center my-4">
-              <h5 className="text-secondary fs-6">
+              <h5
+                className={
+                  (toggleDarkMode ? "text-light" : "text-secondary") + " fs-6"
+                }
+              >
                 Risultati trovati: {propertiesList.length}{" "}
               </h5>
             </div>
