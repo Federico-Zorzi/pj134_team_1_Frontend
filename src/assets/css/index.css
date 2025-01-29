@@ -152,7 +152,10 @@ main {
 
 .homepage-card {
   height: 100%;
-  border: none;
+}
+
+[data-dark-mode="true"] .homepage-card {
+  border-color: var(--dark-text);
 }
 
 .homepage-card-body {
@@ -239,7 +242,10 @@ main {
 .search-card-link,
 .search-card-grid {
   height: 100%;
-  border: none;
+}
+
+[data-dark-mode="true"] .search-card {
+  border-color: var(--dark-text);
 }
 
 .card-body-search {
