@@ -16,7 +16,7 @@ export default function UserPropertiesPage() {
 
   return (
     <main>
-      <div className="container">
+      <div className="container mb-5">
         <h1 className="fw-bold mb-4 homepage-most-searched pt-4 pb-3 text-center">
           I tuoi immobili
         </h1>
