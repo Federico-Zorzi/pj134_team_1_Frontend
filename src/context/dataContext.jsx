@@ -45,7 +45,7 @@ export const DataContextProvider = ({ children }) => {
           setIsLoading(false);
         });
     }
-  }, [userInformation.id, property]);
+  }, [userInformation.id, property, propertiesList]);
 
   const fetchIndexProperties = () => {
     setIsLoading(true);
