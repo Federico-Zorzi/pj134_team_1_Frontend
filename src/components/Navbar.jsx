@@ -42,21 +42,29 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav mx-auto gap-lg-5">
             <li className="nav-item">
-              <NavLink className="nav-link" aria-current="page" to="/">
-                <FontAwesomeIcon icon={faHouse} /> Home
+              <NavLink
+                className="nav-link text-center"
+                aria-current="page"
+                to="/"
+              >
+                <FontAwesomeIcon icon={faHouse} />{" "}
+                <span className="d-lg-block d-xl-inline">Home</span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/advanceSearch">
-                <FontAwesomeIcon icon={faMagnifyingGlass} /> Cerca
+              <NavLink className="nav-link text-center" to="/advanceSearch">
+                <FontAwesomeIcon icon={faMagnifyingGlass} />{" "}
+                <span className="d-lg-block d-xl-inline">Cerca</span>
               </NavLink>
             </li>
             {userInformation.id !== 0 ? (
               <>
                 <li>
-                  <NavLink className="nav-link" to="/store">
-                    <FontAwesomeIcon icon={faHouseChimneyMedical} /> Aggiungi un
-                    immobile
+                  <NavLink className="nav-link text-center" to="/store">
+                    <FontAwesomeIcon icon={faHouseChimneyMedical} />{" "}
+                    <span className="d-lg-block d-xl-inline">
+                      Aggiungi un immobile
+                    </span>
                   </NavLink>
                 </li>
               </>
@@ -67,8 +75,14 @@ export default function Navbar() {
             {userInformation.isOwner ? (
               <>
                 <li>
-                  <NavLink className="nav-link" to="/userproperties">
-                    <FontAwesomeIcon icon={faBuildingUser} /> I tuoi immobili
+                  <NavLink
+                    className="nav-link text-center"
+                    to="/userproperties"
+                  >
+                    <FontAwesomeIcon icon={faBuildingUser} />{" "}
+                    <span className="d-lg-block d-xl-inline">
+                      I tuoi immobili
+                    </span>
                   </NavLink>
                 </li>
               </>
@@ -77,7 +91,7 @@ export default function Navbar() {
             )}
           </ul>
 
-          <div className="fs-5 text-white" role="button">
+          <div className="fs-5 text-white text-center" role="button">
             {userInformation.id !== 0 ? (
               <>
                 <span className="navbar-user-icon">
@@ -94,7 +108,7 @@ export default function Navbar() {
                 </button>
               </>
             ) : (
-              <div className="d-flex">
+              <div className="d-flex justify-content-center">
                 <NavLink className="nav-link pe-3" to="/register">
                   <FontAwesomeIcon icon={faUserPen} />{" "}
                   <span className="login-text"> Register</span>

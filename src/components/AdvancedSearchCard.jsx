@@ -44,9 +44,7 @@ export default function AdvancedSearchCard(params) {
         },
       })
         .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-        });
+        .then((data) => {});
     }, 150),
     []
   );
@@ -82,7 +80,6 @@ export default function AdvancedSearchCard(params) {
           <div className="row g-0 search-card-grid">
             <div className="col-md-6">
               <img
-                onClick={() => console.log(property)}
                 src={`/img_properties/${property.image}`}
                 className="img-fluid rounded-start h-100 w-100"
                 alt="..."

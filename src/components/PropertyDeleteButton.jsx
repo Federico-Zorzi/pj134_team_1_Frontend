@@ -84,7 +84,7 @@ export default function PropertyDeleteButton({ propertyId }) {
       {isOwner && !loading ? (
         <>
           <Button
-            className="col-lg-6 col-md-6 col-sm-6 rounded-pill"
+            className="xs-device-btn col-lg-6 col-md-6 col-sm-6 rounded-pill"
             variant="danger"
             onClick={handleShow}
           >

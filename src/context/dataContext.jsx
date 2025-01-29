@@ -75,7 +75,6 @@ export const DataContextProvider = ({ children }) => {
     fetch(serverUrl + `/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data[0]);
         setProperty(data[0]);
 
         setIsLoading(false);

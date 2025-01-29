@@ -30,9 +30,7 @@ export default function HomepageCard(params) {
         },
       })
         .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-        });
+        .then((data) => {});
     }, 150),
     []
   );
@@ -66,7 +64,6 @@ export default function HomepageCard(params) {
         to={`/${property.id}`}
       >
         <img
-          onClick={() => console.log(property)}
           src={`/img_properties/${property.image}`}
           className="card-img-top img-homepage"
         />

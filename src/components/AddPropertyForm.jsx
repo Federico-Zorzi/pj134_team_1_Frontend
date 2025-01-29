@@ -48,8 +48,6 @@ export default function AddPropertyForm() {
     e.preventDefault();
     setIsLoadingFormData(true);
 
-    console.log(formData);
-
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
@@ -102,7 +100,6 @@ export default function AddPropertyForm() {
         .then((res) => {
           if (!res.ok) {
             setIsLoadingFormData(false);
-            console.log(res);
 
             throw new Error("Failed to submit the form");
           }
