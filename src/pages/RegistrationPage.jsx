@@ -98,8 +98,20 @@ export default function RegistrationPage() {
   return (
     <main data-dark-mode={toggleDarkMode}>
       <Form onSubmit={handleSubmit}>
-        <div className="border border-dark w-lg-device w-md-device w-sm-device mx-auto rounded-5 pt-4 pb-4 px-3 bg-dark text-white mt-5">
-          <p className="text-white text-center fs-2 pb-3 fw-bold">
+        <div
+          className={
+            "border w-lg-device w-md-device w-sm-device mx-auto rounded-5 pt-4 pb-4 px-3 mt-5" +
+            (toggleDarkMode
+              ? " bg-light text-dark border-light"
+              : " bg-dark text-white border-dark")
+          }
+        >
+          <p
+            className={
+              "text-center fs-2 pb-3 fw-bold" +
+              (toggleDarkMode ? " text-dark" : " text-white")
+            }
+          >
             Registrazione
           </p>
           <Form.Group className="mb-3" controlId="name">
@@ -161,17 +173,20 @@ export default function RegistrationPage() {
           )}
           <div className="mb-5">
             <NavLink
-              to="/register"
+              to="/login"
               className="nav-link text-decoration-none text-secondary fw-bold text-center pt-2"
             >
               Hai già un account?
-              <span className="text-white"> Login.</span>
+              <span className={toggleDarkMode ? " text-dark" : " text-white"}>
+                {" "}
+                Login.
+              </span>
             </NavLink>
           </div>
           <div className="d-flex justify-content-center mt-3">
             <button
               type="submit"
-              className="btn logo-green text-white p-2 w-100 rounded-pill"
+              className="btn btn-success text-white p-2 w-100 rounded-pill"
               disabled={loading}
             >
               {loading ? "Registrazione..." : "Registrati"}
