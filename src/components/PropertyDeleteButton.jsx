@@ -2,11 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
 import { Button, Modal, Spinner, Alert } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import { useLayoutContext } from "../context/layoutContext";
 
 export default function PropertyDeleteButton({ propertyId }) {
   const navigate = useNavigate();
   const { userData, setProperty } = useDataContext();
   const { userInformation } = userData;
+  const { toggleDarkMode } = useLayoutContext();
   const [isOwner, setIsOwner] = useState(false);
   const [loading, setLoading] = useState(true); // Track loading state
   const [error, setError] = useState(""); // Track error state
@@ -90,7 +92,11 @@ export default function PropertyDeleteButton({ propertyId }) {
           >
             Cancella l'immobile
           </Button>
-          <Modal show={showDeleteModal} onHide={handleClose}>
+          <Modal
+            show={showDeleteModal}
+            onHide={handleClose}
+            data-dark-mode={toggleDarkMode}
+          >
             <Modal.Header closeButton>
               <Modal.Title>Eliminazione immobile</Modal.Title>
             </Modal.Header>

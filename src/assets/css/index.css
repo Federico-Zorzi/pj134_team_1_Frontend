@@ -1,5 +1,7 @@
 :root {
   --logo-color: #00e167;
+  --dark-text: #212529;
+  --light-text: #ffffff;
 }
 
 * {
@@ -23,6 +25,16 @@ a {
 
 main {
   flex-grow: 1;
+}
+
+[data-dark-mode="false"] {
+  background-color: var(--light-text);
+  color: var(--dark-text);
+}
+
+[data-dark-mode="true"] {
+  background-color: rgb(42, 45, 48);
+  color: var(--light-text);
 }
 
 /* LOADER */
@@ -79,6 +91,17 @@ main {
   font-size: 1.4rem;
 }
 
+.dark-mode-btn {
+  background-color: var(--dark-text);
+  border: none;
+}
+
+.dark-mode-btn:hover,
+.dark-mode-btn.btn:active {
+  background-color: var(--dark-text);
+  border: none;
+}
+
 /* HOMEPAGE */
 .text-shadow {
   background-color: transparent;
@@ -133,6 +156,7 @@ main {
 
 .homepage-card {
   height: 100%;
+  border: none;
 }
 
 .homepage-card-body {
@@ -219,6 +243,7 @@ main {
 .search-card-link,
 .search-card-grid {
   height: 100%;
+  border: none;
 }
 
 .card-body-search {
@@ -240,6 +265,23 @@ main {
 
 .icon-style {
   font-size: 20px;
+}
+
+[data-dark-mode="false"] .modal-content {
+  background-color: white;
+  color: var(--dark-text);
+}
+
+[data-dark-mode="true"] .modal-content {
+  background-color: var(--dark-text);
+  color: var(--light-text);
+}
+
+[data-dark-mode="false"] .btn-close {
+  --bs-btn-close-color: var(--dark-text);
+}
+[data-dark-mode="true"] .btn-close {
+  filter: var(--bs-btn-close-white-filter);
 }
 
 /* REVIEWS ITEMS */
@@ -281,6 +323,7 @@ main {
 
 .homepage-carousel .carousel-caption2 {
   background-color: rgb(255, 255, 255);
+  color: var(--dark-text);
   border-radius: 15px;
   border-start-end-radius: 0px;
   top: 10px;
@@ -291,26 +334,56 @@ main {
 }
 
 /* STORE PROPERTIES  */
-.custom-button {
+[data-dark-mode="false"] .custom-button {
   border-color: rgb(33 37 41);
   background-color: rgb(33 37 41);
+  color: var(--light-text);
 }
 
-.custom-button:hover {
-  background-color: rgb(33 37 41);
-  border-color: rgb(33 37 41);
+[data-dark-mode="true"] .custom-button {
+  border-color: var(--light-text);
+  background-color: var(--light-text);
+  color: var(--dark-text);
+}
+
+[data-dark-mode="false"] .custom-button:hover {
+  background-color: var(--dark-text);
+  border-color: var(--dark-text);
+  color: var(--light-text);
+
   transform: scale(1.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-button.custom-button:focus,
-button.custom-button:active,
-button.custom-button:focus-visible {
+[data-dark-mode="true"] .custom-button:hover {
+  background-color: var(--light-text);
+  border-color: var(--light-text);
+  color: var(--dark-text);
+
+  transform: scale(1.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+[data-dark-mode="false"] button.custom-button:focus,
+[data-dark-mode="false"] button.custom-button:active,
+[data-dark-mode="false"] button.custom-button:focus-visible {
   outline: none !important;
   box-shadow: none !important;
-  background-color: rgb(33 37 41) !important;
-  border-color: rgb(33 37 41) !important;
+  background-color: var(--dark-text) !important;
+  border-color: var(--dark-text) !important;
+  color: var(--light-text);
+}
+
+[data-dark-mode="true"] button.custom-button:focus,
+[data-dark-mode="true"] button.custom-button:active,
+[data-dark-mode="true"] button.custom-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: var(--light-text) !important;
+  border-color: var(--light-text) !important;
+  color: var(--dark-text);
 }
 
 /* Breakpoint per smartphone (portrait) */

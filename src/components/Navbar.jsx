@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
+import { Button } from "react-bootstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,11 +12,17 @@ import {
   faUserPen,
   faUserPlus,
   faArrowRightFromBracket,
+  faSun,
+  faMoon,
 } from "@fortawesome/free-solid-svg-icons";
+
+import { useLayoutContext } from "../context/layoutContext";
 
 export default function Navbar() {
   const { userData } = useDataContext();
   const { initialUserData, userInformation, setUserInformation } = userData;
+
+  const { toggleDarkMode, setToggleDarkMode } = useLayoutContext();
 
   const userLogout = () => {
     setUserInformation(initialUserData);
@@ -29,7 +36,7 @@ export default function Navbar() {
         </NavLink>
 
         <button
-          className="navbar-toggler"
+          className="navbar-toggler me-2"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -39,6 +46,7 @@ export default function Navbar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav mx-auto gap-lg-5">
             <li className="nav-item">
@@ -100,7 +108,7 @@ export default function Navbar() {
                 <span className="navbar-user-name me-3">
                   {userInformation.name}
                 </span>
-                <button className="logout-btn" onClick={userLogout}>
+                <button className="logout-btn me-2" onClick={userLogout}>
                   <FontAwesomeIcon
                     className="logout-icon"
                     icon={faArrowRightFromBracket}
@@ -114,7 +122,7 @@ export default function Navbar() {
                   <span className="login-text"> Register</span>
                 </NavLink>
                 {/* <FontAwesomeIcon icon={faUser} className="me-2" /> */}
-                <NavLink className="nav-link" to="/login">
+                <NavLink className="nav-link me-2" to="/login">
                   <FontAwesomeIcon icon={faUser} />{" "}
                   <span className="login-text"> Login</span>
                 </NavLink>
@@ -122,6 +130,19 @@ export default function Navbar() {
             )}
           </div>
         </div>
+
+        <Button
+          className="dark-mode-btn"
+          variant="dark"
+          onClick={() => {
+            setToggleDarkMode(!toggleDarkMode);
+          }}
+        >
+          <FontAwesomeIcon
+            icon={toggleDarkMode ? faSun : faMoon}
+            className="fa-2xl"
+          />
+        </Button>
       </div>
     </nav>
   );

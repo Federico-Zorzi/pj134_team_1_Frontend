@@ -153,7 +153,7 @@ export default function SearchBar({ propertiesList }) {
                         formData.propertyType == badge
                           ? ` active ` +
                             `w-100 d-flex align-items-center justify-content-center flex-column btn`
-                          : ` btn-light` +
+                          : ` btn-light ` +
                             `w-100 d-flex align-items-center justify-content-center flex-column btn`
                       }
                     >

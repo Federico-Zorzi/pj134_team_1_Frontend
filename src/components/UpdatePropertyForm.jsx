@@ -5,10 +5,13 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+import { useLayoutContext } from "../context/layoutContext";
+
 export default function UpdatePropertyForm({ propertyData }) {
   const { id } = useParams();
   const { userData, fetchShowProperties } = useDataContext();
   const { userInformation } = userData;
+  const { toggleDarkMode } = useLayoutContext();
   const [show, setShow] = useState(false);
   const [formData, setFormData] = useState([]);
   const [isOwner, setIsOwner] = useState(false);
@@ -118,16 +121,20 @@ export default function UpdatePropertyForm({ propertyData }) {
       {isOwner ? (
         <>
           <Button
-            variant="dark"
+            variant={toggleDarkMode ? "light" : "dark"}
             className="col-lg-6 col-md-6 col-sm-6 rounded-pill"
             onClick={handleShow}
           >
             Modifica l'immobile
           </Button>
 
-          <Modal show={show} onHide={handleClose}>
+          <Modal
+            show={show}
+            onHide={handleClose}
+            data-dark-mode={toggleDarkMode}
+          >
             <Modal.Header closeButton>
-              <Modal.Title className="fs-6">
+              <Modal.Title className="fs-6" data-dark-mode={toggleDarkMode}>
                 Assicurati che le modifiche fatte rispecchino la realtà
               </Modal.Title>
             </Modal.Header>

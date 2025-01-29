@@ -6,6 +6,8 @@ import { useDataContext } from "../../context/dataContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
+import { useLayoutContext } from "../../context/layoutContext";
+
 import ReviewItem from "./ReviewItem";
 
 export default function ReviewsList() {
@@ -20,6 +22,7 @@ export default function ReviewsList() {
   const { id } = useParams();
 
   const { userData } = useDataContext();
+  const { toggleDarkMode } = useLayoutContext();
   const minVote = 1;
   const maxVote = 5;
   const minLivingDays = 1;
@@ -165,7 +168,7 @@ export default function ReviewsList() {
             Recensioni degli Ospiti
             <i className="fa-solid fa-pen-to-square ms-2"></i>
           </h3>
-          <p className="text-secondary">
+          <p className={toggleDarkMode ? "text-light" : "text-secondary"}>
             Le recensioni saranno controllate da uno staff prima di essere
             pubblicate
           </p>
@@ -187,7 +190,7 @@ export default function ReviewsList() {
                     onClick={() => setOpenCollapse(!openCollapse)}
                     aria-controls="collapse-form-reviews"
                     aria-expanded={openCollapse}
-                    className="bg-dark border-dark"
+                    variant={toggleDarkMode ? "light" : "dark"}
                   >
                     <FontAwesomeIcon icon={faPlus} className="me-1" /> Aggiungi
                     Recensione

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { useDataContext } from "../context/dataContext";
+import { useLayoutContext } from "../context/layoutContext";
 
 const initialFormData = {
   name: "",
@@ -16,6 +17,8 @@ export default function RegistrationPage() {
   const [formMessage, setFormMessage] = useState("");
   const { userData } = useDataContext();
   const { userInformation, setUserInformation } = userData;
+
+  const { toggleDarkMode } = useLayoutContext();
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -93,7 +96,7 @@ export default function RegistrationPage() {
   };
 
   return (
-    <main>
+    <main data-dark-mode={toggleDarkMode}>
       <Form onSubmit={handleSubmit}>
         <div className="border border-dark w-lg-device w-md-device w-sm-device mx-auto rounded-5 pt-4 pb-4 px-3 bg-dark text-white mt-5">
           <p className="text-white text-center fs-2 pb-3 fw-bold">

@@ -356,13 +356,13 @@ export default function AddPropertyForm() {
       </Row>
 
       <div className="d-flex justify-content-center mt-4">
-        <Button
-          className="custom-button"
+        <button
+          className="btn custom-button"
           type="submit"
           disabled={isLoadingFormData}
         >
           {isLoadingFormData ? "Invio in corso..." : "Invia immobile"}
-        </Button>
+        </button>
       </div>
     </Form>
   );

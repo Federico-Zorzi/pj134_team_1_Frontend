@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
+import { useLayoutContext } from "../context/layoutContext";
 import ReviewsList from "../components/reviews/ReviewsList";
 import UpdatePropertyForm from "../components/UpdatePropertyForm";
 import SendMailForm from "../components/SendMailForm";
@@ -10,6 +11,7 @@ export default function ShowPage() {
   const { id } = useParams();
   const { property, fetchShowProperties, isLoading, setIsLoading } =
     useDataContext();
+  const { toggleDarkMode } = useLayoutContext();
 
   useEffect(() => {
     fetchShowProperties(id);
@@ -37,7 +39,7 @@ export default function ShowPage() {
   }
 
   return (
-    <main>
+    <main data-dark-mode={toggleDarkMode}>
       {isLoading ? (
         <div className="d-flex spinner-container justify-content-center">
           <div className="spinner-border" role="status">
