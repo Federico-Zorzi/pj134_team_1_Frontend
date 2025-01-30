@@ -100,6 +100,15 @@ export default function AdvanceSearchPage() {
   return (
     <main className="d-flex" data-dark-mode={toggleDarkMode}>
       <div className="container d-flex flex-column py-4">
+        <div className="text-center mt-4 mb-5">
+          <i
+            className="fa-solid fa-building icon-style me-3 "
+            id="icon-search-title"
+          ></i>
+          <h1 className="text-center mt-4 mb-5 d-inline">
+            Cerca l'immobile che desideri
+          </h1>
+        </div>
         <SearchBar propertiesList={propertiesList} />
 
         {isLoading ? (

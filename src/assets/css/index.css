@@ -263,6 +263,9 @@ main {
   border-color: var(--logo-color);
 }
 
+#icon-search-title {
+  font-size: 40px;
+}
 /* ShowPage Image */
 
 .size-image {
