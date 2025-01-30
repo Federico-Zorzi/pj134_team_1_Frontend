@@ -6,6 +6,7 @@ import ReviewsList from "../components/reviews/ReviewsList";
 import UpdatePropertyForm from "../components/UpdatePropertyForm";
 import SendMailForm from "../components/SendMailForm";
 import PropertyDeleteButton from "../components/PropertyDeleteButton";
+import Breadcrumb from "../components/BreadCrumb";
 
 export default function ShowPage() {
   const { id } = useParams();
@@ -48,6 +49,7 @@ export default function ShowPage() {
         </div>
       ) : (
         <div className="container mt-5">
+          <Breadcrumb pageName={property.title} />
           <h1 className="my-3">{property.title}</h1>
           <div className="row d-flex">
             {/* Immagine */}
