@@ -409,7 +409,7 @@ main {
 /* Breackpoint xs-device */
 @media (max-width: 576px) {
   .xs-device {
-    width: 240px;
+    width: 50%;
   }
   .xs-device-btn {
     width: 100%;
@@ -417,12 +417,20 @@ main {
   .w-sm-device {
     width: 350px;
   }
+
+  .xs-detail {
+    display: none;
+  }
 }
 
 /* Breackpoint xs-device */
 @media (min-width: 576px) {
   .xs-device {
     width: 240px;
+  }
+
+  .w-sm {
+    width: 50%;
   }
 
   .w-sm-device {
@@ -435,11 +443,25 @@ main {
   .w-md-device {
     width: 350px;
   }
+  .w-md {
+    width: 33%;
+  }
 }
 
 /* Breackpoint lg-device */
 @media (min-width: 992px) {
   .w-lg-device {
     width: 500px;
+  }
+
+  .w-lg {
+    width: 33%;
+  }
+}
+
+/* Breackpoint xl-device */
+@media (min-width: 1200px) {
+  .w-xl {
+    width: 50%;
   }
 }
