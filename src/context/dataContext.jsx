@@ -1,3 +1,4 @@
+import { text } from "@fortawesome/fontawesome-svg-core";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const DataContext = createContext();
@@ -81,13 +82,67 @@ export const DataContextProvider = ({ children }) => {
       });
   };
 
+  const spacingFormat = (text) => {
+    let formattedText = "";
+    for (let i = 0; i < text.length; i++) {
+      if (text[i] === " ") {
+        formattedText += "%20";
+      } else formattedText += text[i];
+    }
+    return formattedText;
+  };
+
   const fetchFilterProperties = async (formFilterData) => {
     try {
       const queryParams = new URLSearchParams();
 
+      /*
       if (formFilterData.city) queryParams.append("city", formFilterData.city);
-      if (formFilterData.address)
-        queryParams.append("address", formFilterData.address);
+      if (formFilterData.address) queryParams.append("address", formFilterData.address); 
+      */
+
+      async function getCoordsFromAddress({
+        number,
+        streetName,
+        municipality,
+        postalCode,
+      }) {
+        const url = `https://api.tomtom.com/search/2/structuredGeocode.json?countryCode=IT&streetNumber=${number}&streetName=${streetName}&municipality=${municipality}&postalCode=${postalCode}&view=Unified&key=Wd3Yh5F6xZhjZ0ipPGN7tuRLcxHRnPGe`;
+
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          const { results } = data;
+
+          const defPoint = results.filter(
+            (point) =>
+              point.address.streetName.toLowerCase() ===
+                formFilterData.address.toLowerCase() &&
+              point.address.municipality.toLowerCase() ===
+                formFilterData.city.toLowerCase()
+          );
+
+          console.log(defPoint);
+        } catch (error) {
+          console.error("Error fetching coordinates:", error);
+        }
+      }
+
+      const fullAddress = {
+        number: formFilterData.numAddress,
+        streetName: spacingFormat(formFilterData.address),
+        municipality: spacingFormat(formFilterData.city),
+        postalCode: formFilterData.zipCode,
+      };
+
+      if (
+        formFilterData.address &&
+        formFilterData.zipCode &&
+        formFilterData.city
+      ) {
+        getCoordsFromAddress(fullAddress);
+      }
+
       if (formFilterData.nRooms)
         queryParams.append("number_of_rooms", formFilterData.nRooms);
       if (formFilterData.nBeds)

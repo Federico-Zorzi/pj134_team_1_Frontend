@@ -8,6 +8,8 @@ import { Row, Col } from "react-bootstrap";
 const initialFormData = {
   city: "",
   address: "",
+  zipCode: "",
+  numAddress: "",
   nRooms: "",
   nBeds: "",
   propertyType: 0,
@@ -83,7 +85,8 @@ export default function SearchBar({ propertiesList }) {
     <div>
       <Form>
         <div className="row">
-          <Form.Group className="col-12 col-md-6 mb-4" controlId="city">
+          {/* ADDRESS */}
+          <Form.Group className="col-12 col-md-3 mb-4" controlId="city">
             <Form.Label>
               <i className="fa-solid fa-city icon-style me-2 ms-1"></i>
               Cerca la città che desideri
@@ -96,7 +99,8 @@ export default function SearchBar({ propertiesList }) {
               placeholder="Città"
             />
           </Form.Group>
-          <Form.Group className="col-12 col-md-6 mb-4" controlId="address">
+
+          <Form.Group className="col-12 col-md-3 mb-4" controlId="address">
             <Form.Label>
               <i className="fa-solid fa-location-dot icon-style me-2 ms-1"></i>
               Cerca l'indirizzo
@@ -107,6 +111,36 @@ export default function SearchBar({ propertiesList }) {
               name="address"
               onChange={handleInputChange}
               placeholder="Indirizzo"
+            />
+          </Form.Group>
+
+          <Form.Group className="col-12 col-md-3 mb-4" controlId="zipCode">
+            <Form.Label>
+              <i className="fa-solid fa-location-dot icon-style me-2 ms-1"></i>
+              CAP
+            </Form.Label>
+            <Form.Control
+              type="number"
+              value={formData.zipCode}
+              name="zipCode"
+              onChange={handleInputChange}
+              placeholder="CAP"
+              max={99999}
+            />
+          </Form.Group>
+
+          <Form.Group className="col-12 col-md-3 mb-4" controlId="numAddress">
+            <Form.Label>
+              <i className="fa-solid fa-location-dot icon-style me-2 ms-1"></i>
+              Numero Civico
+            </Form.Label>
+            <Form.Control
+              type="number"
+              value={formData.numAddress}
+              name="numAddress"
+              onChange={handleInputChange}
+              placeholder="NumeroCivico"
+              max={14131}
             />
           </Form.Group>
 
