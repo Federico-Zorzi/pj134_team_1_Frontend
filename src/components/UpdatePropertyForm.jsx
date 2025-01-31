@@ -81,11 +81,13 @@ export default function UpdatePropertyForm({ propertyData }) {
       },
       body: JSON.stringify(formData),
     })
-      .then((res) => {
+      .then(async (res) => {
+        const data = await res.json();
         if (!res.ok) {
-          alert("l'email inserita è invalida");
+          console.error("Error:", data.error);
+          return;
         }
-        return;
+        return data;
       })
       .then((data) => {
         setShow(false);
