@@ -90,6 +90,12 @@ export default function AdvancedSearchCard(params) {
                 {/* Nome immobile */}
                 <h5 className="card-title">{property.title}</h5>
 
+                {property.distanceKm ? (
+                  <p className="mb-0">{`Distanza: ${property.distanceKm} km`}</p>
+                ) : (
+                  ""
+                )}
+
                 <p className="card-text">
                   <i>{property.city}</i>
                 </p>
