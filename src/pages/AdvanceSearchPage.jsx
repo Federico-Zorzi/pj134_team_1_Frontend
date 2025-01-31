@@ -105,7 +105,7 @@ export default function AdvanceSearchPage() {
             className="fa-solid fa-building icon-style me-3 "
             id="icon-search-title"
           ></i>
-          <h1 className="text-center mt-4 mb-5 d-inline">
+          <h1 className="text-center mt-4 mb-5">
             Cerca l'immobile che desideri
           </h1>
         </div>

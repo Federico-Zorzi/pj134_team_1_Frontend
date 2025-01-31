@@ -1,5 +1,6 @@
 import { useDataContext } from "../context/dataContext";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import HomepageCard from "../components/HomepageCard";
 import HomepageCarousel from "../components/HomepageCarousel";
 
@@ -46,10 +47,15 @@ export default function HomePage() {
     <main data-dark-mode={toggleDarkMode}>
       <div className="container">
         <h1 className="fw-bold text-center text-shadow mt-4">
-          Prenota{" "}
-          <i className="fa-solid fa-suitcase-rolling fa-bounce fa-2xs "></i>{" "}
-          case al mare, ville, chalet
+          {/* Link per l'AdvancedSearchPage */}
+          <Link to="/advanceSearch" className="zoom-hover">
+            Prenota{" "}
+            <i className="fa-solid fa-suitcase-rolling fa-bounce fa-2xs "></i>{" "}
+            case
+          </Link>{" "}
+          al mare, ville, chalet
         </h1>
+
         <h2 className="text-center text-shadow my-3 pb-4">
           e molto altro per le tue vacanze in tutta Italia!
         </h2>
