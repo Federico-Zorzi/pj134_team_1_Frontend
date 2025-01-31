@@ -1,4 +1,4 @@
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
@@ -27,6 +27,7 @@ export default function AddPropertyForm() {
   const { userData } = useDataContext();
   const { userInformation } = userData;
   const [validated, setValidated] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(""); // Store error message
 
   initialFormData = { reference_email: userInformation.email };
   const [formData, setFormData] = useState(initialFormData);
@@ -61,73 +62,35 @@ export default function AddPropertyForm() {
         formData.latitude = data[0].lat;
         formData.longitude = data[0].lon;
       } else {
-        throw new Error("Indirizzo o Cap sono inesistenti.");
+        throw new Error("Indirizzo o CAP inesistenti.");
       }
     } catch (error) {
+      setErrorMessage(error.message);
       console.error("Error fetching coordinates:", error);
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoadingFormData(true);
+    setErrorMessage(""); // Reset error message
 
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
-      e.preventDefault();
       e.stopPropagation();
       setIsLoadingFormData(false);
+      return;
     }
 
     setValidated(true);
 
-    const RoomsValidation =
-      formData.number_of_rooms &&
-      parseInt(formData.number_of_rooms) > 0 &&
-      parseInt(formData.number_of_rooms) <= 100;
-
-    const BedsValidation =
-      formData.number_of_beds &&
-      parseInt(formData.number_of_beds) > 0 &&
-      parseInt(formData.number_of_beds) <= 50;
-
-    const BathroomsValidation =
-      formData.number_of_bathrooms &&
-      parseInt(formData.number_of_bathrooms) > 0 &&
-      parseInt(formData.number_of_bathrooms) <= 15;
-
-    const SquareMetersValidation =
-      formData.square_meters &&
-      parseInt(formData.square_meters) > 50 &&
-      parseInt(formData.square_meters) <= 10000;
-
     formData.owner_id = userInformation.id;
 
-    const ZipCodeValidation =
-      formData.zip_code && /^\d{5}$/.test(formData.zip_code);
-    const CivicNumberValidation =
-      formData.civic_number && /^[a-zA-Z0-9]+$/.test(formData.civic_number);
-
-    if (
-      formData.title &&
-      RoomsValidation &&
-      BedsValidation &&
-      BathroomsValidation &&
-      SquareMetersValidation &&
-      formData.address &&
-      formData.reference_email &&
-      formData.municipality &&
-      formData.description &&
-      ZipCodeValidation &&
-      CivicNumberValidation
-    ) {
+    try {
       const formattedAddress = formData.address + " " + formData.civic_number;
-      console.log(formData.zip_code + " " + formData.address);
-      getCoordsFromAddress(formData.zip_code + " " + formData.address);
+      await getCoordsFromAddress(formData.zip_code + " " + formData.address);
 
-      console.log(formData);
-
-      fetch("http://localhost:3000/properties/add", {
+      const response = await fetch("http://localhost:3000/properties/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -136,41 +99,40 @@ export default function AddPropertyForm() {
           ...formData,
           address: formattedAddress,
         }),
-      })
-        .then((res) => {
-          if (!res.ok) {
-            setIsLoadingFormData(false);
+      });
 
-            throw new Error("Failed to submit the form");
-          }
-          return res.json();
-        })
-        .then((data) => {
-          setValidated(false);
-          setFormData(initialFormData);
-          setIsLoadingFormData(false);
+      if (!response.ok) {
+        throw new Error("Errore durante l'invio del modulo. Riprova.");
+      }
 
-          /* back to homepage */
-          if (!isLoadingFormData) {
-            navigate("/");
-          }
-        });
-    } else {
-      console.log("else : " + formData);
+      setValidated(false);
+      setFormData(initialFormData);
+      setIsLoadingFormData(false);
+
+      navigate("/");
+    } catch (error) {
+      setIsLoadingFormData(false);
+      console.error(error);
     }
   };
 
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      {errorMessage && (
+        <div className="alert alert-danger" role="alert">
+          {errorMessage}
+        </div>
+      )}
+
       <Row>
-        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="title">
+        <Form.Group as={Col} xs={6} md={4} className="mb-3" controlId="title">
           <Form.Label>
             <i className="fa-solid fa-building icon-style me-2"></i>
             Titolo immobile
           </Form.Label>
           <Form.Control
             type="text"
-            placeholder="Inserisci il titolo dell'immobile... "
+            placeholder="Inserisci il titolo dell'immobile..."
             name="title"
             value={formData.title}
             onChange={handleInputChange}
