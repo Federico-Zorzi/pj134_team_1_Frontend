@@ -81,11 +81,13 @@ export default function UpdatePropertyForm({ propertyData }) {
       },
       body: JSON.stringify(formData),
     })
-      .then((res) => {
+      .then(async (res) => {
+        const data = await res.json();
         if (!res.ok) {
-          alert("l'email inserita è invalida");
+          console.error("Error:", data.error);
+          return;
         }
-        return;
+        return data;
       })
       .then((data) => {
         setShow(false);
@@ -155,20 +157,6 @@ export default function UpdatePropertyForm({ propertyData }) {
                         required
                       />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="address">
-                      <Form.Label>
-                        <i className="fa-solid fa-location-dot icon-style me-2 ms-1"></i>
-                        Indirizzo
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="address"
-                        value={formData.address}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </Form.Group>
-
                     <Form.Group className="mb-3" controlId="Email">
                       <Form.Label>
                         <i className="fa-solid fa-envelope icon-style me-2 ms-1"></i>
@@ -182,19 +170,37 @@ export default function UpdatePropertyForm({ propertyData }) {
                         required
                       />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="city">
+                    <Form.Group className="mb-3" controlId="img">
                       <Form.Label>
-                        <i className="fa-solid fa-city icon-style me-2 ms-1"></i>
-                        Città
+                        <i className="fa-solid fa-image icon-style me-2 ms-1"></i>
+                        Immagine
                       </Form.Label>
                       <Form.Control
                         type="text"
-                        placeholder="Inserisci la città"
-                        name="city"
-                        value={formData.city}
+                        name="image"
+                        value={formData.image}
                         onChange={handleInputChange}
-                        required
                       />
+                    </Form.Group>
+                    <Form.Group className="property-type">
+                      <Form.Label>
+                        <i className="fa-solid fa-building-circle-exclamation icon-style me-1"></i>
+                        Tipo di proprietà
+                      </Form.Label>
+                      <Form.Select
+                        name="property_type"
+                        value={formData.property_type}
+                        onChange={handleInputChange}
+                        className="align-self-center form-control"
+                      >
+                        <option value="1">Altro</option>
+                        <option value="2">Appartamento</option>
+                        <option value="3">Casa indipendente</option>
+                        <option value="4">Villa</option>
+                        <option value="5">Villetta a schiera</option>
+                        <option value="6">Chalet</option>
+                        <option value="7">Baita</option>
+                      </Form.Select>
                     </Form.Group>
                   </div>
                   <div className="col-6">
@@ -263,19 +269,6 @@ export default function UpdatePropertyForm({ propertyData }) {
                   </div>
                 </div>
 
-                <Form.Group className="mb-3" controlId="img">
-                  <Form.Label>
-                    <i className="fa-solid fa-image icon-style me-2 ms-1"></i>
-                    Immagine
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="image"
-                    value={formData.image}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-
                 <Form.Group>
                   <Form.Label>
                     <i className="fa-solid fa-book icon-style me-2"></i>
@@ -293,31 +286,7 @@ export default function UpdatePropertyForm({ propertyData }) {
                     Inserisci la descrizione.
                   </Form.Control.Feedback>
                 </Form.Group>
-
-                <Form.Group className="property-type">
-                  <Form.Label>
-                    <i className="fa-solid fa-building-circle-exclamation icon-style me-2 ms-1 mt-2"></i>
-                    Tipo di proprietà
-                  </Form.Label>
-                  <Form.Select
-                    name="property_type"
-                    value={formData.property_type}
-                    onChange={handleInputChange}
-                    className="align-self-center form-control"
-                  >
-                    <option default value="2">
-                      Appartamento
-                    </option>
-                    <option value="3">Casa indipendente</option>
-                    <option value="4">Villa</option>
-                    <option value="5">Villetta a schiera</option>
-                    <option value="6">Chalet</option>
-                    <option value="7">Baita</option>
-                    <option value="1">Altro</option>
-                  </Form.Select>
-                </Form.Group>
-
-                <div className="d-flex justify-content-center mt-3">
+                <div className="d-flex justify-content-center mt-3 py-3">
                   <Button variant="success" type="submit">
                     Applica le modifiche
                   </Button>

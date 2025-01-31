@@ -1,4 +1,4 @@
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
@@ -12,10 +12,14 @@ let initialFormData = {
   address: "",
   reference_email: "",
   image: "",
-  city: "",
+  municipality: "",
   property_type: 1,
   owner_id: 0,
   description: "",
+  zip_code: 0,
+  civic_number: "",
+  latitude: 0,
+  longitude: 0,
 };
 
 export default function AddPropertyForm() {
@@ -23,6 +27,7 @@ export default function AddPropertyForm() {
   const { userData } = useDataContext();
   const { userInformation } = userData;
   const [validated, setValidated] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(""); // Store error message
 
   initialFormData = { reference_email: userInformation.email };
   const [formData, setFormData] = useState(initialFormData);
@@ -44,93 +49,90 @@ export default function AddPropertyForm() {
     }
   }, [userInformation.id]);
 
-  const handleSubmit = (e) => {
+  async function getCoordsFromAddress(address) {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+      address
+    )}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (data.length > 0) {
+        formData.latitude = data[0].lat;
+        formData.longitude = data[0].lon;
+      } else {
+        throw new Error("Indirizzo o CAP inesistenti.");
+      }
+    } catch (error) {
+      setErrorMessage(error.message);
+      console.error("Error fetching coordinates:", error);
+    }
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoadingFormData(true);
+    setErrorMessage(""); // Reset error message
 
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
-      e.preventDefault();
       e.stopPropagation();
       setIsLoadingFormData(false);
+      return;
     }
 
     setValidated(true);
 
-    const RoomsValidation =
-      formData.number_of_rooms &&
-      parseInt(formData.number_of_rooms) > 0 &&
-      parseInt(formData.number_of_rooms) <= 100;
-
-    const BedsValidation =
-      formData.number_of_beds &&
-      parseInt(formData.number_of_beds) > 0 &&
-      parseInt(formData.number_of_beds) <= 50;
-
-    const BathroomsValidation =
-      formData.number_of_bathrooms &&
-      parseInt(formData.number_of_bathrooms) > 0 &&
-      parseInt(formData.number_of_bathrooms) <= 15;
-
-    const SquareMetersValidation =
-      formData.square_meters &&
-      parseInt(formData.square_meters) > 50 &&
-      parseInt(formData.square_meters) <= 10000;
-
     formData.owner_id = userInformation.id;
 
-    if (
-      formData.title &&
-      RoomsValidation &&
-      BedsValidation &&
-      BathroomsValidation &&
-      SquareMetersValidation &&
-      formData.address &&
-      formData.reference_email &&
-      formData.city &&
-      formData.description
-    ) {
-      fetch("http://localhost:3000/properties/add", {
+    try {
+      const formattedAddress = formData.address + " " + formData.civic_number;
+      await getCoordsFromAddress(formData.zip_code + " " + formData.address);
+
+      const response = await fetch("http://localhost:3000/properties/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
-      })
-        .then((res) => {
-          if (!res.ok) {
-            setIsLoadingFormData(false);
+        body: JSON.stringify({
+          ...formData,
+          address: formattedAddress,
+        }),
+      });
 
-            throw new Error("Failed to submit the form");
-          }
-          return res.json();
-        })
-        .then((data) => {
-          setValidated(false);
-          setFormData(initialFormData);
-          setIsLoadingFormData(false);
+      if (!response.ok) {
+        throw new Error("Errore durante l'invio del modulo. Riprova.");
+      }
 
-          /* back to homepage */
-          if (!isLoadingFormData) {
-            navigate("/");
-          }
-        });
-    } else {
-      console.log(formData);
+      setValidated(false);
+      setFormData(initialFormData);
+      setIsLoadingFormData(false);
+
+      navigate("/");
+    } catch (error) {
+      setIsLoadingFormData(false);
+      console.error(error);
     }
   };
 
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      {errorMessage && (
+        <div className="alert alert-danger" role="alert">
+          {errorMessage}
+        </div>
+      )}
+
       <Row>
-        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="title">
+        <Form.Group as={Col} xs={6} md={4} className="mb-3" controlId="title">
           <Form.Label>
             <i className="fa-solid fa-building icon-style me-2"></i>
             Titolo immobile
           </Form.Label>
           <Form.Control
             type="text"
-            placeholder="Inserisci il titolo dell'immobile... "
+            placeholder="Inserisci il titolo dell'immobile..."
             name="title"
             value={formData.title}
             onChange={handleInputChange}
@@ -140,46 +142,37 @@ export default function AddPropertyForm() {
             Inserisci il titolo dell'immobile.
           </Form.Control.Feedback>
         </Form.Group>
-
-        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="city">
+        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="img">
           <Form.Label>
-            <i className="fa-solid fa-city icon-style me-2"></i>
-            Città
+            <i className="fa-solid fa-image icon-style me-2"></i>
+            Immagine
           </Form.Label>
           <Form.Control
             type="text"
-            placeholder="Inserisci la città..."
-            name="city"
-            value={formData.city}
+            placeholder="Inserisci un'immagine..."
+            name="image"
+            value={formData.image}
             onChange={handleInputChange}
-            required
           />
           <Form.Control.Feedback type="invalid">
-            Inserisci la città.
+            Inserisci un'immagine dell'immobile.
           </Form.Control.Feedback>
         </Form.Group>
-
-        <Form.Group
-          as={Col}
-          xs={6}
-          md={4}
-          className="mb-3 "
-          controlId="address"
-        >
+        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="Email">
           <Form.Label>
-            <i className="fa-solid fa-location-dot icon-style me-2"></i>
-            Indirizzo completo
+            <i className="fa-solid fa-envelope icon-style me-2"></i>
+            Email di riferimento
           </Form.Label>
           <Form.Control
-            type="text"
-            placeholder="Inserisci l'indirizzo..."
-            name="address"
-            value={formData.address}
+            type="email"
+            placeholder="Inserisci la mail per i contatti..."
+            name="reference_email"
+            value={formData.reference_email}
             onChange={handleInputChange}
             required
           />
           <Form.Control.Feedback type="invalid">
-            Inserisci l'indirizzo dell'immobile.
+            Inserisci la tua email.
           </Form.Control.Feedback>
         </Form.Group>
 
@@ -275,42 +268,7 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="img">
-          <Form.Label>
-            <i className="fa-solid fa-image icon-style me-2"></i>
-            Immagine
-          </Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Inserisci un'immagine..."
-            name="image"
-            value={formData.image}
-            onChange={handleInputChange}
-          />
-          <Form.Control.Feedback type="invalid">
-            Inserisci un'immagine dell'immobile.
-          </Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="Email">
-          <Form.Label>
-            <i className="fa-solid fa-envelope icon-style me-2"></i>
-            Email
-          </Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Inserisci la mail per i contatti..."
-            name="reference_email"
-            value={formData.reference_email}
-            onChange={handleInputChange}
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Inserisci la tua email.
-          </Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group as={Col} xs={6} md={12} className="mb-3 property-type ">
+        <Form.Group as={Col} xs={6} md={4} className="mb-3 property-type ">
           <Form.Label>
             <i className="fa-solid fa-building-circle-exclamation icon-style me-2"></i>
             Tipo di proprietà
@@ -336,6 +294,103 @@ export default function AddPropertyForm() {
             Seleziona il tipo di proprietà.
           </Form.Control.Feedback>
         </Form.Group>
+        <Form.Group
+          as={Col}
+          xs={6}
+          md={4}
+          className="mb-3 "
+          controlId="municipality"
+        >
+          <Form.Label>
+            <i className="fa-solid fa-city icon-style me-2"></i>
+            Comune
+          </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Inserisci il comune..."
+            name="municipality"
+            value={formData.municipality}
+            onChange={handleInputChange}
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            Inserisci il comune.
+          </Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group
+          as={Col}
+          xs={6}
+          md={4}
+          className="mb-3 "
+          controlId="zip_code"
+        >
+          <Form.Label>
+            <i className="fa-solid fa-location-dot icon-style me-2"></i>
+            Codice Postale
+          </Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="Inserisci il codice postale..."
+            name="zip_code"
+            value={formData.zip_code}
+            onChange={handleInputChange}
+            required
+            pattern="\d{5}"
+          />
+          <Form.Control.Feedback type="invalid">
+            Il codice postale europeo è composto da 5 numeri.
+          </Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group
+          as={Col}
+          xs={6}
+          md={4}
+          className="mb-3 "
+          controlId="address"
+        >
+          <Form.Label>
+            <i className="fa-solid fa-location-dot icon-style me-2"></i>
+            Indirizzo
+          </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Inserisci l'indirizzo..."
+            name="address"
+            value={formData.address}
+            onChange={handleInputChange}
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            Inserisci l'indirizzo dell'immobile.
+          </Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group
+          as={Col}
+          xs={6}
+          md={4}
+          className="mb-3 "
+          controlId="zip_code"
+        >
+          <Form.Label>
+            <i className="fa-solid fa-location-dot icon-style me-2"></i>
+            Numero civico
+          </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Inserisci il numero civico..."
+            name="civic_number"
+            value={formData.civic_number}
+            onChange={handleInputChange}
+            required
+            pattern="^[a-zA-Z0-9]+$"
+          />
+          <Form.Control.Feedback type="invalid">
+            Numero civico invalido. Usa solo numeri e lettere.
+          </Form.Control.Feedback>
+        </Form.Group>
+
         <Form.Group as={Col} xs={12} md={12}>
           <Form.Label>
             <i className="fa-solid fa-book icon-style me-2"></i>
