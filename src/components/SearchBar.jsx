@@ -83,6 +83,7 @@ export default function SearchBar({ activeForm }) {
       formDataDistanceKm.zipCodeDistanceKm
     ) {
       fetchFilterByDistance(formDataDistanceKm);
+      setFormDataDistanceKm(initialDistanceKmFormData);
       setValidated(false);
     }
   };
@@ -281,7 +282,7 @@ export default function SearchBar({ activeForm }) {
             <Row>
               {/* ADDRESS */}
               <Form.Group
-                className="col-12 col-md-3 mb-4"
+                className="col-12 col-md-6 col-lg-3 mb-4"
                 controlId="cityDistanceKm"
               >
                 <Form.Label>
@@ -302,7 +303,7 @@ export default function SearchBar({ activeForm }) {
               </Form.Group>
 
               <Form.Group
-                className="col-12 col-md-3 mb-4"
+                className="col-12 col-md-6 col-lg-3 mb-4"
                 controlId="zipCodeDistanceKm"
               >
                 <Form.Label>
@@ -325,7 +326,7 @@ export default function SearchBar({ activeForm }) {
               </Form.Group>
 
               <Form.Group
-                className="col-12 col-md-3 mb-4"
+                className="col-12 col-md-6 col-lg-3 mb-4"
                 controlId="addressDistanceKm"
               >
                 <Form.Label>
@@ -346,7 +347,7 @@ export default function SearchBar({ activeForm }) {
               </Form.Group>
 
               <Form.Group
-                className="col-12 col-md-3 mb-4"
+                className="col-12 col-md-6 col-lg-3 mb-4"
                 controlId="numAddressDistanceKm"
               >
                 <Form.Label>

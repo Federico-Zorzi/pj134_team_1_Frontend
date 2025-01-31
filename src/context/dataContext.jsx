@@ -156,18 +156,20 @@ export const DataContextProvider = ({ children }) => {
           const data = await response.json();
           const { results } = data;
 
-          const resultSearchedPoint = results.filter(
-            (point) =>
-              point.address.streetName.toLowerCase() ===
-                formFilterDataDistanceKm.addressDistanceKm.toLowerCase() &&
-              point.address.municipality.toLowerCase() ===
-                formFilterDataDistanceKm.cityDistanceKm.toLowerCase()
-          );
-          setSearchedPoint(resultSearchedPoint);
+          if (results.length > 0) {
+            const resultSearchedPoint = results.filter((point, index) => {
+              return (
+                point.address.streetName.toLowerCase() ===
+                  formFilterDataDistanceKm.addressDistanceKm.toLowerCase() &&
+                point.address.municipality &&
+                point.address.municipality.toLowerCase() ===
+                  formFilterDataDistanceKm.cityDistanceKm.toLowerCase()
+              );
+            });
+            setSearchedPoint(resultSearchedPoint);
 
-          console.log("searchedPoint", resultSearchedPoint);
+            console.log("searchedPoint", resultSearchedPoint);
 
-          if (resultSearchedPoint.length > 0) {
             const propertiesWithDistance = propertiesList
               .map((property) => {
                 const distanceKm = getDistanceFromLatLonInKm(
