@@ -142,37 +142,26 @@ export default function AddPropertyForm() {
             Inserisci il titolo dell'immobile.
           </Form.Control.Feedback>
         </Form.Group>
-
-        <Form.Group as={Col} xs={6} md={4} className="mb-3 property-type ">
+        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="img">
           <Form.Label>
-            <i className="fa-solid fa-building-circle-exclamation icon-style me-2"></i>
-            Tipo di proprietà
+            <i className="fa-solid fa-image icon-style me-2"></i>
+            Immagine
           </Form.Label>
-          <Form.Select
-            name="property_type"
-            value={formData.property_type}
+          <Form.Control
+            type="text"
+            placeholder="Inserisci un'immagine..."
+            name="image"
+            value={formData.image}
             onChange={handleInputChange}
-            className="align-self-center form-control"
-            aria-label="Default select example"
-          >
-            <option default value="1">
-              Altro
-            </option>
-            <option value="2">Appartamento</option>
-            <option value="3">Casa indipendente</option>
-            <option value="4">Villa</option>
-            <option value="5">Villetta a schiera</option>
-            <option value="6">Chalet</option>
-            <option value="7">Baita</option>
-          </Form.Select>
+          />
           <Form.Control.Feedback type="invalid">
-            Seleziona il tipo di proprietà.
+            Inserisci un'immagine dell'immobile.
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="Email">
           <Form.Label>
             <i className="fa-solid fa-envelope icon-style me-2"></i>
-            Email
+            Email di riferimento
           </Form.Label>
           <Form.Control
             type="email"
@@ -279,23 +268,32 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="img">
+        <Form.Group as={Col} xs={6} md={4} className="mb-3 property-type ">
           <Form.Label>
-            <i className="fa-solid fa-image icon-style me-2"></i>
-            Immagine
+            <i className="fa-solid fa-building-circle-exclamation icon-style me-2"></i>
+            Tipo di proprietà
           </Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Inserisci un'immagine..."
-            name="image"
-            value={formData.image}
+          <Form.Select
+            name="property_type"
+            value={formData.property_type}
             onChange={handleInputChange}
-          />
+            className="align-self-center form-control"
+            aria-label="Default select example"
+          >
+            <option default value="1">
+              Altro
+            </option>
+            <option value="2">Appartamento</option>
+            <option value="3">Casa indipendente</option>
+            <option value="4">Villa</option>
+            <option value="5">Villetta a schiera</option>
+            <option value="6">Chalet</option>
+            <option value="7">Baita</option>
+          </Form.Select>
           <Form.Control.Feedback type="invalid">
-            Inserisci un'immagine dell'immobile.
+            Seleziona il tipo di proprietà.
           </Form.Control.Feedback>
         </Form.Group>
-
         <Form.Group
           as={Col}
           xs={6}
