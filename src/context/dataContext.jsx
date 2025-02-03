@@ -154,19 +154,24 @@ export const DataContextProvider = ({ children }) => {
           const response = await fetch(url);
           const data = await response.json();
           console.log(data);
+          setSearchedPoint([]);
 
           const { results } = data;
 
           if (results.length > 0) {
             const resultSearchedPoint = results.filter((point, index) => {
-              return (
-                point.address.streetName &&
-                point.address.streetName.toLowerCase() ===
-                  formFilterDataDistanceKm.addressDistanceKm.toLowerCase() &&
+              if (
                 point.address.municipality &&
                 point.address.municipality.toLowerCase() ===
                   formFilterDataDistanceKm.cityDistanceKm.toLowerCase()
-              );
+              ) {
+                return (
+                  point.address.streetName.toLowerCase() ===
+                    formFilterDataDistanceKm.addressDistanceKm.toLowerCase() &&
+                  point.address.municipality.toLowerCase() ===
+                    formFilterDataDistanceKm.cityDistanceKm.toLowerCase()
+                );
+              } else return index === 0;
             });
             setSearchedPoint(resultSearchedPoint);
 
@@ -224,6 +229,7 @@ export const DataContextProvider = ({ children }) => {
   const dataContext = {
     propertiesList,
     propertiesListWithDistance,
+    searchedPoint,
     property,
     mostPopularPropertiesList,
     restrictedMostPopPropertiesList,

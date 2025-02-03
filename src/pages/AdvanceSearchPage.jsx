@@ -16,6 +16,7 @@ export default function AdvanceSearchPage() {
   const {
     propertiesList,
     propertiesListWithDistance,
+    searchedPoint,
     fetchIndexProperties,
     isLoading,
   } = useDataContext();
@@ -120,13 +121,20 @@ export default function AdvanceSearchPage() {
       <div className="container d-flex flex-column py-4">
         <Row className="mb-4">
           <Col xs={8}>
-            <h1>
+            <div className="d-flex">
               <i
                 className="fa-solid fa-building icon-style me-3 "
                 id="icon-search-title"
-              ></i>{" "}
-              Cerca l'immobile che desideri
-            </h1>
+              ></i>
+              <div>
+                <h1>Cerca l'immobile che desideri</h1>
+                <span className="text-secondary">
+                  {!activeForm && searchedPoint.length > 0
+                    ? searchedPoint[0].address.freeformAddress
+                    : ""}
+                </span>
+              </div>
+            </div>
           </Col>
           <Col xs={4} className="text-end">
             <input
