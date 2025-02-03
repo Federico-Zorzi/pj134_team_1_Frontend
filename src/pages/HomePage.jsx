@@ -48,7 +48,7 @@ export default function HomePage() {
       <div className="container">
         <h1 className="fw-bold text-center text-shadow mt-4">
           {/* Link per l'AdvancedSearchPage */}
-          <Link to="/advanceSearch" className="zoom-hover">
+          <Link to="/advanceSearch" className="zoom-hover title-link">
             Prenota{" "}
             <i className="fa-solid fa-suitcase-rolling fa-bounce fa-2xs "></i>{" "}
             case
