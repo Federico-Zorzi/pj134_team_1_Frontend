@@ -12,13 +12,13 @@ export default function Footer() {
               href="https://www.instagram.com/accounts/login/"
               className="text-white ms-3"
             >
-              <i class="fa-brands fa-instagram fa-lg"></i>
+              <i className="fa-brands fa-instagram fa-lg"></i>
             </a>
             <a
               href="https://twitter.com/i/flow/login"
               className="text-white ms-3 "
             >
-              <i class="fa-brands fa-x-twitter fa-lg"></i>
+              <i className="fa-brands fa-x-twitter fa-lg"></i>
             </a>
           </div>
         </div>

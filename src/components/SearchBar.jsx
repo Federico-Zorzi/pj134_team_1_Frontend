@@ -285,7 +285,6 @@ export default function SearchBar({ activeForm }) {
               <Form.Group
                 as={Col}
                 xs={12}
-                md={6}
                 lg={4}
                 className="form-group-distance mb-0"
                 controlId="cityDistanceKm"
@@ -343,7 +342,6 @@ export default function SearchBar({ activeForm }) {
               <Form.Group
                 as={Col}
                 xs={12}
-                md={6}
                 lg={4}
                 className="form-group-distance mb-0"
                 controlId="addressDistanceKm"
@@ -371,7 +369,6 @@ export default function SearchBar({ activeForm }) {
               <Form.Group
                 as={Col}
                 xs={12}
-                md={6}
                 lg={4}
                 xl={3}
                 className="form-group-distance mb-0"
