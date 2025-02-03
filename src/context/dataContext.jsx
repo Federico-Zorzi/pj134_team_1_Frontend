@@ -1,3 +1,4 @@
+import { text } from "@fortawesome/fontawesome-svg-core";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const DataContext = createContext();
@@ -34,6 +35,11 @@ export const DataContextProvider = ({ children }) => {
   //Users data
   const [userInformation, setUserInformation] = useState(initialUserData);
   const [userProperties, setUserProperties] = useState([]);
+
+  const [searchedPoint, setSearchedPoint] = useState([]);
+  const [propertiesListWithDistance, setPropertiesListWithDistance] = useState(
+    []
+  );
 
   useEffect(() => {
     if (userInformation.id !== 0) {
@@ -81,11 +87,22 @@ export const DataContextProvider = ({ children }) => {
       });
   };
 
+  const spacingFormat = (text) => {
+    let formattedText = "";
+    for (let i = 0; i < text.length; i++) {
+      if (text[i] === " ") {
+        formattedText += "%20";
+      } else formattedText += text[i];
+    }
+    return formattedText;
+  };
+
   const fetchFilterProperties = async (formFilterData) => {
     try {
       const queryParams = new URLSearchParams();
 
-      if (formFilterData.city) queryParams.append("city", formFilterData.city);
+      if (formFilterData.city)
+        queryParams.append("municipality", formFilterData.city);
       if (formFilterData.address)
         queryParams.append("address", formFilterData.address);
       if (formFilterData.nRooms)
@@ -106,6 +123,95 @@ export const DataContextProvider = ({ children }) => {
     }
   };
 
+  const fetchFilterByDistance = async (formFilterDataDistanceKm) => {
+    try {
+      async function getCoordsFromAddress({
+        number,
+        streetName,
+        municipality,
+        postalCode,
+      }) {
+        const url = `https://api.tomtom.com/search/2/structuredGeocode.json?countryCode=IT&streetNumber=${number}&streetName=${streetName}&municipality=${municipality}&postalCode=${postalCode}&view=Unified&key=Wd3Yh5F6xZhjZ0ipPGN7tuRLcxHRnPGe`;
+
+        function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+          var R = 6371; // Radius of the earth in km
+          var dLat = deg2rad(lat2 - lat1); // deg2rad below
+          var dLon = deg2rad(lon2 - lon1);
+          var a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(deg2rad(lat1)) *
+              Math.cos(deg2rad(lat2)) *
+              Math.sin(dLon / 2) *
+              Math.sin(dLon / 2);
+          var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+          var d = R * c; // Distance in km
+          return d;
+        }
+        function deg2rad(deg) {
+          return deg * (Math.PI / 180);
+        }
+
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          const { results } = data;
+
+          if (results.length > 0) {
+            const resultSearchedPoint = results.filter((point, index) => {
+              return (
+                point.address.streetName.toLowerCase() ===
+                  formFilterDataDistanceKm.addressDistanceKm.toLowerCase() &&
+                point.address.municipality &&
+                point.address.municipality.toLowerCase() ===
+                  formFilterDataDistanceKm.cityDistanceKm.toLowerCase()
+              );
+            });
+            setSearchedPoint(resultSearchedPoint);
+
+            console.log("searchedPoint", resultSearchedPoint);
+
+            const propertiesWithDistance = propertiesList
+              .map((property) => {
+                const distanceKm = getDistanceFromLatLonInKm(
+                  property.latitude,
+                  property.longitude,
+                  resultSearchedPoint[0].position.lat,
+                  resultSearchedPoint[0].position.lon
+                );
+
+                return {
+                  ...property,
+                  distanceKm: parseFloat(distanceKm.toFixed(3)),
+                };
+              })
+              .sort((a, b) => a.distanceKm - b.distanceKm);
+
+            setPropertiesListWithDistance(propertiesWithDistance);
+          } else setPropertiesListWithDistance([]);
+        } catch (error) {
+          console.error("Error fetching coordinates:", error);
+        }
+      }
+
+      const fullAddress = {
+        number: formFilterDataDistanceKm.numAddressDistanceKm,
+        streetName: spacingFormat(formFilterDataDistanceKm.addressDistanceKm),
+        municipality: spacingFormat(formFilterDataDistanceKm.cityDistanceKm),
+        postalCode: formFilterDataDistanceKm.zipCodeDistanceKm,
+      };
+
+      if (
+        formFilterDataDistanceKm.addressDistanceKm &&
+        formFilterDataDistanceKm.zipCodeDistanceKm &&
+        formFilterDataDistanceKm.cityDistanceKm
+      ) {
+        getCoordsFromAddress(fullAddress);
+      }
+    } catch (error) {
+      console.error("Error fetching filtered properties:", error);
+    }
+  };
+
   const userData = {
     initialUserData,
     userInformation,
@@ -115,6 +221,7 @@ export const DataContextProvider = ({ children }) => {
 
   const dataContext = {
     propertiesList,
+    propertiesListWithDistance,
     property,
     mostPopularPropertiesList,
     restrictedMostPopPropertiesList,
@@ -122,6 +229,7 @@ export const DataContextProvider = ({ children }) => {
     fetchIndexProperties,
     fetchShowProperties,
     fetchFilterProperties,
+    fetchFilterByDistance,
     userData,
     isLoading,
     setIsLoading,

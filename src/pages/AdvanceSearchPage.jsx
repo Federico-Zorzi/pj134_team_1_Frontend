@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import AdvancedSearchCard from "../components/AdvancedSearchCard";
 import SearchBar from "../components/SearchBar";
 import { Pagination } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 import { useLayoutContext } from "../context/layoutContext";
 
@@ -12,7 +13,12 @@ import { faAnglesRight, faAnglesLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function AdvanceSearchPage() {
   // take data from global context
-  const { propertiesList, fetchIndexProperties, isLoading } = useDataContext();
+  const {
+    propertiesList,
+    propertiesListWithDistance,
+    fetchIndexProperties,
+    isLoading,
+  } = useDataContext();
   const { toggleDarkMode } = useLayoutContext();
 
   useEffect(fetchIndexProperties, []);
@@ -22,6 +28,18 @@ export default function AdvanceSearchPage() {
   const [actualCardsVis, setActualCardsVis] = useState([]);
   const [actualIndex, setActualIndex] = useState(1);
 
+  const [activeForm, setActiveForm] = useState(true);
+  const [displayedProperties, setDisplayedProperties] =
+    useState(propertiesList);
+
+  useEffect(
+    () =>
+      setDisplayedProperties(
+        activeForm ? propertiesList : propertiesListWithDistance
+      ),
+    [activeForm, propertiesList, propertiesListWithDistance]
+  );
+
   /* function for vis properties by pagination number */
   const paginationFunct = (pageNumber) => {
     const propertiesListPagination = [];
@@ -29,8 +47,8 @@ export default function AdvanceSearchPage() {
     const end = pageNumber * numForPagination - 1;
     setActualIndex(pageNumber);
 
-    for (let i = start; i <= end && i < propertiesList.length; i++) {
-      propertiesListPagination.push(propertiesList[i]);
+    for (let i = start; i <= end && i < displayedProperties.length; i++) {
+      propertiesListPagination.push(displayedProperties[i]);
     }
 
     setActualCardsVis(propertiesListPagination);
@@ -39,15 +57,15 @@ export default function AdvanceSearchPage() {
 
   /* inizialization actualCardsVis starting page */
   useEffect(() => {
-    if (propertiesList.length > 0) {
+    if (displayedProperties.length > 0) {
       paginationFunct(1);
     }
-  }, [propertiesList]);
+  }, [displayedProperties]);
 
   /* pagination items */
   const paginationItemsFunct = () => {
     let paginationItems = [];
-    const totalPages = Math.ceil(propertiesList.length / numForPagination);
+    const totalPages = Math.ceil(displayedProperties.length / numForPagination);
 
     const startPage = Math.max(actualIndex - 1, 1);
     const endPage = Math.min(startPage + 2, totalPages);
@@ -92,7 +110,7 @@ export default function AdvanceSearchPage() {
   };
 
   useEffect(() => {
-    if (propertiesList.length > 0) {
+    if (displayedProperties.length > 0) {
       paginationItemsFunct();
     }
   }, [actualIndex]);
@@ -100,16 +118,33 @@ export default function AdvanceSearchPage() {
   return (
     <main className="d-flex" data-dark-mode={toggleDarkMode}>
       <div className="container d-flex flex-column py-4">
-        <div className="text-center mt-4 mb-5">
-          <i
-            className="fa-solid fa-building icon-style me-3 "
-            id="icon-search-title"
-          ></i>
-          <h1 className="text-center mt-4 mb-5">
-            Cerca l'immobile che desideri
-          </h1>
-        </div>
-        <SearchBar propertiesList={propertiesList} />
+        <Row className="mb-4">
+          <Col xs={8}>
+            <h1>
+              <i
+                className="fa-solid fa-building icon-style me-3 "
+                id="icon-search-title"
+              ></i>{" "}
+              Cerca l'immobile che desideri
+            </h1>
+          </Col>
+          <Col xs={4} className="text-end">
+            <input
+              type="checkbox"
+              className="btn-check"
+              id="btncheck1"
+              autoComplete="off"
+              onClick={() => setActiveForm(!activeForm)}
+            />
+            <label className="btn btn-outline-primary" htmlFor="btncheck1">
+              {activeForm
+                ? "Cerca in base alla distanza"
+                : "Cerca in base alle informazioni immobile"}
+            </label>
+          </Col>
+        </Row>
+
+        <SearchBar activeForm={activeForm} />
 
         {isLoading ? (
           <div className="d-flex spinner-container justify-content-center">
@@ -126,7 +161,7 @@ export default function AdvanceSearchPage() {
                   (toggleDarkMode ? "text-light" : "text-secondary") + " fs-6"
                 }
               >
-                Risultati trovati: {propertiesList.length}{" "}
+                Risultati trovati: {displayedProperties.length}{" "}
               </h5>
             </div>
 
@@ -134,8 +169,8 @@ export default function AdvanceSearchPage() {
             <div className="flex-grow-1">
               <div className="row row-cols-1 row-cols-xl-2 g-4 homepage-card-container mb-4">
                 {/* Cards */}
-                {propertiesList.length > 0 &&
-                  actualCardsVis.map((property) => {
+                {displayedProperties.length > 0 &&
+                  displayedProperties.map((property) => {
                     return (
                       <AdvancedSearchCard
                         key={property.id}
@@ -146,7 +181,7 @@ export default function AdvanceSearchPage() {
               </div>
             </div>
 
-            {propertiesList.length > 0 ? (
+            {displayedProperties.length > 0 ? (
               <div className="pagination-container">
                 <Pagination className="justify-content-center mt-3">
                   {pagItems}
