@@ -92,6 +92,7 @@ main {
 }
 
 .dark-mode-btn {
+  min-width: 60px;
   background-color: var(--dark-text);
   border: none;
 }
@@ -103,6 +104,14 @@ main {
 }
 
 /* HOMEPAGE */
+[data-dark-mode="false"] .zoom-hover {
+  color: var(--dark-text);
+}
+
+[data-dark-mode="true"] .zoom-hover {
+  color: var(--light-text);
+}
+
 .text-shadow {
   background-color: transparent;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
