@@ -223,6 +223,19 @@ main {
   box-shadow: 2px 2px 10px #888888;
 }
 
+/* zoom titolo */
+.title-link {
+  display: inline-block; /* Necessario per evitare problemi con trasformazioni */
+  font-size: 2.5 rem;
+  text-decoration: none;
+  color: black;
+  transition: transform 0.3s ease-in-out;
+}
+
+.title-link:hover {
+  transform: scale(1.05); /* Ingrandisce del 10% */
+}
+
 /* ADVANCE SEARCH PAGE */
 .page-link {
   background-color: #38393a;
