@@ -8,8 +8,13 @@
   font-family: poppins, sans-serif;
 }
 
-a {
+[data-dark-mode="false"] a {
   color: black;
+  text-decoration: none;
+}
+
+[data-dark-mode="true"] a {
+  color: white;
   text-decoration: none;
 }
 
