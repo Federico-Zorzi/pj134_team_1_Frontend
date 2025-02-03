@@ -129,9 +129,8 @@ export const DataContextProvider = ({ children }) => {
         number,
         streetName,
         municipality,
-        postalCode,
       }) {
-        const url = `https://api.tomtom.com/search/2/structuredGeocode.json?countryCode=IT&streetNumber=${number}&streetName=${streetName}&municipality=${municipality}&postalCode=${postalCode}&view=Unified&key=Wd3Yh5F6xZhjZ0ipPGN7tuRLcxHRnPGe`;
+        const url = `https://api.tomtom.com/search/2/structuredGeocode.json?countryCode=IT&streetNumber=${number}&streetName=${streetName}&municipality=${municipality}&view=Unified&key=Wd3Yh5F6xZhjZ0ipPGN7tuRLcxHRnPGe`;
 
         function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
           var R = 6371; // Radius of the earth in km
@@ -154,18 +153,19 @@ export const DataContextProvider = ({ children }) => {
         try {
           const response = await fetch(url);
           const data = await response.json();
+          console.log(data);
+
           const { results } = data;
 
           if (results.length > 0) {
             const resultSearchedPoint = results.filter((point, index) => {
               return (
+                point.address.streetName &&
                 point.address.streetName.toLowerCase() ===
                   formFilterDataDistanceKm.addressDistanceKm.toLowerCase() &&
                 point.address.municipality &&
                 point.address.municipality.toLowerCase() ===
-                  formFilterDataDistanceKm.cityDistanceKm.toLowerCase() &&
-                point.address.postalCode.toLowerCase() ===
-                  formFilterDataDistanceKm.zipCodeDistanceKm.toLowerCase()
+                  formFilterDataDistanceKm.cityDistanceKm.toLowerCase()
               );
             });
             setSearchedPoint(resultSearchedPoint);
@@ -201,12 +201,10 @@ export const DataContextProvider = ({ children }) => {
         number: formFilterDataDistanceKm.numAddressDistanceKm,
         streetName: spacingFormat(formFilterDataDistanceKm.addressDistanceKm),
         municipality: spacingFormat(formFilterDataDistanceKm.cityDistanceKm),
-        postalCode: formFilterDataDistanceKm.zipCodeDistanceKm,
       };
 
       if (
         formFilterDataDistanceKm.addressDistanceKm &&
-        formFilterDataDistanceKm.zipCodeDistanceKm &&
         formFilterDataDistanceKm.cityDistanceKm
       ) {
         getCoordsFromAddress(fullAddress);

@@ -20,7 +20,6 @@ const initialDistanceKmFormData = {
   cityDistanceKm: "",
   addressDistanceKm: "",
   numAddressDistanceKm: "",
-  zipCodeDistanceKm: "",
 };
 
 // Translate property type
@@ -82,8 +81,7 @@ export default function SearchBar({ activeForm }) {
 
     if (
       formDataDistanceKm.cityDistanceKm &&
-      formDataDistanceKm.addressDistanceKm &&
-      formDataDistanceKm.zipCodeDistanceKm
+      formDataDistanceKm.addressDistanceKm
     ) {
       fetchFilterByDistance(formDataDistanceKm);
       setFormDataDistanceKm(initialDistanceKmFormData);
@@ -288,7 +286,7 @@ export default function SearchBar({ activeForm }) {
                 as={Col}
                 xs={12}
                 md={6}
-                lg={3}
+                lg={4}
                 className="form-group-distance mb-0"
                 controlId="cityDistanceKm"
               >
@@ -312,7 +310,7 @@ export default function SearchBar({ activeForm }) {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group
+              {/*               <Form.Group
                 as={Col}
                 xs={12}
                 md={6}
@@ -340,13 +338,13 @@ export default function SearchBar({ activeForm }) {
                 >
                   Inserisci CAP del comune.
                 </Form.Control.Feedback>
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group
                 as={Col}
                 xs={12}
                 md={6}
-                lg={3}
+                lg={4}
                 className="form-group-distance mb-0"
                 controlId="addressDistanceKm"
               >
@@ -374,8 +372,8 @@ export default function SearchBar({ activeForm }) {
                 as={Col}
                 xs={12}
                 md={6}
-                lg={3}
-                xl={2}
+                lg={4}
+                xl={3}
                 className="form-group-distance mb-0"
                 controlId="numAddressDistanceKm"
               >
