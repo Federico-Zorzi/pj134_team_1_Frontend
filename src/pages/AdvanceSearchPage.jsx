@@ -176,7 +176,7 @@ export default function AdvanceSearchPage() {
               <div className="row row-cols-1 row-cols-xl-2 g-4 homepage-card-container mb-4">
                 {/* Cards */}
                 {displayedProperties.length > 0 &&
-                  displayedProperties.map((property) => {
+                  actualCardsVis.map((property) => {
                     return (
                       <AdvancedSearchCard
                         key={property.id}

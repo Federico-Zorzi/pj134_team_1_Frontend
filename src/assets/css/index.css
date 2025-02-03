@@ -104,6 +104,14 @@ main {
 }
 
 /* HOMEPAGE */
+.title-link {
+  transition: transform 0.3s ease-in-out;
+}
+
+.title-link:hover {
+  transform: scale(1.2);
+}
+
 [data-dark-mode="false"] .zoom-hover {
   color: var(--dark-text);
 }

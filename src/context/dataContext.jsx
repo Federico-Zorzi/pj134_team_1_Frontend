@@ -181,7 +181,7 @@ export const DataContextProvider = ({ children }) => {
 
                 return {
                   ...property,
-                  distanceKm: parseFloat(distanceKm.toFixed(3)),
+                  distanceKm: parseFloat(distanceKm.toFixed(1)),
                 };
               })
               .sort((a, b) => a.distanceKm - b.distanceKm);
