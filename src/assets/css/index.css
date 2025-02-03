@@ -231,6 +231,27 @@ main {
   box-shadow: 2px 2px 10px #888888;
 }
 
+/* zoom titolo */
+
+.title-link {
+  display: inline-block; /* Per supportare trasformazioni */
+  font-size: 2.5 rem;
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out; /* Transizione fluida */
+}
+[data-dark-mode="false"] .title-link {
+  color: var(--dark-text);
+}
+
+[data-dark-mode="true"] .title-link {
+  color: var(--light-text);
+}
+
+.title-link:hover {
+  transform: scale(1.03); /* Ingrandisce del 5% */
+  color: #00e167; /* Cambio colore graduale */
+}
+
 /* ADVANCE SEARCH PAGE */
 .page-link {
   background-color: #38393a;
