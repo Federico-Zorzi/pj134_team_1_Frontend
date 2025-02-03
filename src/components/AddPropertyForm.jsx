@@ -87,8 +87,11 @@ export default function AddPropertyForm() {
     formData.owner_id = userInformation.id;
 
     try {
+      console.log("try");
       const formattedAddress = formData.address + " " + formData.civic_number;
-      await getCoordsFromAddress(formData.zip_code + " " + formData.address);
+      await getCoordsFromAddress(
+        formData.municipality + " " + formData.zip_code + " " + formattedAddress
+      );
 
       const response = await fetch("http://localhost:3000/properties/add", {
         method: "POST",
