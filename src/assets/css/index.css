@@ -224,16 +224,24 @@ main {
 }
 
 /* zoom titolo */
+
 .title-link {
-  display: inline-block; /* Necessario per evitare problemi con trasformazioni */
+  display: inline-block; /* Per supportare trasformazioni */
   font-size: 2.5 rem;
   text-decoration: none;
-  color: black;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out; /* Transizione fluida */
+}
+[data-dark-mode="false"] .title-link {
+  color: var(--dark-text);
+}
+
+[data-dark-mode="true"] .title-link {
+  color: var(--light-text);
 }
 
 .title-link:hover {
-  transform: scale(1.05); /* Ingrandisce del 10% */
+  transform: scale(1.03); /* Ingrandisce del 5% */
+  color: #00e167; /* Cambio colore graduale */
 }
 
 /* ADVANCE SEARCH PAGE */
