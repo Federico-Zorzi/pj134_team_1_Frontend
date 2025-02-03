@@ -234,10 +234,10 @@ main {
 /* zoom titolo */
 
 .title-link {
-  display: inline-block; /* Per supportare trasformazioni */
+  display: inline-block;
   font-size: 2.5 rem;
   text-decoration: none;
-  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out; /* Transizione fluida */
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 [data-dark-mode="false"] .title-link {
   color: var(--dark-text);
@@ -248,11 +248,23 @@ main {
 }
 
 .title-link:hover {
-  transform: scale(1.03); /* Ingrandisce del 5% */
-  color: #00e167; /* Cambio colore graduale */
+  transform: scale(1.03);
+  color: #00e167;
 }
 
 /* ADVANCE SEARCH PAGE */
+
+.form-group-distance {
+  position: relative;
+}
+
+.invalid-feedback-distance {
+  position: absolute;
+  bottom: -20px;
+  left: 0.7rem;
+  width: 100%;
+}
+
 .page-link {
   background-color: #38393a;
   border-color: #212529;

@@ -5,6 +5,9 @@ import { useDataContext } from "../context/dataContext";
 import { useLayoutContext } from "../context/layoutContext";
 import { Row, Col, Button } from "react-bootstrap";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
 const initialFormData = {
   city: "",
   address: "",
@@ -279,10 +282,14 @@ export default function SearchBar({ activeForm }) {
             validated={validated}
             onSubmit={handleSubmitDistanceKm}
           >
-            <Row>
+            <Row className="align-items-center g-4 g-xl-2">
               {/* ADDRESS */}
               <Form.Group
-                className="col-12 col-md-6 col-lg-3 mb-4"
+                as={Col}
+                xs={12}
+                md={6}
+                lg={3}
+                className="form-group-distance mb-0"
                 controlId="cityDistanceKm"
               >
                 <Form.Label>
@@ -297,13 +304,20 @@ export default function SearchBar({ activeForm }) {
                   placeholder="Comune"
                   required
                 />
-                <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback
+                  className="invalid-feedback-distance"
+                  type="invalid"
+                >
                   Inserisci il comune.
                 </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group
-                className="col-12 col-md-6 col-lg-3 mb-4"
+                as={Col}
+                xs={12}
+                md={6}
+                lg={3}
+                className="form-group-distance mb-0"
                 controlId="zipCodeDistanceKm"
               >
                 <Form.Label>
@@ -320,13 +334,20 @@ export default function SearchBar({ activeForm }) {
                   max={maxZipCode}
                   required
                 />
-                <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback
+                  className="invalid-feedback-distance"
+                  type="invalid"
+                >
                   Inserisci CAP del comune.
                 </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group
-                className="col-12 col-md-6 col-lg-3 mb-4"
+                as={Col}
+                xs={12}
+                md={6}
+                lg={3}
+                className="form-group-distance mb-0"
                 controlId="addressDistanceKm"
               >
                 <Form.Label>
@@ -341,13 +362,21 @@ export default function SearchBar({ activeForm }) {
                   placeholder="Indirizzo"
                   required
                 />
-                <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback
+                  className="invalid-feedback-distance"
+                  type="invalid"
+                >
                   Inserisci l'indirizzo.
                 </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group
-                className="col-12 col-md-6 col-lg-3 mb-4"
+                as={Col}
+                xs={12}
+                md={6}
+                lg={3}
+                xl={2}
+                className="form-group-distance mb-0"
                 controlId="numAddressDistanceKm"
               >
                 <Form.Label>
@@ -362,13 +391,27 @@ export default function SearchBar({ activeForm }) {
                   placeholder="NumeroCivico"
                 />
 
-                <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback
+                  className="invalid-feedback-distance"
+                  type="invalid"
+                >
                   Inserisci numero del civico.
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Col className="text-center">
-                <Button type="submit">Cerca</Button>
+              <Col
+                xs={12}
+                md={12}
+                xl={1}
+                className="text-center align-self-end mt-4 mt-xl-0"
+              >
+                <Button
+                  type="submit"
+                  className={toggleDarkMode ? " btn-light" : " btn-dark"}
+                >
+                  <FontAwesomeIcon icon={faMagnifyingGlass} />
+                  <span className="d-xl-none ms-2">Cerca</span>
+                </Button>
               </Col>
             </Row>
           </Form>

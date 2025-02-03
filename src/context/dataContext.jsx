@@ -163,28 +163,32 @@ export const DataContextProvider = ({ children }) => {
                   formFilterDataDistanceKm.addressDistanceKm.toLowerCase() &&
                 point.address.municipality &&
                 point.address.municipality.toLowerCase() ===
-                  formFilterDataDistanceKm.cityDistanceKm.toLowerCase()
+                  formFilterDataDistanceKm.cityDistanceKm.toLowerCase() &&
+                point.address.postalCode.toLowerCase() ===
+                  formFilterDataDistanceKm.zipCodeDistanceKm.toLowerCase()
               );
             });
             setSearchedPoint(resultSearchedPoint);
 
             console.log("searchedPoint", resultSearchedPoint);
 
-            const propertiesWithDistance = propertiesList
-              .map((property) => {
-                const distanceKm = getDistanceFromLatLonInKm(
-                  property.latitude,
-                  property.longitude,
-                  resultSearchedPoint[0].position.lat,
-                  resultSearchedPoint[0].position.lon
-                );
+            const propertiesWithDistance =
+              resultSearchedPoint.length > 0 &&
+              propertiesList
+                .map((property) => {
+                  const distanceKm = getDistanceFromLatLonInKm(
+                    property.latitude,
+                    property.longitude,
+                    resultSearchedPoint[0].position.lat,
+                    resultSearchedPoint[0].position.lon
+                  );
 
-                return {
-                  ...property,
-                  distanceKm: parseFloat(distanceKm.toFixed(1)),
-                };
-              })
-              .sort((a, b) => a.distanceKm - b.distanceKm);
+                  return {
+                    ...property,
+                    distanceKm: parseFloat(distanceKm.toFixed(1)),
+                  };
+                })
+                .sort((a, b) => a.distanceKm - b.distanceKm);
 
             setPropertiesListWithDistance(propertiesWithDistance);
           } else setPropertiesListWithDistance([]);
