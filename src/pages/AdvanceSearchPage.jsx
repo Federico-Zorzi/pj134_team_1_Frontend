@@ -136,7 +136,13 @@ export default function AdvanceSearchPage() {
               autoComplete="off"
               onClick={() => setActiveForm(!activeForm)}
             />
-            <label className="btn btn-outline-primary" htmlFor="btncheck1">
+            <label
+              className={
+                "btn" +
+                (toggleDarkMode ? " btn-outline-light" : " btn-outline-dark")
+              }
+              htmlFor="btncheck1"
+            >
               {activeForm
                 ? "Cerca in base alla distanza"
                 : "Cerca in base alle informazioni immobile"}
