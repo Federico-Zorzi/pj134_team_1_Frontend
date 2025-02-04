@@ -79,43 +79,48 @@ export default function AddPropertyForm() {
     if (form.checkValidity() === false) {
       e.stopPropagation();
       setIsLoadingFormData(false);
-      return;
     }
 
     setValidated(true);
 
     formData.owner_id = userInformation.id;
 
-    try {
-      console.log("try");
-      const formattedAddress = formData.address + " " + formData.civic_number;
-      await getCoordsFromAddress(
-        formData.municipality + " " + formData.zip_code + " " + formattedAddress
-      );
+    if (form.checkValidity() === true) {
+      try {
+        console.log("try");
+        const formattedAddress = formData.address + " " + formData.civic_number;
+        await getCoordsFromAddress(
+          formData.municipality +
+            " " +
+            formData.zip_code +
+            " " +
+            formattedAddress
+        );
 
-      const response = await fetch("http://localhost:3000/properties/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          address: formattedAddress,
-        }),
-      });
+        const response = await fetch("http://localhost:3000/properties/add", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...formData,
+            address: formattedAddress,
+          }),
+        });
 
-      if (!response.ok) {
-        throw new Error("Errore durante l'invio del modulo. Riprova.");
+        if (!response.ok) {
+          throw new Error("Errore durante l'invio del modulo. Riprova.");
+        }
+
+        setValidated(false);
+        setFormData(initialFormData);
+        setIsLoadingFormData(false);
+
+        navigate("/");
+      } catch (error) {
+        setIsLoadingFormData(false);
+        console.error(error);
       }
-
-      setValidated(false);
-      setFormData(initialFormData);
-      setIsLoadingFormData(false);
-
-      navigate("/");
-    } catch (error) {
-      setIsLoadingFormData(false);
-      console.error(error);
     }
   };
 
