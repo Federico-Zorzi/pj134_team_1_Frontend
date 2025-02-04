@@ -44,6 +44,12 @@ export const DataContextProvider = ({ children }) => {
   useEffect(() => {
     if (userInformation.id !== 0) {
       setIsLoading(true);
+      fetch("http://localhost:3000/users/specificuser?id=" + userInformation.id)
+        .then((res) => res.json())
+        .then((data) => {
+          setUserInformation(data[0]);
+          setIsLoading(false);
+        });
       fetch("http://localhost:3000/users/getproperties/" + userInformation.id)
         .then((res) => res.json())
         .then((data) => {
