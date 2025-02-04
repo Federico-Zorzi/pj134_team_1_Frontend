@@ -28,11 +28,15 @@ export default function UserPropertiesPage() {
               <span className="visually-hidden">Loading...</span>
             </div>
           </div>
-        ) : (
+        ) : userProperties.length > 0 ? (
           <div className="row row-cols-1 row-cols-xl-2 g-4 homepage-card-container">
             {userProperties.map((property, index) => {
               return <GeneralPropertyCard key={index} element={property} />;
             })}
+          </div>
+        ) : (
+          <div className="text-center text-secondary">
+            <h3>Non hai ancora immobili</h3>
           </div>
         )}
       </div>
