@@ -128,7 +128,14 @@ export default function AddPropertyForm() {
       )}
 
       <Row>
-        <Form.Group as={Col} xs={6} md={4} className="mb-3" controlId="title">
+        <Form.Group
+          as={Col}
+          xs={12}
+          md={6}
+          lg={4}
+          className="mb-3"
+          controlId="title"
+        >
           <Form.Label>
             <i className="fa-solid fa-building icon-style me-2"></i>
             Titolo immobile
@@ -145,7 +152,14 @@ export default function AddPropertyForm() {
             Inserisci il titolo dell'immobile.
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="img">
+        <Form.Group
+          as={Col}
+          xs={12}
+          md={6}
+          lg={4}
+          className="mb-3 "
+          controlId="img"
+        >
           <Form.Label>
             <i className="fa-solid fa-image icon-style me-2"></i>
             Immagine
@@ -161,7 +175,14 @@ export default function AddPropertyForm() {
             Inserisci un'immagine dell'immobile.
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="Email">
+        <Form.Group
+          as={Col}
+          xs={12}
+          md={6}
+          lg={4}
+          className="mb-3 "
+          controlId="Email"
+        >
           <Form.Label>
             <i className="fa-solid fa-envelope icon-style me-2"></i>
             Email di riferimento
@@ -179,7 +200,14 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="rooms">
+        <Form.Group
+          as={Col}
+          xs={12}
+          md={6}
+          lg={4}
+          className="mb-3 "
+          controlId="rooms"
+        >
           <Form.Label>
             <i className="fa-solid fa-door-open icon-style me-2"></i>
             Numero di stanze
@@ -199,7 +227,14 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={6} md={4} className="mb-3 " controlId="beds">
+        <Form.Group
+          as={Col}
+          xs={12}
+          md={6}
+          lg={4}
+          className="mb-3 "
+          controlId="beds"
+        >
           <Form.Label>
             <i className="fa-solid fa-bed icon-style me-2"></i>
             Numero di letti
@@ -221,8 +256,9 @@ export default function AddPropertyForm() {
 
         <Form.Group
           as={Col}
-          xs={6}
-          md={4}
+          xs={12}
+          md={6}
+          lg={4}
           className="mb-3 "
           controlId="bathrooms"
         >
@@ -247,8 +283,9 @@ export default function AddPropertyForm() {
 
         <Form.Group
           as={Col}
-          xs={6}
-          md={4}
+          xs={12}
+          md={6}
+          lg={4}
           className="mb-3 "
           controlId="square-meters"
         >
@@ -271,7 +308,13 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={6} md={4} className="mb-3 property-type ">
+        <Form.Group
+          as={Col}
+          xs={12}
+          md={6}
+          lg={4}
+          className="mb-3 property-type "
+        >
           <Form.Label>
             <i className="fa-solid fa-building-circle-exclamation icon-style me-2"></i>
             Tipo di proprietà
@@ -299,8 +342,9 @@ export default function AddPropertyForm() {
         </Form.Group>
         <Form.Group
           as={Col}
-          xs={6}
-          md={4}
+          xs={12}
+          md={6}
+          lg={4}
           className="mb-3 "
           controlId="municipality"
         >
@@ -323,8 +367,9 @@ export default function AddPropertyForm() {
 
         <Form.Group
           as={Col}
-          xs={6}
-          md={4}
+          xs={12}
+          md={6}
+          lg={4}
           className="mb-3 "
           controlId="zip_code"
         >
@@ -347,8 +392,9 @@ export default function AddPropertyForm() {
         </Form.Group>
         <Form.Group
           as={Col}
-          xs={6}
-          md={4}
+          xs={12}
+          md={6}
+          lg={4}
           className="mb-3 "
           controlId="address"
         >
@@ -371,8 +417,9 @@ export default function AddPropertyForm() {
 
         <Form.Group
           as={Col}
-          xs={6}
-          md={4}
+          xs={12}
+          md={6}
+          lg={4}
           className="mb-3 "
           controlId="zip_code"
         >
@@ -394,7 +441,7 @@ export default function AddPropertyForm() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group as={Col} xs={12} md={12}>
+        <Form.Group as={Col} xxs={12} md={12}>
           <Form.Label>
             <i className="fa-solid fa-book icon-style me-2"></i>
             Descrizione
