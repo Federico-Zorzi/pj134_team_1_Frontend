@@ -10,24 +10,39 @@ export default function Breadcrumb({ pageName }) {
   return (
     <div className="container mt-5">
       <nav aria-label="breadcrumb">
-        <ol className={`breadcrumb ${toggleDarkMode ? "text-white" : ""}`}>
+        <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            <Link to="/">Home</Link>
+            <Link to="/">
+              <span className={toggleDarkMode ? "text-light" : "text-black"}>
+                Home
+              </span>
+            </Link>
           </li>
           <li className="breadcrumb-item">
             {window.history.length > 2 ? (
               <button
-                className="btn p-0 text-decoration-none"
+                className={
+                  `btn p-0 text-decoration-none` +
+                  (toggleDarkMode ? " text-light" : " text-black")
+                }
                 onClick={() => navigate("/advanceSearch")}
               >
                 Cerca
               </button>
             ) : (
-              <Link to="/advanceSearch">Cerca</Link>
+              <Link to="/advanceSearch">
+                {" "}
+                <span className={toggleDarkMode ? "text-light" : "text-black"}>
+                  Cerca{" "}
+                </span>
+              </Link>
             )}
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            {pageName}
+            <span className={toggleDarkMode ? "text-light" : "text-black"}>
+              {" "}
+              {pageName}{" "}
+            </span>
           </li>
         </ol>
       </nav>

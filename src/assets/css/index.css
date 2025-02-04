@@ -321,6 +321,14 @@ main {
 
 /* ShowPage Image */
 
+[data-dark-mode="false"] .breadcrumb-item + .breadcrumb-item::before {
+  color: var(--dark-text);
+}
+
+[data-dark-mode="true"] .breadcrumb-item + .breadcrumb-item::before {
+  color: var(--light-text);
+}
+
 .size-image {
   border-radius: 7px;
   height: 100%;
