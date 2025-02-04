@@ -11,7 +11,7 @@ export default function SendMailForm({ property }) {
   const [isOwner, setIsOwner] = useState(false);
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [feedback, setFeedback] = useState(null);
+  const [feedback, setFeedback] = useState({ success: false, message: "" });
 
   useEffect(() => {
     if (userInformation && property) {
@@ -19,12 +19,13 @@ export default function SendMailForm({ property }) {
     }
   }, [userInformation, property]);
 
+  useEffect(() => setFeedback({ success: false, message: "" }), []);
+
   // EmailJS Form Submission
   const form = useRef();
   const sendEmail = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setFeedback(null);
 
     try {
       await emailjs.sendForm(
@@ -49,13 +50,17 @@ export default function SendMailForm({ property }) {
 
   return (
     <>
-      <button
-        onClick={() => setShow(true)}
-        className="xs-device-btn col-lg-12 col-md-12 col-sm-12 btn btn-primary"
-        aria-label="Scrivi una mail al proprietario"
-      >
-        Scrivi una mail al proprietario
-      </button>
+      {feedback.success === true ? (
+        ""
+      ) : (
+        <button
+          onClick={() => setShow(true)}
+          className="xs-device-btn col-lg-12 col-md-12 col-sm-12 btn btn-primary"
+          aria-label="Scrivi una mail al proprietario"
+        >
+          Scrivi una mail al proprietario
+        </button>
+      )}
 
       <Modal
         show={show}
@@ -144,11 +149,11 @@ export default function SendMailForm({ property }) {
         </div>
       </Modal>
 
-      {feedback && (
+      {feedback.message !== "" && (
         <div
           className={`alert ${
             feedback.success ? "alert-success" : "alert-danger"
-          } mt-3`}
+          } mb-0`}
           role="alert"
         >
           {feedback.message}

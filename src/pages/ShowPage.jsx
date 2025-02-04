@@ -121,7 +121,7 @@ export default function ShowPage() {
                 </div>
               </div>
 
-              <div className="d-flex gap-2 btn-mail">
+              <div className="d-flex gap-2 btn-mail justify-content-center">
                 {/* Bottone per invio mail */}
                 <SendMailForm property={property} />
                 {/* Bottone per modificare l'immobile */}
