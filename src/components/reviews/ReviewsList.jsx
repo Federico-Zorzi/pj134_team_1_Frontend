@@ -209,7 +209,8 @@ export default function ReviewsList() {
                     {/* Nome */}
                     <Form.Group
                       as={Col}
-                      xs={6}
+                      xs={12}
+                      md={6}
                       className="mb-3"
                       controlId="title"
                     >
@@ -231,7 +232,8 @@ export default function ReviewsList() {
                     </Form.Group>
                     <Form.Group
                       as={Col}
-                      xs={6}
+                      xs={12}
+                      md={6}
                       className="mb-3"
                       controlId="vote"
                     >
@@ -261,7 +263,8 @@ export default function ReviewsList() {
                     {/* Tempo di permanenza */}
                     <Form.Group
                       as={Col}
-                      xs={6}
+                      xs={12}
+                      md={6}
                       className="mb-3"
                       controlId="living-days"
                     >
@@ -287,7 +290,8 @@ export default function ReviewsList() {
                     {/* Check-in */}
                     <Form.Group
                       as={Col}
-                      xs={6}
+                      xs={12}
+                      md={6}
                       className="mb-3"
                       controlId="checkin"
                     >
