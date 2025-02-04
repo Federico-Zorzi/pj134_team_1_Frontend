@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "react-bootstrap/Form";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDataContext } from "../context/dataContext";
 import { useLayoutContext } from "../context/layoutContext";
 import { Row, Col, Button } from "react-bootstrap";
@@ -50,14 +50,13 @@ export default function SearchBar({ activeForm }) {
   const { fetchFilterProperties, setIsLoading, fetchFilterByDistance } =
     useDataContext();
   const { toggleDarkMode } = useLayoutContext();
+  const checkFirstRender = useRef(true);
   const propertyTypeList = [2, 3, 4, 5, 6, 7];
 
   const [formDataDistanceKm, setFormDataDistanceKm] = useState(
     initialDistanceKmFormData
   );
   const [validated, setValidated] = useState(false);
-  const minZipCode = 10;
-  const maxZipCode = 98079;
 
   const handleInputChangeDistanceKm = (e) => {
     const { name, value, type, checked } = e.target;
@@ -119,8 +118,13 @@ export default function SearchBar({ activeForm }) {
 
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
-      setIsLoading(true);
-      fetchFilterProperties(formData);
+      if (!checkFirstRender.current) {
+        setIsLoading(true);
+        fetchFilterProperties(formData);
+      } else {
+        checkFirstRender.current = false;
+        return;
+      }
     }, 500);
 
     return () => clearTimeout(debounceTimer);
