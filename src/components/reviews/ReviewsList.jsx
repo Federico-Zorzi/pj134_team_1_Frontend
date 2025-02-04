@@ -229,7 +229,6 @@ export default function ReviewsList() {
                         Inserisci il tuo nome.
                       </Form.Control.Feedback>
                     </Form.Group>
-                    {/* Voto */}
                     <Form.Group
                       as={Col}
                       xs={6}
@@ -240,22 +239,25 @@ export default function ReviewsList() {
                         <i className="fa-regular fa-star me-2"></i>
                         Vote
                       </Form.Label>
-                      <Form.Control
-                        type="number"
-                        placeholder="Inserisci voto..."
-                        min={minVote}
-                        max={maxVote}
+                      <Form.Select
                         name="vote"
                         value={reviewFormData.vote}
                         onChange={handleInputChange}
                         required
-                      />
+                      >
+                        <option value="">Select a vote...</option>
+                        {[1, 2, 3, 4, 5].map((num) => (
+                          <option key={num} value={num}>
+                            {num}
+                          </option>
+                        ))}
+                      </Form.Select>
                       <Form.Control.Feedback type="invalid">
                         Inserisci un voto alla recensione (da {minVote} a{" "}
-                        {maxVote}
-                        ).
+                        {maxVote}).
                       </Form.Control.Feedback>
                     </Form.Group>
+
                     {/* Tempo di permanenza */}
                     <Form.Group
                       as={Col}
