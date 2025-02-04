@@ -7,7 +7,7 @@ export default function UncontrolledExample() {
   const { mostPopularPropertiesList } = useDataContext();
 
   return (
-    <Carousel className="homepage-carousel mb-5 h-75">
+    <Carousel className="homepage-carousel d-none d-lg-block mb-5 h-75">
       {mostPopularPropertiesList
         ?.slice(0, itemsNumber)
         .map((property, index) => (
