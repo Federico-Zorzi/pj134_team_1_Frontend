@@ -60,7 +60,7 @@ export default function ShowPage() {
                 alt="..."
               />
             </div>
-            <div className="col-xl-6 col-md-12 mt-3">
+            <div className="info-properties col-xl-6 col-md-12 mt-3">
               <div className="row d-flex">
                 {/* Indirizzo*/}
                 <div className="xs-device w-sm col-lg-12 col-md-4 col-sm-6  mt-2 w-xl w-lg w-md">
@@ -121,7 +121,7 @@ export default function ShowPage() {
                 </div>
               </div>
 
-              <div className="d-flex gap-2 btn-mail justify-content-center">
+              <div className="d-flex gap-2 btn-show-functions justify-content-center">
                 {/* Bottone per invio mail */}
                 <SendMailForm property={property} />
                 {/* Bottone per modificare l'immobile */}

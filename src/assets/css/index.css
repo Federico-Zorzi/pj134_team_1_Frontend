@@ -317,11 +317,7 @@ main {
   font-size: 40px;
 }
 
-/* ShowPage */
-
-.btn-mail {
-  margin-top: 82px;
-}
+/* SHOWPAGE */
 
 /* ShowPage Image */
 
@@ -333,6 +329,15 @@ main {
 
 .icon-style {
   font-size: 20px;
+}
+
+.info-properties {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-show-functions {
+  margin-top: auto;
 }
 
 [data-dark-mode="false"] .modal-content {

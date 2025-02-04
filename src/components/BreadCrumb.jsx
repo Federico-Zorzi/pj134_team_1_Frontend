@@ -18,7 +18,7 @@ export default function Breadcrumb({ pageName }) {
             {window.history.length > 2 ? (
               <button
                 className="btn p-0 text-decoration-none"
-                onClick={() => navigate(-1)}
+                onClick={() => navigate("/advanceSearch")}
               >
                 Cerca
               </button>
